@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Hello Astera | Astera</title>
+    <title>Categories: 我的来时路 | Astera</title>
     <meta name="author" content="WatchRhine" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -37,13 +37,6 @@
 
 
 <script src="/js/lib/preview.js"></script>
-
-
-<script src="https://s4.zstatic.net/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
-<script src="/js/lib/crypto.js"></script>
-
-
-
 
 
 
@@ -157,20 +150,14 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>Hello Astera</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/12/24
-        </span>
+            <div id="archives">
+    
+    <div class="categories-tags">
         
-        <span class="category">
-            <a href="/categories/%E5%88%9D%E5%88%B0%E6%96%B0%E5%A4%A7%E9%99%86/">
+        
+        
+        <span>
+            <a href="/categories/%E5%88%9D%E5%88%B0%E6%96%B0%E5%A4%A7%E9%99%86/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -179,43 +166,69 @@
         </span>
         
         
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/greetings/" style="color: #00a596">
-                    greetings
-                </a>
-            </span>
-            
+        
+        <span>
+            <a href="/categories/%E7%B2%BE%E7%A5%9E%E5%A8%B1%E4%B9%90%E5%89%82/" style="background: #03a9f4">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                精神娱乐剂
+            </a>
         </span>
+        
+        
+        
+        <span>
+            <a href="/categories/%E6%88%91%E7%9A%84%E6%9D%A5%E6%97%B6%E8%B7%AF/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                我的来时路
+            </a>
+        </span>
+        
+        
+        
         
     </div>
     
-    
-    <input
-        id="crypto"
-        :class="['input', cryptoStatus]"
-        :disabled="cryptoStatus === 'success'"
-        ref="crypto"
-        placeholder="文章被加密，请输入密码"
-        data-encrypted="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"
-        data-shasum="a4a717daec7b53d5f6c57d9713ab8d68ecfd677bf43a438759816c38e5d90880"
-        v-model="crypto"
-    />
-    <transition name="fade">
-        <div class="content" ref="content" v-show="cryptoStatus === 'success'"></div>
-    </transition>
-    
-    
-    
-    
-    
-    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2026/5/21</div>
+            <a href="/2026/05/21/se-architecture/">
+                <h3>软件系统设计——设计模式</h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E6%88%91%E7%9A%84%E6%9D%A5%E6%97%B6%E8%B7%AF/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        我的来时路
+                    </a>
+                </span>
+                
+                
+                <span class="tags">
+                    <span class="icon">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </span>
+                    
+                    
+                    <span class="tag">
+                        
+                        <a href="/tags/study/" style="color: #00bcd4">
+                            study
+                        </a>
+                    </span>
+                    
+                </span>
+                
+            </div>
+        </div>
+    </div>
     
 </div>
 
@@ -247,12 +260,6 @@
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-
-
-
-
     
 </body>
 </html>
