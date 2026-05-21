@@ -1,0 +1,1564 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>编译原理笔记 | Astera</title>
+    <meta name="author" content="WatchRhine" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/FATALIS_avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/giphy.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>ASTERA</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;ASTERA</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>编译原理笔记</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/6/18
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%88%91%E7%9A%84%E6%9D%A5%E6%97%B6%E8%B7%AF/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                我的来时路
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/study/" style="color: #00bcd4">
+                    study
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/nju/" style="color: #ffa2c4">
+                    nju
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/software/" style="color: #03a9f4">
+                    software
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/compiler/" style="color: #ffa2c4">
+                    compiler
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1><span id="编译原理">编译原理</span></h1><h2><span id="一-词法分析">一、 词法分析</span></h2><h3><span id="关于ir">关于IR</span></h3><ul>
+<li><strong>IR</strong>：<code>Intermediate Representation</code>，中间表示，由编译器前端产生，被后端使用。<ul>
+<li>树型IR：如语法分析树、抽象语法树。</li>
+<li>线性IR：如三地址码。</li>
+</ul>
+</li>
+<li>为什么要有IR？<ol>
+<li>统一编译成中间表示，从而分离开前端和后端，降低耦合</li>
+<li>方便机器无关优化 （大量的优化 &#x2F; 分析都在IR上进行）</li>
+</ol>
+</li>
+</ul>
+<h3><span id="串和语言">串和语言</span></h3><ol>
+<li><strong>字母表</strong>，一个有限的符号集合；</li>
+<li><strong>串</strong>，字母表中符号组成的一个有穷序列；</li>
+<li><strong>语言</strong>，给定字母表上一个任意可数的串的集合；</li>
+<li>前缀 &#x2F; 后缀 &#x2F; 子串</li>
+<li>真前缀 &#x2F; 真后缀 &#x2F; 真子串</li>
+<li>空串，$\varepsilon$</li>
+</ol>
+<h4><span id="串的运算">串的运算</span></h4><ul>
+<li><strong>连接</strong>：如$xy$</li>
+<li><strong>幂次</strong>：如$s^5&#x3D;sssss,\ s^0&#x3D;\epsilon$</li>
+<li><strong>翻转</strong>：如 $(abc)^R&#x3D;cba$</li>
+<li><strong>长度</strong>：如 $|abc|&#x3D;3,\ |\epsilon|&#x3D;0$</li>
+</ul>
+<h4><span id="语言的运算">语言的运算</span></h4><ul>
+<li><p>语言本质上是一个<strong>集合</strong>，所以语言可以进行通用的集合运算如：交、并、差、补</p>
+</li>
+<li><p>语言的翻转：$L^R &#x3D; {w^R : w \in L}$</p>
+</li>
+<li><p>语言的连接：$L_1 L_2 &#x3D; {xy : x \in L_1, y \in L_2}$</p>
+</li>
+<li><p>语言的幂乘：<br>○ $L^n &#x3D; L \cdots L$ (共$n$个$L$)；<br>○ $L^0 &#x3D; {\varepsilon}$</p>
+</li>
+<li><p>星闭包：$L^* &#x3D; {L^0 \cup L^1 \cup L^2 \cup \ldots}$</p>
+</li>
+<li><p>正闭包：$L^+ &#x3D; L^* - {\varepsilon}$</p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250604134546919-1779362602044-7.png" alt="image-20250604134546919" style="zoom: 50%;">
+
+<p>{“ab”,”c”}* &#x3D; { ε, “ab”, “c”, “abab”, “abc”, “cab”, “cc”, “ababab”, “ababc”, “abcab”, “abcc”, “cabab”, “cabc”, “ccab”, “ccc”, …}.</p>
+<p>{“a”, “b”, “c”}* &#x3D; { ε, “a”, “b”, “c”, “aa”, “ab”, “ac”, “ba”, “bb”, “bc”, “ca”, “cb”, “cc”, “aaa”, “aab”, …}.</p>
+<p>语言：a language is any subset of 𝚺∗</p>
+<h3><span id="p-vs-np">P vs NP</span></h3><ul>
+<li>P问题 —— <strong>确定性算法</strong>在关于输入规模的多项式时间内可解</li>
+<li>NP问题 —— <strong>非确定性算法</strong>在关于输入规模的多项式时间内可解</li>
+</ul>
+<h3><span id="正则表达式">正则表达式</span></h3><ul>
+<li>正则表达式（Regular Expression, RE）是词法分析使用的工具。</li>
+<li>正则表达式以代数形式描述了一个<strong>语言</strong>。（准确的说，是一个正则语言）</li>
+</ul>
+<h4><span id="211-定义">2.1.1 定义</span></h4><p>定义 <strong>正则表达式</strong> 如下：</p>
+<p>基础情况：</p>
+<ol>
+<li>如果 $a$ 是一个符号，那么 $a$ 是一个正则表达式，且 $L(a) &#x3D; {a}$。</li>
+<li>$\varepsilon$ 是一个正则表达式，且 $L(\varepsilon) &#x3D; {\varepsilon}$。</li>
+<li>$\varnothing$ 是一个正则表达式，且 $L(\varnothing) &#x3D; \varnothing$。</li>
+</ol>
+<p>递归情况：</p>
+<ol>
+<li>如果 $E_1$ 与 $E_2$ 是正则表达式，那么 $E_1 + E_2$ 也是一个正则表达式，且 $L(E_1 + E_2) &#x3D; L(E_1) \cup L(E_2)$。（并）</li>
+<li>如果 $E_1$ 与 $E_2$ 是正则表达式，那么 $E_1 E_2$ 也是一个正则表达式，且 $L(E_1 E_2) &#x3D; L(E_1)L(E_2)$。（连接）</li>
+<li>如果 $E$ 是一个正则表达式，那么 $E^<em>$ 也是一个正则表达式，且 $L(E^</em>) &#x3D; (L(E))^*$。（星闭包）</li>
+</ol>
+<h4><span id="运算符优先级">运算符优先级</span></h4><p>星闭包 &gt; 拼接 &gt; 并</p>
+<h3><span id="22-有穷自动机-automaton">2.2 有穷自动机 (Automaton)</span></h3><ul>
+<li>两种有穷自动机：<ul>
+<li><strong>DFA</strong> (<strong>Deterministic</strong> Finite Automaton)， <strong>确定性</strong>有穷状态自动机</li>
+<li><strong>NFA</strong> (<strong>Nondeterministic</strong> Finite Automaton)， <strong>非确定性</strong>有穷状态自动机</li>
+</ul>
+</li>
+<li>有穷自动机是一种能记忆有限量信息的形式系统，可用于<strong>接受或拒绝</strong>某一个特定的字符串，有穷自动机所有接受的字符串的集合就是<strong>它所定义的语言</strong>。</li>
+<li>有穷自动机的关键是<strong>状态</strong>和<strong>转移</strong></li>
+</ul>
+<h4><span id="221-dfa和nfa的定义">2.2.1 DFA和NFA的定义</span></h4><blockquote>
+<p>这种逐一描述被定义对象的各个元素的形式化定义方式叫作 “<strong>声明式定义</strong>”</p>
+</blockquote>
+<ul>
+<li><p><strong>NFA</strong> $A$ 是一个五元组 $A &#x3D; (\Sigma, S, s_0, \delta, F)$：</p>
+<ol>
+<li>字母表 $\Sigma$ ($\epsilon \notin \Sigma$)</li>
+<li>有穷的状态集合 $S$</li>
+<li>唯一的初始状态 $s_0 \in S$</li>
+<li><strong>状态转移函数</strong> $\delta: S \times (\Sigma \cup {\epsilon}) \rightarrow 2^S$</li>
+<li>接受状态集合 $F \subseteq S$<ul>
+<li>接受状态也称为终止状态，一般在<strong>状态转换图</strong>中用<strong>双圈</strong>表示</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>DFA</strong> $A$ 是一个五元组 $A &#x3D; (\Sigma, S, s_0, \delta, F)$：</p>
+<ol>
+<li>字母表 $\Sigma$ ($\epsilon \notin \Sigma$)</li>
+<li>有穷的状态集合 $S$</li>
+<li>唯一的初始状态 $s_0 \in S$</li>
+<li><strong>状态转移函数</strong> $\delta: S \times \Sigma \rightarrow S$</li>
+<li>接受状态集合 $F \subseteq S$</li>
+</ol>
+</li>
+</ul>
+<h4><span id="222-dfa和nfa的区别">2.2.2 DFA和NFA的区别</span></h4><ul>
+<li>DFA的特点：<ul>
+<li>一个字符只能转移到<strong>唯一确定</strong>的下一个状态。</li>
+<li>不支持空串$\epsilon$转移。</li>
+</ul>
+</li>
+<li>NFA的特点：<ul>
+<li>当前状态下，在一个字符的驱动下可以转移到<strong>两个（或多个）不同状态</strong>。</li>
+<li>允许使用$\epsilon$转移，即没有任何字符驱动也有可能转移。</li>
+</ul>
+</li>
+<li>二者区别：<ul>
+<li>DFA容易被计算机实现，但人类理解它较困难。</li>
+<li>NFA 描述一个语言更容易被读懂；但是不用于实现词法分析器。</li>
+</ul>
+</li>
+</ul>
+<h4><span id="223-状态转换图">2.2.3 状态转换图</span></h4><p>通常，我们用一张直观的图来表示有穷自动机，这就是<strong>状态转换图</strong>。</p>
+<h3><span id="re转化成nfa">RE转化成NFA</span></h3><img src="/2025/06/18/compiler-learning/image-20250618171052502-1779362602045-8.png" alt="image-20250618171052502" style="zoom:50%;">
+
+<h3><span id="nfa转化成dfa">NFA转化成DFA</span></h3><img src="/2025/06/18/compiler-learning/image-20250618171132055-1779362602045-9.png" alt="image-20250618171132055" style="zoom:50%;">
+
+<h3><span id="dfa最小化">DFA最小化</span></h3>
+
+<h5><span id="重要的转换图">重要的转换图</span></h5><img src="/2025/06/18/compiler-learning/202211282146730.png" alt="img" style="zoom:67%;">
+
+<ul>
+<li>RE 到 NFA<ul>
+<li>Thompson 构造法</li>
+</ul>
+</li>
+<li>NFA 到 DFA<ul>
+<li>子集构造法</li>
+</ul>
+</li>
+<li>DFA到 DFA 的自环<ul>
+<li>DFA 最小化</li>
+<li>Hopcroft算法</li>
+</ul>
+</li>
+<li>DFA 到 RE<ul>
+<li>Kleene 构造法</li>
+</ul>
+</li>
+</ul>
+<h2><span id="二-语法分析">二、语法分析</span></h2><p>定义 <strong>上下文无关文法（Context-Free Grammar）</strong> 为一个$G&#x3D;(V,T,S,P)$<strong>四元组</strong> ，其中：</p>
+<ul>
+<li><p>$T$ 是 CFG 所要定义的语言的字母表，称为 <strong>终结符(Terminals)</strong>；</p>
+</li>
+<li><p>$V$ 是一个有限的具他符号的集合，每个符号代表了一个小语言，称为 <strong>变量(Variables)</strong> 或者 <strong>非终结符(Nonterminals)</strong>；</p>
+</li>
+<li><p>$S$ 是代表 CFG 所要定义的语言变量，称为 <strong>起始符号(Start Symbol)</strong>；</p>
+</li>
+<li><p>$P$ 是 <strong>产生式 (productions)</strong> （也译作：生成式&#x2F;推导式）的集合，表示语言的递归定义，每个产生式形如<br>$head \to body$，其中：</p>
+<ul>
+<li><p><strong>产生式头 (head)</strong> 是一个变量；</p>
+</li>
+<li><p><strong>产生式体 (body)</strong> 是变量和终结符组成的字符串，可以是空串。</p>
+</li>
+</ul>
+</li>
+<li><p>符号约定:</p>
+<ul>
+<li>习惯上，使用大写字母 $A, B, C, \ldots$ 和 $S$ 表示非终结符；而使用小写字母 $a, b, c, \ldots$ 来表示终结符。</li>
+</ul>
+</li>
+<li><p>例子:</p>
+<ul>
+<li><p>$0^n1^n (n \geq 0)$，我们已知它不是正则语言，此时如果使用上下文无关文法描述它，就证明了它是上下文无关语言（上下文无关语言 (CFL) 是上下文无关文法 (CFG) 定义的语言）。</p>
+</li>
+<li><p>做到这一点很简单，令$V &#x3D; {S}, T &#x3D; {0, 1}, S &#x3D; S, P &#x3D; {S \to 0S1 \mid \varepsilon}$即可。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="推导">推导</span></h4><ol>
+<li><p>如果 $A \rightarrow \gamma$ 是一个产生式，则称 $\alpha A \beta \Rightarrow \alpha \gamma \beta$ 为 $\alpha A \beta$ <strong>推导</strong>（derive）出 $\alpha \gamma \beta$，这样就定义了一步推导。</p>
+</li>
+<li><p><strong>迭代推导</strong>（iterated derivation）：表示经过零步或者若干步推导，记作 $\Rightarrow^*$。</p>
+<ul>
+<li>$\forall \alpha, ; \alpha \Rightarrow^* \alpha$（基础情况）</li>
+<li>若 $\alpha \Rightarrow^* \beta,; \beta \Rightarrow \gamma$，则 $\alpha \Rightarrow^* \gamma$（归纳情况）</li>
+</ul>
+</li>
+<li><p>从起始符号推导得出的任意符号串称为<strong>句型</strong>（sentential form）。$\alpha$ 是一个句型当且仅当 $S \Rightarrow^* \alpha$。</p>
+<ul>
+<li>不含有非终结符的句型称为句子（sentence）。</li>
+</ul>
+</li>
+<li><p><strong>最左推导</strong>（leftmost derivations）：如果 $w$ 是由终结符构成的字符串，且 $A \rightarrow \beta$ 是一个推导式。称 $wA\alpha \Rightarrow_{lm} w\beta\alpha$ 为一个最左推导。定义<br>$$<br>\alpha \Rightarrow^<em>_{lm} \beta<br>$$<br>表示 $\alpha$ 可以通过零步或者若干步*<em>最左推导</em></em> $\Rightarrow_{lm}$ 变成 $\beta$。</p>
+</li>
+<li><p><strong>最右推导</strong>（rightmost derivations）：我们称 $\alpha Aw \Rightarrow_{rm} \alpha\beta w$，$\alpha\beta w$ 是一个最右推导，如果 $w$ 是由终结符构成的字符串，且 $A \rightarrow \beta$ 是一个推导式。定义<br>$$<br>\alpha \Rightarrow^<em>_{rm} \beta<br>$$<br>表示 $\alpha$ 可以通过零步或者若干步*<em>最右推导</em></em> $\Rightarrow_{rm}$ 变成 $\beta$。</p>
+</li>
+<li><p>推导是一个建立语法分析树的过程。</p>
+</li>
+<li><p><strong>语法分析树</strong>（Parse Tree &#x2F; Syntax Tree）：是一棵用某个特定的上下文无关文法中的符号对每个结点做标记的树：</p>
+<ul>
+<li>叶子结点：用终结符或者 $\varepsilon$ 标记；</li>
+<li>内部结点：用非终结符标记；</li>
+<li><strong>子结点用父结点的推导式右边的符号标记；</strong></li>
+<li>根结点：用起始符号标记。</li>
+</ul>
+</li>
+<li><p>语法分析树的<strong>产出</strong>（yield）：按照<strong>前序遍历</strong>的顺序将叶子结点上的记号拼接起来得到的字符串称为语法分析树的产出。</p>
+<p>例子：产生式为 $Exp \rightarrow Integer \mid (Exp) \mid Exp * Exp \mid Exp + Exp$，  产出 $5 + (1 * 12)$ 的一棵语法分析树。</p>
+</li>
+</ol>
+<img src="/2025/06/18/compiler-learning/v2-773ceebe93c515b6e60f08a9dfbb052d_1440w.jpg" alt="img" style="zoom:50%;">
+
+<h3><span id="消除左递归">消除左递归</span></h3><ul>
+<li><p>如果一个文法存在某个非终结符 $A$，使得存在推导 $A \Rightarrow^+ A\alpha$，则该文法是左递归的。</p>
+</li>
+<li><p><strong>例子：</strong> $A \rightarrow A\alpha \mid \beta$ 是左递归的，可以转换为：</p>
+</li>
+</ul>
+<p>$$<br>A \rightarrow \beta A’ \<br>A’ \rightarrow \alpha A’ \mid \epsilon<br>$$</p>
+<p>更一般地，对于：</p>
+<p>$$<br>A \rightarrow A\alpha_1 \mid A\alpha_2 \mid \cdots \mid A\alpha_m \mid \beta_1 \mid \beta_2 \mid \cdots \mid \beta_n<br>$$</p>
+<p>可以转换为：</p>
+<p>$$<br>A \rightarrow \beta_1A’ \mid \beta_2A’ \mid \cdots \mid \beta_nA’ \<br>A’ \rightarrow \alpha_1A’ \mid \alpha_2A’ \mid \cdots \mid \alpha_mA’ \mid \epsilon<br>$$</p>
+<h3><span id="预测分析">预测分析</span></h3><ul>
+<li>预测分析器是没有回溯的递归下降分析器</li>
+<li>LL(1)<ul>
+<li>L：从左到右扫描输入</li>
+<li>L：最左推导</li>
+<li>1：每一步只使用一个输入符号进行前瞻</li>
+</ul>
+</li>
+<li>LL(1) 文法（无二义性！不是左递归！）<ul>
+<li><strong>足够丰富</strong>（Rich enough）可以覆盖大多数编程结构</li>
+</ul>
+</li>
+</ul>
+<h2><span id="first">First()</span></h2><ul>
+<li><p>$\mathrm{FIRST}(\alpha)$：</p>
+<ul>
+<li><p>$\alpha$ 可能以哪些终结符开头的集合</p>
+</li>
+<li><p>如果 $X$ 是终结符，$\mathrm{FIRST}(X) &#x3D; { X }$</p>
+</li>
+<li><p>如果 $X \rightarrow \epsilon$ 是一个产生式，则 $\epsilon \in \mathrm{FIRST}(X)$</p>
+</li>
+<li><p>如果 $X \rightarrow Y_1 Y_2 \dots Y_k$，且 $\epsilon \in \bigcap_{j&#x3D;1}^{i-1} \mathrm{FIRST}(Y_j)$ 且 $a \in \mathrm{FIRST}(Y_i)$，则 $a \in \mathrm{FIRST}(X)$</p>
+</li>
+<li><p>若 $\epsilon \in \bigcap_{j&#x3D;1}^{k} \mathrm{FIRST}(Y_j)$，则 $\epsilon \in \mathrm{FIRST}(X)$</p>
+</li>
+</ul>
+<p>$$<br>X \rightarrow Y_1 Y_2 \dots Y_k \rightarrow \epsilon<br>$$</p>
+</li>
+</ul>
+<h2><span id="follow">Follow()</span></h2><ul>
+<li><p>$\mathrm{FOLLOW}(\alpha)$:</p>
+<ul>
+<li><p>$\alpha$右侧可以直接出现的终结符的集合</p>
+</li>
+<li><p>若$S$为非终结符的开始符号，$$$作为字符串结尾标记，则$$ \in \mathrm{FOLLOW}(S)$</p>
+</li>
+<li><p>$A \rightarrow \alpha B \beta \implies \mathrm{FIRST}(\beta) \setminus {\epsilon} \subseteq \mathrm{FOLLOW}(B)$</p>
+</li>
+<li><p>$A \rightarrow \alpha B$ 或 $A \rightarrow \alpha B \beta$ 且 $\epsilon \in \mathrm{FIRST}(\beta)$，则$\mathrm{FOLLOW}(A) \subseteq \mathrm{FOLLOW}(B)$</p>
+</li>
+<li><p>例如表格：</p>
+<table>
+<thead>
+<tr>
+<th align="center">$A$ or $\alpha B$</th>
+<th align="center">…</th>
+</tr>
+</thead>
+</table>
+</li>
+</ul>
+</li>
+<li><p><strong>注意：重复上述过程直到不再变化为止（达到不动点）！</strong></p>
+</li>
+</ul>
+<h3><span id="预测分析表predictive-parsing-table">预测分析表（Predictive Parsing Table）</span></h3><h2><span id="1-基本原则">1. 基本原则</span></h2><p>对于每个产生式 $A \rightarrow \alpha$，按如下规则填表：</p>
+<ul>
+<li>对于每个 $a \in \mathrm{FIRST}(\alpha)$，令 $M[A, a] &#x3D; A \rightarrow \alpha$</li>
+<li>如果 $\varepsilon \in \mathrm{FIRST}(\alpha)$，则对每个 $b \in \mathrm{FOLLOW}(A)$，令 $M[A, b] &#x3D; A \rightarrow \alpha$</li>
+</ul>
+<hr>
+<h2><span id="2-步骤详解">2. 步骤详解</span></h2><ol>
+<li><strong>计算所有非终结符的 FIRST 集和 FOLLOW 集。</strong></li>
+<li><strong>对于每个产生式 $A \rightarrow \alpha$：</strong><ul>
+<li>找出 $\mathrm{FIRST}(\alpha)$ 中的所有终结符 $a$，将 $A \rightarrow \alpha$ 填入 $M[A, a]$</li>
+<li>如果 $\varepsilon \in \mathrm{FIRST}(\alpha)$，则将 $A \rightarrow \alpha$ 填入 $M[A, b]$，其中 $b \in \mathrm{FOLLOW}(A)$</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2><span id="3-表的含义">3. 表的含义</span></h2><ul>
+<li>行表示非终结符，列表示输入符号（终结符或结束符号 $）。</li>
+<li>每个单元格 $M[A, a]$ 指定了当栈顶为 $A$，输入符号为 $a$ 时应采用的产生式。</li>
+<li>若单元格为空，表示语法分析出错。</li>
+</ul>
+<hr>
+<h2><span id="4-例子说明">4. 例子说明</span></h2><p>以右上角文法为例：</p>
+<pre><code>E  → T E&#39;
+E&#39; → + T E&#39; | ε
+T  → F T&#39;
+T&#39; → * F T&#39; | ε
+F  → ( E ) | id
+</code></pre>
+<img src="/2025/06/18/compiler-learning/image-20250605211135665-1779362602045-11.png" class title="image-20250605211135665">
+
+<h2><span id="表格含义解释">表格含义解释</span></h2><ul>
+<li>这个预测分析表用于 LL(1) 语法分析，也就是自顶向下的递归下降分析（没有回溯）。</li>
+<li>解析时，分析器根据当前栈顶的非终结符和当前输入符号查表，选择相应的产生式进行推导。</li>
+<li>若表格为空，则说明输入串与文法不匹配，发生语法错误。</li>
+<li>红色说明：<strong>“根据表选择产生式，表格为空表示出错。”</strong></li>
+</ul>
+<h2><span id="例子">例子</span></h2><ul>
+<li>比如当前栈顶为 E，输入符号为 id，则查表得到 E → T E’，用此产生式替换 E。</li>
+<li>如果当前栈顶为 E’，输入符号为 ) 或 $，查表得到 E’ → ε，表示可以推出空串。</li>
+</ul>
+<blockquote>
+<p>预测分析表是实现 LL(1) 语法分析器的核心工具，通过 FIRST 和 FOLLOW 集进行自动化填表，指导语法推导过程。</p>
+</blockquote>
+<p>通过 FIRST 集确定哪些输入符号能用该产生式推导，若能推出 $\varepsilon$，则还需结合 FOLLOW 集，确保所有归约和结束情况都被覆盖。</p>
+<h2><span id="三-ir生成">三、IR生成</span></h2><h3><span id="三地址码three-address-code">三地址码（Three-Address Code）</span></h3><ul>
+<li><p>提供一种标准表示方式，不如源代码灵活</p>
+</li>
+<li><p>每条指令右侧最多只有一个运算符</p>
+</li>
+<li><p>每条指令中最多包含三个地址&#x2F;变量</p>
+<pre><code>x = y op z
+</code></pre>
+</li>
+<li><p>其中 x、y、z 可以是变量或常量；</p>
+</li>
+<li><p>变量可以来自源代码，也可以由编译器生成</p>
+</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250605213219553-1779362602045-12.png" class title="image-20250605213219553">
+
+<img src="/2025/06/18/compiler-learning/image-20250605213235665-1779362602045-13.png" class title="image-20250605213235665">
+
+<h2><span id="源代码">源代码</span></h2><pre><code class="language-cpp">do i = i + 1; while (a[i + 2] &lt; v);
+</code></pre>
+<hr>
+<h2><span id="符号标签symbolic-labels">符号标签（Symbolic Labels）</span></h2><pre><code>L:   t₁ = i + 1
+     i = t₁
+     t₂ = i + 2
+     t₃ = a[t₂]
+     if t₃ &lt; v goto L
+</code></pre>
+<hr>
+<h2><span id="数字标签numeric-labels">数字标签（Numeric Labels）</span></h2><pre><code>100: t₁ = i + 1
+101: i = t₁
+102: t₂ = i + 2
+103: t₃ = a[t₂]
+104: if t₃ &lt; v goto 100
+</code></pre>
+<hr>
+<h1><span id="static-single-assignment">Static Single-Assignment</span></h1><ul>
+<li><p><strong>Feature 1:</strong> Every variable has only one definition</p>
+</li>
+<li><p><strong>Feature 2:</strong> Using φ to merge definitions from multi paths</p>
+<p>⇒ Direct def-use chains</p>
+</li>
+</ul>
+<p>原始代码：</p>
+<pre><code class="language-c">if (flag) x = -1; else x = 1;
+y = x * a;
+</code></pre>
+<p>SSA 形式：</p>
+<pre><code class="language-c">if (flag) x₁ = -1; else x₂ = 1;
+x₃ = φ(x₁, x₂);
+y = x₃ * a;
+</code></pre>
+<h2><span id="主支配关系dominance-relations">主支配关系（Dominance Relations）</span></h2><ul>
+<li><p><strong>A dom B</strong></p>
+<ul>
+<li>如果从入口（Entry）到 B 的所有路径都经过 A</li>
+</ul>
+</li>
+<li><p><strong>A post-dom B</strong></p>
+<ul>
+<li>如果从 B 到出口（Exit）的所有路径都经过 A</li>
+</ul>
+</li>
+<li><p><strong>严格（Strict）(后)支配（dominance）</strong><br>A (后)支配 B，但 A ≠ B。</p>
+</li>
+<li><p><strong>直接（Immediate）支配（dominance）</strong><br>A 严格支配 B，并且不存在 C，使得 A 严格支配 C，且 C 严格支配 B。</p>
+</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250617194154535-1779362602045-14.png" alt="image-20250617194154535" style="zoom:67%;">
+
+<h2><span id="支配前沿dominance-frontier">支配前沿（Dominance Frontier）</span></h2><ul>
+<li><p>DF(B) &#x3D; { … }，对于基本块 B</p>
+<ul>
+<li>由 B 支配的基本块的直接后继</li>
+<li>但这些后继不是被 B 严格支配的</li>
+</ul>
+</li>
+<li><p>DF(𝔅) &#x3D; { … }，对于基本块集合 𝔅</p>
+<ul>
+<li>$DF(𝔅) &#x3D; ⋃_{B∈𝔅} DF(B)$</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250617194322416-1779362602045-15.png" alt="image-20250617194322416" style="zoom: 67%;">
+
+<h2><span id="迭代支配前沿iterated-dominance-frontier">迭代支配前沿（Iterated Dominance Frontier）</span></h2><ul>
+<li>一个基本块集合 𝔅 的迭代支配前沿（Iterated DF）：<ul>
+<li>DF₁ &#x3D; DF(𝔅)；𝔅 &#x3D; 𝔅 ∪ DF₁</li>
+<li>DF₂ &#x3D; DF(𝔅)；𝔅 &#x3D; 𝔅 ∪ DF₂</li>
+<li>……</li>
+<li>直到达到不动点！（即 DFₙ &#x3D; DFₙ₋₁）</li>
+</ul>
+</li>
+</ul>
+<h1><span id="数据流分析data-flow-analysis">数据流分析（Data Flow Analysis）</span></h1><img src="/2025/06/18/compiler-learning/image-20250617200000165-1779362602045-16.png" alt="image-20250617200000165" style="zoom: 50%;">
+
+<ul>
+<li><p><strong>IN[B]&#x2F;OUT[B]</strong></p>
+<ul>
+<li>一个基本块前后的数据流事实($facts$)集合</li>
+</ul>
+</li>
+<li><p><strong>约束条件（Constraints）</strong></p>
+<ul>
+<li>OUT[B] &#x3D; f<sub>B</sub>(IN[B]) &#x3D; gen<sub>B</sub> ∪ (IN[B] - kill<sub>B</sub>)</li>
+<li>IN[B] &#x3D; ∧<sub>P∈preds(B)</sub> OUT[P] &#x3D; ∪<sub>P∈preds(B)</sub> OUT[P]</li>
+</ul>
+</li>
+<li><p>要进行数据流分析，需定义</p>
+<ul>
+<li>每个语句&#x2F;基本块的<strong>传递函数</strong> f</li>
+<li>在多条路径的连接点处的<strong>合并函数</strong> ∧</li>
+<li>每个基本块的<strong>初始</strong>数据流事实集合</li>
+</ul>
+</li>
+<li><p>数据流分析产生</p>
+<ul>
+<li>IN[B]&#x2F;OUT[B]，包含了程序某一点的数据流事实</li>
+<li>所得到的数据流事实在程序执行过程中始终为真</li>
+</ul>
+</li>
+</ul>
+<h2><span id="工作表算法the-worklist-algorithm">工作表算法（The Worklist Algorithm）</span></h2><p><strong>ForEach</strong> 基本块 B: 初始化 IN[B] 和 OUT[B]; <strong>EndFor</strong></p>
+<p>worklist &#x3D; 所有基本块的集合;</p>
+<p><strong>While</strong> (!worklist.empty()) <strong>Do</strong></p>
+<p>B &#x3D; worklist.pop();</p>
+<p>IN[B] &#x3D; ∧<sub>P∈preds(B)</sub> OUT[P];  OUT[B] &#x3D; f<sub>B</sub>(IN[B])</p>
+<p><strong>If</strong> OUT[B] 发生变化: worklist.push(所有 B 的后继节点); <strong>EndIf</strong></p>
+<p><strong>EndWhile</strong></p>
+<h2><span id="到达性定义reaching-definitions">到达性定义（Reaching Definitions）</span></h2><ul>
+<li>一个定义 $d$ <strong>可能</strong>到达程序的某一点，如果存在一条从 $d$ 到该程序点的路径，使得 $d$ 没有在这条路径上被杀死（killed）。</li>
+<li>OUT[B] &#x3D; f<sub>B</sub>(IN[B]) &#x3D; gen<sub>B</sub> ∪ (IN[B] - kill<sub>B</sub>)</li>
+<li>IN[B] &#x3D; ∧<sub>P∈preds(B)</sub> OUT[P] &#x3D; ∪<sub>P∈preds(B)</sub> OUT[P]</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250617200420172-1779362602045-17.png" alt="image-20250617200420172" style="zoom:50%;">
+
+<img src="/2025/06/18/compiler-learning/image-20250617201154772-1779362602045-18.png" alt="image-20250617201154772" style="zoom:50%;">
+
+<img src="/2025/06/18/compiler-learning/image-20250618175225346-1779362602045-19.png" alt="image-20250618175225346" style="zoom:50%;">
+
+<h2><span id="可用表达式available-expressions">可用表达式（Available Expressions）</span></h2><ul>
+<li><p>一个表达式 x + y 在某点 p 是可用的，如果：</p>
+<ul>
+<li><p>从入口节点到 p 的每条路径都对 x + y 进行了计算，并且</p>
+</li>
+<li><p>在到达 p 之前最后一次计算之后，没有对 x 或 y 进行任何赋值操作。</p>
+<p>$$\text{OUT}[B] &#x3D; e_gen_B \cup (\text{IN}[B] - e_kill_B)$$<br>$$\text{IN}[B] &#x3D; \bigcap_{P \text{ a predecessor of } B} \text{OUT}[P].$$</p>
+</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250617200533241-1779362602045-20.png" class title="image-20250617200533241">
+
+<img src="/2025/06/18/compiler-learning/image-20250618175324547-1779362602045-21.png" alt="image-20250618175324547" style="zoom:50%;">
+
+<h2><span id="活跃变量分析live-variable-analysis">活跃变量分析（Live Variable Analysis）</span></h2><ul>
+<li>我们希望知道在程序点 p 处的变量 x 的值是否可以在从 p 开始的路径上被使用。</li>
+</ul>
+<p>对于代码$x&#x3D;y+z$</p>
+<ul>
+<li>在这一点上，变量 $y$ 和 $z$ 是<strong>活跃的（live）</strong>，因为我们可以在下一条语句中使用它们。</li>
+<li>在这一点上，变量 $x$ 是<strong>死亡的（dead）</strong>，因为 $x$ 将被重新定义，旧值不能再被使用。</li>
+<li>use[B]：在程序点B中被引用的变量的集合。</li>
+<li>def[B]：在程序点B中被定义的变量的集合。</li>
+</ul>
+<p>$$\text{IN}[B] &#x3D; use_B \cup (\text{OUT}[B] - def_B)$$<br>$$\text{OUT}[B] &#x3D; \bigcup_{S \text{ a successor of } B} \text{IN}[S]$$</p>
+<h4><span id="应用寄存器分配">应用：寄存器分配</span></h4><ul>
+<li><strong>死亡值（A dead value）</strong><ul>
+<li>在变量被修改后，其之前的值（在寄存器中）就死亡了</li>
+<li>我们需要从内存重新加载它的值到寄存器中</li>
+</ul>
+</li>
+<li><strong>活跃值（A live value）</strong><ul>
+<li>变量没有被重新定义</li>
+<li>将值加载到寄存器后，寄存器中的值是有效的</li>
+<li>不需要从内存重新加载值</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618175409439-1779362602045-22.png" alt="image-20250618175409439" style="zoom:33%;">
+
+<img src="/2025/06/18/compiler-learning/image-20250618175438351-1779362602045-23.png" alt="image-20250618175438351" style="zoom:33%;">
+
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">到达性定义（Reaching Definitions）</th>
+<th align="center">活跃变量（Live Variables）</th>
+<th align="center">可用表达式（Available Expressions）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">域（Domain）</td>
+<td align="center">定义集合</td>
+<td align="center">变量集合</td>
+<td align="center">表达式集合</td>
+</tr>
+<tr>
+<td align="center">方向（Direction）</td>
+<td align="center">前向（Forwards）</td>
+<td align="center">后向（Backwards）</td>
+<td align="center">前向（Forwards）</td>
+</tr>
+<tr>
+<td align="center">传递函数（Transfer function）</td>
+<td align="center">$gen_B \cup (x - kill_B)$</td>
+<td align="center">$use_B \cup (x - def_B)$</td>
+<td align="center">$e_gen_B \cup (x - e_kill_B)$</td>
+</tr>
+<tr>
+<td align="center">交汇（Meet）(∧)</td>
+<td align="center">∪</td>
+<td align="center">∪</td>
+<td align="center">∩</td>
+</tr>
+<tr>
+<td align="center">初始化（Initialize）</td>
+<td align="center">OUT[B] &#x3D; ∅</td>
+<td align="center">IN[B] &#x3D; ∅</td>
+<td align="center">OUT[B] &#x3D; U</td>
+</tr>
+</tbody></table>
+<h1><span id="符号执行symbolic-execution">符号执行（Symbolic Execution）</span></h1><ul>
+<li>路径敏感性（Path Sensitivity）</li>
+<li>流敏感性（Flow Sensitivity）</li>
+<li>上下文敏感性（Context Sensitivity）</li>
+</ul>
+<h3><span id="路径敏感性path-sensitivity">路径敏感性（Path Sensitivity）</span></h3><p>路径敏感性是指程序分析能够区分不同程序执行路径的能力。一个路径敏感的分析会考虑条件语句（如if-else、switch等）对程序状态的影响，并分别对不同的执行路径进行分析。</p>
+<p>例如，在以下代码中：</p>
+<pre><code>if (x &gt; 0) &#123;
+    y = 5;
+&#125; else &#123;
+    y = 10;
+&#125;
+z = y * 2;
+</code></pre>
+<p>路径敏感分析会分别追踪两条执行路径：</p>
+<ol>
+<li>x &gt; 0 时，y &#x3D; 5，z &#x3D; 10</li>
+<li>x ≤ 0 时，y &#x3D; 10，z &#x3D; 20</li>
+</ol>
+<p>这种分析方法能够更精确地检测出可能只在特定路径上出现的问题，但通常计算成本较高，可能面临”路径爆炸”问题。</p>
+<h3><span id="流敏感性flow-sensitivity">流敏感性（Flow Sensitivity）</span></h3><p>流敏感性是指程序分析能够考虑语句执行顺序的能力。流敏感分析会按照程序控制流的顺序处理语句，并且能够捕获变量在不同程序点的不同值。</p>
+<p>例如，考虑以下代码：</p>
+<pre><code>x = 5;
+y = x;
+x = 10;
+</code></pre>
+<p>流敏感分析会理解在第二行时x的值是5，而在第三行后x的值变成了10。这种分析能够精确地追踪变量值随程序执行过程的变化。</p>
+<p>相比之下，非流敏感分析会将x视为可能是5或10，而无法区分执行顺序的影响。</p>
+<h3><span id="上下文敏感性context-sensitivity">上下文敏感性（Context Sensitivity）</span></h3><p>上下文敏感性是指程序分析能够区分函数或方法在不同调用上下文中执行情况的能力。当一个函数在程序的不同位置被调用时，上下文敏感分析会分别分析每个调用点的具体情况。</p>
+<p>例如：</p>
+<pre><code>function double(x) &#123;
+    return x * 2;
+&#125;
+
+a = double(5);   // 上下文1
+b = double(10);  // 上下文2
+</code></pre>
+<p>上下文敏感分析会区分double函数在这两个调用点的不同行为，分别分析得出a&#x3D;10和b&#x3D;20的结果，而不是简单地认为函数返回值可能是任何x*2的结果。</p>
+<p>这种分析对于准确理解库函数在不同情况下的行为、检测特定上下文中的安全漏洞特别有用，但同时也会增加分析的复杂度和计算成本。</p>
+<p>这些敏感性概念在静态代码分析、符号执行、漏洞检测等领域都有重要应用，可以提高程序分析的精度，但通常也会增加分析的复杂度和计算成本。</p>
+<ul>
+<li>路径爆炸（Path Explosion）</li>
+<li>约束求解（Constraint Solving）</li>
+<li>外部函数调用（External Function Call）</li>
+</ul>
+<p>每个输入变量都与一个符号相关联，例如，<code>int i</code> → $\alpha_i$</p>
+<ul>
+<li><p>每个程序语句生成关于输入符号的公式，例如，<code>i * 2 + 5</code> → $2 * \alpha_i + 5$</p>
+</li>
+<li><p>程序路径 &#x3D;&gt; 路径约束（$Path\ Constraint$）</p>
+<pre><code>if (i &lt; 10)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th align="center">路径#1</th>
+<th align="center">路径#2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$\alpha_i &lt; 10$</td>
+<td align="center">$\alpha_i \geq 10$</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<pre><code class="language-cpp">1.    void foobar(int a, int b) &#123;
+2.        int x = 1, y = 0;
+3.        if (a != 0) &#123;
+4.            y = 3 + x;
+5.            if (b == 0)
+6.                x = 2 * (a + b);
+7.        &#125;
+8.        assert(x - y != 0);
+9.    &#125;
+</code></pre>
+<p>$\sigma &#x3D; {a \rightarrow \alpha_a ; b \rightarrow \alpha_b ; \boxed{x \rightarrow 1}; \boxed{y \rightarrow 0}};$<br>$\pi &#x3D; true$</p>
+<p>$\sigma &#x3D; {a \rightarrow \alpha_a ; b \rightarrow \alpha_b ; x \rightarrow 1; \boxed{y \rightarrow 4}};$<br>$\pi &#x3D; \alpha_a \neq 0$</p>
+<p>$\sigma &#x3D; {a \rightarrow \alpha_a ; b \rightarrow \alpha_b ; \boxed{x \rightarrow 2(\alpha_a+ \alpha_b)}; y \rightarrow 4};$<br>$\pi &#x3D; \alpha_a \neq 0 \wedge \alpha_b &#x3D; 0$</p>
+<p>check: $\pi \wedge \neg(2(\alpha_a+ \alpha_b) - 4 \neq 0)$<br>      可满足 &#x3D;&gt; 错误</p>
+<p>$\sigma$: 符号存储，将每个变量映射到符号表达式。<br>$\pi$: 路径约束。初始时，$\pi &#x3D; true$。</p>
+<h3><span id="求解路径约束solving-path-constraints">求解路径约束（Solving Path Constraints）</span></h3><ul>
+<li><p>我们如何检查约束的可满足性？</p>
+<p>$α_a ≠ 0 ∧ α_b &#x3D; 0 ∧ ¬(2(α_a + α_b) - 4 ≠ 0)$</p>
+</li>
+<li><p>约束求解器</p>
+<ul>
+<li>可满足（Satisfiable）&#x3D;&gt; 存在可能的解</li>
+<li>不可满足（Unsatisfiable）</li>
+<li>未知（Unknown）（由于超时）</li>
+</ul>
+</li>
+</ul>
+<h3><span id="逻辑">逻辑</span></h3><ul>
+<li>逻辑只是一种形式语言（就像正则语言等）</li>
+<li>(1) <strong>语法</strong>：什么是该语言的合法句子？</li>
+<li>(2) <strong>语义</strong>：句子的含义是什么？</li>
+</ul>
+<h4><span id="命题逻辑plpropositional-logic">命题逻辑（PL）($Propositional\ Logic$)</span></h4><ul>
+<li><strong>命题逻辑的语法</strong>，即，什么是命题逻辑的合法句子？($legal\ sentences\ of\ PL$)</li>
+<li>(1) <strong>真值符号</strong>（$b$）：⊤ 和 ⊥（真和假）</li>
+<li>(2) <strong>命题变量</strong>（$v$）：$p$, $q$, $r$, …</li>
+</ul>
+<p>（1）和（2）都是原子（$Atoms$)</p>
+<ul>
+<li>(3) <strong>字面量</strong>（$l$）：原子或其否定</li>
+<li>(4) <strong>公式</strong>（$F$）：$l$ | $\neg F$ | $F_1 \vee F_2$ | $F_1 \wedge F_2$ | $F_1 \Rightarrow F_2$ | $F_1 \Leftrightarrow F_2$</li>
+</ul>
+<p>“$\vee$”是或的意思，“$\wedge$”是且的意思</p>
+<h3><span id="可满足性和有效性satisfiability-and-validity">可满足性和有效性($Satisfiability\ \ and\ \ Validity$)</span></h3><ul>
+<li><p>命题逻辑中公式 $F$ 的<strong>解</strong>是一个映射 $I$，它将每个变量映射到 ⊤ 或 ⊥</p>
+</li>
+<li><p>命题逻辑中的公式 $F$ 是<strong>可满足的</strong>，当且仅当存在 $I$：$I \models F$  (语义蕴涵)</p>
+</li>
+<li><p>命题逻辑中的公式 $F$ 是<strong>有效的</strong>，当且仅当对所有 $I$：$I \models F$</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>定理 [可满足性和有效性的对偶性]</strong><br>对于命题逻辑中的所有公式 $F$，$F$ 是有效的当且仅当 $\neg F$ 不可满足。</p>
+</blockquote>
+<h3><span id="范式">范式</span></h3><ul>
+<li>范式是对公式形式的语法限制</li>
+<li>范式结构化了搜索空间并简化了决策过程</li>
+</ul>
+<h3><span id="否定范式nnf">否定范式（NNF）</span></h3><ul>
+<li><strong>否定范式</strong>不允许蕴含式，并且只允许变量被否定<ul>
+<li>(1) <strong>真值符号</strong>（$b$）：⊤ 和 ⊥（真和假）</li>
+<li>(2) <strong>命题变量</strong>（$v$）：p, q, r, …</li>
+<li>(3) <strong>字面量</strong>（$l$）：原子或其否定</li>
+<li>(4) <strong>公式</strong>（$F$）：$l$ | $\neg F$（不允许） | $F_1 \vee F_2$ | $F_1 \wedge F_2$ | <del>$F_1 \Rightarrow F_2$</del>（不被允许） | <del>$F_1 \Leftrightarrow F_2$</del>（不被允许）</li>
+</ul>
+</li>
+</ul>
+<h3><span id="析取范式dnf">析取范式（DNF）</span></h3><ul>
+<li>析取范式中的公式是连接字面量的析取式</li>
+</ul>
+<p>$$\bigvee_i \bigwedge_j l_{ij}$$</p>
+<h3><span id="合取范式cnf">合取范式（CNF）</span></h3><ul>
+<li>合取范式中的公式是析取字面量的合取式</li>
+</ul>
+<p>$$\bigwedge_i \bigvee_j l_{ij}$$</p>
+<p>例子：哪些公式是CNF？</p>
+<ul>
+<li>$(p \wedge q) \Rightarrow (p \vee \neg q)$</li>
+<li>$(\neg p \vee \neg q) \wedge (p \vee \neg q)$</li>
+<li>$\neg p \vee \neg q \vee p \vee \neg q$</li>
+</ul>
+<ol>
+<li>(¬p∨¬q)∧(p∨¬q)： 这个公式是CNF形式，因为它是两个析取子句的合取：<ul>
+<li>第一个子句：(¬p∨¬q)</li>
+<li>第二个子句：(p∨¬q) 每个子句都是字面量的析取，整个公式是这些子句的合取。</li>
+</ul>
+</li>
+<li>¬p∨¬q∨p∨¬q： 这个公式也是CNF形式，尽管它只有一个子句。它是单个析取子句，可以看作只有一个子句的合取。 这个公式包含字面量：¬p、¬q、p、¬q的析取。</li>
+</ol>
+<p>两个公式 $F_1$ 和 $F_2$ 是等可满足的，当且仅当：<br>$F_1$ 可满足 $\Leftrightarrow$ $F_2$ 可满足</p>
+<h2><span id="tseitin转换">Tseitin转换</span></h2><ul>
+<li>$(r \Rightarrow p) \Rightarrow (\neg(q \wedge r) \Rightarrow p)$</li>
+</ul>
+<p>$x_1 \wedge (x_1 \Leftrightarrow (x_2 \Rightarrow x_3))$<br>$\wedge x_2 \Leftrightarrow (r \Rightarrow p)$<br>$\wedge x_3 \Leftrightarrow (x_4 \Rightarrow p)$<br>$\wedge x_4 \Leftrightarrow \neg x_5$<br>$\wedge x_5 \Leftrightarrow q \wedge r$</p>
+<blockquote>
+<p><strong>定理 [高效CNF编码]</strong><br>对于命题逻辑中的所有公式$F$，存在一个等可满足的CNF公式，其大小最多比$F$大一个常数因子。</p>
+</blockquote>
+<h2><span id="sat问题">SAT问题</span></h2><ul>
+<li><p>判断命题逻辑中公式$F$的可满足性</p>
+</li>
+<li><p>寻找一个解使得我们可以将$F$重写为真</p>
+</li>
+<li><p><strong>步骤1</strong>: 使用<code>Tseitin</code>转换将$F$转换为CNF</p>
+</li>
+<li><p><strong>步骤2</strong>: 调用DPLL算法</p>
+</li>
+</ul>
+<h3><span id="dpll">DPLL</span></h3><ul>
+<li><p>$(p \vee q \vee \neg r) \wedge (p \vee q \vee r) \wedge (p \vee \neg q) \wedge \neg p$</p>
+</li>
+<li><p><strong>目标</strong>：找到一个解来满足输入公式</p>
+</li>
+<li><p>重复以下步骤:</p>
+<ul>
+<li>(1) 选择一个变量，$p$，给变量赋值为真或假</li>
+<li>(2) 传播$p$的值</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>定理 [消解]</strong></p>
+<p>$(a_0\vee a_1 \vee \cdots\vee a_n \vee c) \wedge (b_0\vee b_1 \vee \cdots \vee b_m \vee \neg c)$</p>
+<p>可以被简化为</p>
+<p>$(a_0\vee a_1 \vee \cdots\vee a_n \vee b_0 \vee b_1 \vee \cdots \vee b_m)$</p>
+</blockquote>
+<ul>
+<li><p>$(p \vee q \vee \boxed{\neg r}) \wedge (p \vee q \vee \boxed{r}) \wedge (p \vee \neg q) \wedge \neg p$</p>
+</li>
+<li><p>$(p \vee \boxed{q}) \wedge (p \vee \boxed{\neg q}) \wedge \neg p$</p>
+</li>
+<li><p>$p \wedge \neg p$      (假！不可满足！)</p>
+</li>
+</ul>
+<pre><code class="language-C">bool DPLL (F, I) &#123;
+    if (F == false) return UNSAT;
+    if (F == true) return SAT;
+    
+    p = choose(F);
+    bool ret = DPLL(F[p→true], I[p→true]);
+    if (ret == SAT) return SAT;
+    
+    return DPLL(F[p→false], I[p→false]);
+&#125;
+</code></pre>
+<h2><span id="一阶逻辑first-order-logic">一阶逻辑（First-Order Logic）</span></h2><table>
+<thead>
+<tr>
+<th>PL</th>
+<th>FOL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PL假设世界由<strong>事实</strong>组成，这些事实成立或不成立，即真或假</td>
+<td>FOL假设世界由<strong>对象</strong>和<strong>关系</strong>组成</td>
+</tr>
+</tbody></table>
+<ul>
+<li>一阶语言由以下定义：<ul>
+<li>(1) 对象的符号，例如，$a, b, c, …$ （Each symbol is a bit vector of a fixed width.)</li>
+<li>(2) N元谓词（返回真&#x2F;假的关系），例如，$p(t_1, t_2, …, t_n)$ (Relational&#x2F;Logic operations between bitvectors, e.g., <em>slt</em>, <em>ult</em>, ∧, ∨ …)</li>
+<li>(3) N元函数（关系），例如，$f(t_1, t_2, …, t_n)$ (Arithmetic operations, e.g., +, -, *, &#x2F;, %, etc)</li>
+<li>(4) 公式 $(F)$: $\top$ | $\bot$ | $t$ | $\neg F$ | $F_1 \vee F_2$ | $F_1 \wedge F_2$ | $F_1 \Rightarrow F_2$ | $F_1 \Leftrightarrow F_2$ | $\forall x. F$ | $\exists x. F$</li>
+</ul>
+</li>
+<li>一阶语言通常与定义符号和关系的”<strong>理论</strong>“一起使用</li>
+</ul>
+<h2><span id="模理论中的可满足性satisfiability-modulo-theories">模理论中的可满足性(Satisfiability Modulo Theories)</span></h2><ul>
+<li>对于位向量理论<ul>
+<li><strong>步骤1</strong>: 字级预处理</li>
+<li><strong>步骤2</strong>: 位爆炸（从FOL到PL）</li>
+<li><strong>步骤3</strong>: DPLL&#x2F;CDCL</li>
+</ul>
+</li>
+</ul>
+<p>步骤1示例：</p>
+<p>$α_a ≠ 0 ∧ α_b &#x3D; 0 ∧ ¬(2(α_a+ α_b) - 4 ≠ 0) \stackrel{\text{步骤 1}}{\longrightarrow} α_a ≠ 0 ∧ α_b &#x3D; 0 ∧ α_a &#x3D; 2\stackrel{\text{步骤 1}}{\longrightarrow} α_b &#x3D; 0 ∧ α_a &#x3D; 2$</p>
+<p>步骤2示例：</p>
+<p>$x &#x3D; [a_7, a_6, …, a_0]$, $y &#x3D; [b_7, b_6, …, b_0]$ 和 $z &#x3D; [c_7, c_6, …, c_0]$ 是三个8位比特向量</p>
+<p>$x | y &#x3D; z \stackrel{\text{步骤 2}}{\longrightarrow} \bigwedge_{i&#x3D;0}^{7}((a_i \vee b_i) \Leftrightarrow c_i)$</p>
+<p>$x &gt;<em>u 0 \stackrel{\text{步骤 2}}{\longrightarrow} \bigvee</em>{0}^{7} a_i$      $x &gt;<em>s 0 \stackrel{\text{步骤 2}}{\longrightarrow} \neg a_7 \wedge \bigvee</em>{0}^{6} a_i$</p>
+<p>(u表示无符号比较，s表示有符号比较)</p>
+<h1><span id="指针分析pointer-analysis">指针分析（Pointer Analysis）</span></h1><ul>
+<li><p>y &#x3D; &amp;x（取地址）</p>
+</li>
+<li><p>y &#x3D; x（赋值）</p>
+</li>
+<li><p>*y &#x3D; x（存储语句）</p>
+</li>
+<li><p>y &#x3D; *x（加载语句）</p>
+</li>
+<li><p>pts(x) — x的指向集</p>
+<ul>
+<li>pts(x) &#x3D; { y, z } — x可能指向y或z</li>
+</ul>
+</li>
+</ul>
+<h2><span id="安德森算法">安德森算法</span></h2><p>基于包含关系的指针分析</p>
+<table>
+<thead>
+<tr>
+<th>语句</th>
+<th>约束</th>
+<th>简写</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>y &#x3D; &amp;x</td>
+<td>pts(y) ⊇ {x}</td>
+<td></td>
+</tr>
+<tr>
+<td>y &#x3D; x</td>
+<td>pts(y) ⊇ pts(x)</td>
+<td></td>
+</tr>
+<tr>
+<td>*y &#x3D; x</td>
+<td>∀ v ∈ pts(y): pts(v) ⊇ pts(x)</td>
+<td>pts(*y) ⊇ pts(x)</td>
+</tr>
+<tr>
+<td>y &#x3D; *x</td>
+<td>∀ v ∈ pts(x): pts(y) ⊇ pts(v)</td>
+<td>pts(y) ⊇ pts(*x)</td>
+</tr>
+</tbody></table>
+<pre><code>p = &amp;a;         pts(p) ⊇ &#123; a &#125;;         pts(p) = &#123; a, b &#125;;
+q = p;    =&gt;    pts(q) ⊇ pts(p);   =&gt;   pts(q) = &#123; a, b &#125;;      过度近似！
+p = &amp;b;         pts(p) ⊇ &#123; b &#125;;         pts(r) = &#123; a, b &#125;;      结果安全！
+r = p;          pts(r) ⊇ pts(p);        pts(a) = pts(b) = &#123; &#125;;
+</code></pre>
+<h3><span id="安德森算法作为图闭包">安德森算法作为图闭包</span></h3><ul>
+<li>每个图节点 $x$ 表示指向集 $pts(x)$</li>
+<li>通过动态传递闭包解决集合约束</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618151113872-1779362602045-24.png" class title="image-20250618151113872">
+
+<img src="/2025/06/18/compiler-learning/image-20250618151126139-1779362602045-25.png" class title="image-20250618151126139">
+
+<h2><span id="steensgaard算法">Steensgaard算法</span></h2><p>基于包含关系（<strong>Inclusion-based</strong>）的指针分析（Andersen算法）</p>
+<table>
+<thead>
+<tr>
+<th>语句</th>
+<th>约束</th>
+<th>简写</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>y &#x3D; &amp;x</td>
+<td>pts(y) ⊇ {x}</td>
+<td></td>
+</tr>
+<tr>
+<td>y &#x3D; x</td>
+<td>pts(y) ⊇ pts(x)</td>
+<td></td>
+</tr>
+<tr>
+<td>*y &#x3D; x</td>
+<td>∀ v ∈ pts(y): pts(v) ⊇ pts(x)</td>
+<td>pts(*y) ⊇ pts(x)</td>
+</tr>
+<tr>
+<td>y &#x3D; *x</td>
+<td>∀ v ∈ pts(x): pts(y) ⊇ pts(v)</td>
+<td>pts(y) ⊇ pts(*x)</td>
+</tr>
+</tbody></table>
+<p>基于合一（<strong>Unification-based</strong>）的指针分析（Steensgaard算法）</p>
+<table>
+<thead>
+<tr>
+<th>语句</th>
+<th>约束</th>
+<th>简写</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>y &#x3D; &amp;x</td>
+<td>pts(y) ⊇ {x}</td>
+<td></td>
+</tr>
+<tr>
+<td>y &#x3D; x</td>
+<td>pts(y) &#x3D; pts(x)</td>
+<td></td>
+</tr>
+<tr>
+<td>*y &#x3D; x</td>
+<td>∀ v ∈ pts(y): pts(v) &#x3D; pts(x)</td>
+<td>pts(*y) &#x3D; pts(x)</td>
+</tr>
+<tr>
+<td>y &#x3D; *x</td>
+<td>∀ v ∈ pts(x): pts(y) &#x3D; pts(v)</td>
+<td>pts(y) &#x3D; pts(*x)</td>
+</tr>
+</tbody></table>
+<ul>
+<li>指向图：x → y 表示 y ∈ pts(x)。</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618152407440-1779362602045-26.png" alt="image-20250618152407440" style="zoom: 50%;">
+
+<img src="/2025/06/18/compiler-learning/image-20250618152604693-1779362602045-27.png" alt="image-20250618152604693" style="zoom:67%;">
+
+<table>
+<thead>
+<tr>
+<th>Steensgaard</th>
+<th>Andersen</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sound（可靠）</td>
+<td>Sound（可靠）</td>
+</tr>
+<tr>
+<td>接近线性（更高效）</td>
+<td>接近三次方</td>
+</tr>
+<tr>
+<td>基于合一（精度较低）</td>
+<td>基于包含关系</td>
+</tr>
+</tbody></table>
+<h1><span id="datalog-based-dfa">Datalog-Based DFA</span></h1><ul>
+<li>Datalog是Prolog的一个子集<ul>
+<li>所有Datalog程序都会终止</li>
+<li>规则的顺序无关紧要</li>
+<li>不是图灵完备的</li>
+</ul>
+</li>
+</ul>
+<h3><span id="谓词x2f原子">谓词&#x2F;原子</span></h3><ul>
+<li><p>谓词是N元关系</p>
+<ul>
+<li>predicate(x, y, z)</li>
+</ul>
+</li>
+<li><p>示例</p>
+<ul>
+<li>rainy(“Nanjing”)</li>
+<li>rainy(“Beijing”)</li>
+<li>cold(“Beijing”)</li>
+<li>brother(x, y) – x是y的兄弟</li>
+<li>speaks(x, a) – x说语言a</li>
+</ul>
+</li>
+<li><p>Datalog程序是Horn子句的数据库</p>
+<ul>
+<li>h是真的，如果假设l₁ l₂ … lₙ同时为真</li>
+<li>if — 充分但非必要条件</li>
+</ul>
+</li>
+</ul>
+<pre><code>h :- l₁ l₂ ... lₙ
+</code></pre>
+<ul>
+<li><p>示例：</p>
+<ul>
+<li>rainy(“Nanjing”)</li>
+<li>snowy(c) :- rainy(c), cold(c)</li>
+</ul>
+</li>
+<li><p>所有规则对其变量的任何实例都成立</p>
+<ul>
+<li>snowy(c) :- rainy(c), cold(c) 适用于所有城市，如南京、北京等…</li>
+</ul>
+</li>
+<li><p>任何未声明的内容都不为真</p>
+</li>
+<li><p>规则的顺序不影响结果（Prolog与Datalog的区别）</p>
+</li>
+<li><p>规则可以是递归的</p>
+<ul>
+<li>reachable(a, b) :- edge(a, b);</li>
+<li>reachable(a, c) :- edge(a, b), reachable(b, c)</li>
+</ul>
+</li>
+<li><p>否定在假设中是允许的</p>
+<ul>
+<li>more_than_one_hop(a, b) :- reachable(a, b), ¬edge(a, b)</li>
+</ul>
+</li>
+<li><p>所有规则必须是良构的。不良规则的例子：</p>
+<ul>
+<li><p>more_than_one_hop(a, b) :- ¬edge(a, b)</p>
+</li>
+<li><p>不良：左侧的a, b在右侧的正谓词中没有出现</p>
+</li>
+<li><p>目标：确保终止</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="通过datalog实现的到达定义分析">通过Datalog实现的到达定义分析</span></h3><ul>
+<li>def(B, N, X)<ul>
+<li>在块B中的第N个语句可能定义变量X。</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618153600821-1779362602045-28.png" alt="image-20250618153600821" style="zoom:50%;">
+
+<ul>
+<li><p>succ(B, N, C)</p>
+<ul>
+<li>块C是块B的后继，且B有N个语句。</li>
+</ul>
+</li>
+<li><p>rd(B, N, C, M, X)</p>
+<ul>
+<li>在块C的第M个语句中对变量X的定义到达了块B中的第N个语句。</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618153609534-1779362602045-29.png" alt="image-20250618153609534" style="zoom:50%;">
+
+<ul>
+<li>rd(B, N, B, N, X) :- def(B, N, X)</li>
+<li>rd(B, N, C, M, X) :- rd(B, N-1, C, M, X), def(B, N, Y), X ≠ Y</li>
+<li>rd(B, 0, C, M, X) :- rd(D, N, C, M, X), succ(D, N, B)</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618154129653-1779362602045-30.png" alt="image-20250618154129653" style="zoom: 50%;">
+
+<h1><span id="指令">指令</span></h1><ul>
+<li><p>三类指令</p>
+</li>
+<li><p>加载&#x2F;存储</p>
+<ul>
+<li>LD R0, addr</li>
+<li>LD R0, R1</li>
+<li>LD R0, #500</li>
+<li>ST addr, R0</li>
+</ul>
+</li>
+<li><p>计算</p>
+<ul>
+<li>OP dst, src₁, src₂</li>
+<li>例如，SUB R0, R1, R2</li>
+</ul>
+</li>
+<li><p>跳转</p>
+<ul>
+<li>BR L&#x2F;addr</li>
+<li>Bcond R, L&#x2F;addr</li>
+<li>例如，BLTZ R, L</li>
+</ul>
+</li>
+</ul>
+<h3><span id="寻址模式">寻址模式</span></h3><ul>
+<li><p>什么是寻址模式？</p>
+</li>
+<li><p>寻址模式</p>
+<ul>
+<li>LD R1, a(R2)</li>
+<li>LD R1, 100(R2)</li>
+<li>LD R1, *R2</li>
+<li>LD R1, *100(R2)</li>
+<li>LD R1, #100</li>
+</ul>
+</li>
+</ul>
+<p>寻址模式：如何计算地址</p>
+<ul>
+<li>LD R, addr</li>
+<li>ST addr, R</li>
+</ul>
+<p>假设a是一个元素为8字节值(比如实数)的数组。再假设a的元素的下标从0开始。我们可以通过下面的指令序列来执行三地址指令 b &#x3D; a[i]：</p>
+<pre><code>LD  R1, i          // R1 = i
+MUL R1, R1, 8      // R1 = R1 * 8
+LD  R2, a(R1)      // R2 = contents(a + contents(R1))
+ST  b, R2          // b = R2
+</code></pre>
+<p>这里的第二步计算8i；而第三步把a的第i个元素的值放到R2中，这个元素位于离数组a的基地址8i个字节的地方。</p>
+<p>类似地，三地址指令a[j] &#x3D; c所代表的对数组a的赋值可以实现为：</p>
+<pre><code>LD  R1, c          // R1 = c
+LD  R2, j          // R2 = j
+MUL R2, R2, 8      // R2 = R2 * 8
+ST  a(R2), R1      // contents(a + contents(R2)) = R1
+</code></pre>
+<h1><span id="register-allocation">Register Allocation</span></h1><p>为什么要寄存器分配？</p>
+<ul>
+<li>减少溢出（Spill）</li>
+<li>少用寄存器</li>
+</ul>
+<p><strong>溢出（Spilling）</strong>：</p>
+<ul>
+<li>将寄存器中的值保存到内存中</li>
+<li>这样寄存器就可以用于存储其他值</li>
+<li>当需要时，可以从内存中将溢出的值重新加载回寄存器</li>
+</ul>
+<h3><span id="局部寄存器分配local-register-allocation">局部寄存器分配（Local Register Allocation）</span></h3><ul>
+<li><p>在一个基本块内进行寄存器分配</p>
+</li>
+<li><p><strong>MAXLIVE</strong>：每条指令处同时存活的值的最大数目</p>
+<ul>
+<li>MAXLIVE ≤ k —— 分配是平凡的（容易分配）</li>
+<li>MAXLIVE &gt; k —— 必须将部分值溢出到内存中</li>
+</ul>
+</li>
+</ul>
+<p>对于代码：</p>
+<pre><code>1. LD   R1, #1028        // R1 &lt;- 1028
+2. LD   R2, *R1          // R2 &lt;- contents(R1)，假设为y
+3. MUL  R3, R1, R2       // R3 &lt;- 1028 * y
+4. LD   R4, x            // R4 &lt;- x
+5. SUB  R5, R4, R2       // R5 &lt;- x - y
+6. LD   R6, z            // R6 &lt;- z
+7. MUL  R7, R5, R6       // R7 &lt;- z * (x - y)
+8. SUB  R8, R7, R3       // R8 &lt;- z * (x - y) - 1028 * y
+9. ST   *R1, R8          // contents(R1) &lt;- z * (x - y) - 1028 * y
+</code></pre>
+<p>存在以下MAXLIVE的分析：</p>
+<pre><code>1. LD   R1, #1028        // R1
+2. LD   R2, *R1          // R1 R2
+3. MUL  R3, R1, R2       // R1 R2 R3
+4. LD   R4, x            // R1 R2 R3 R4
+5. SUB  R5, R4, R2       // R1    R3    R5
+6. LD   R6, z            // R1    R3    R5 R6
+7. MUL  R7, R5, R6       // R1    R3          R7
+8. SUB  R8, R7, R3       // R1                   R8
+9. ST   *R1, R8          // 
+</code></pre>
+<p><strong>MAXLIVE &#x3D; 4</strong></p>
+<p>如果 $k \geq 4$，例如 $k &#x3D; 4$，则寄存器分配是简单的。</p>
+<img src="/2025/06/18/compiler-learning/image-20250618161059443-1779362602045-31.png" alt="image-20250618161059443" style="zoom:50%;">
+
+<p>如果 $k \leq 4$，例如 $k &#x3D; 3$，则需要溢出。</p>
+<img src="/2025/06/18/compiler-learning/image-20250618161123947-1779362602045-32.png" alt="image-20250618161123947" style="zoom:50%;">
+
+<img src="/2025/06/18/compiler-learning/image-20250618161141086-1779362602045-33.png" alt="image-20250618161141086" style="zoom:50%;">
+
+<h3><span id="全局寄存器分配global-register-allocation">全局寄存器分配（Global Register Allocation）</span></h3><ul>
+<li><p>局部寄存器分配无法捕捉跨多个基本块的值复用</p>
+</li>
+<li><p>全局分配通常采用**图着色（graph-coloring）**范式</p>
+<ul>
+<li>构建一个<strong>冲突&#x2F;干涉图（conflict&#x2F;interference graph）</strong></li>
+<li>为该图寻找一个<strong>k-着色（k-coloring）</strong>，或者将代码转化为一个更容易着色的近似问题</li>
+<li>在几乎所有假设下，该问题是**NP完全（NP-complete）**的，因此需要启发式方法（heuristics）</li>
+</ul>
+</li>
+</ul>
+<h4><span id="k-着色k-coloring">K-着色（K-Coloring）</span></h4><ul>
+<li><p><strong>顶点着色（Vertex Coloring）</strong>：为每个顶点分配一种颜色，使得没有边连接两个相同颜色的顶点。</p>
+</li>
+<li><p><strong>K-着色（K-Coloring）</strong>：一种最多使用k种颜色的着色方法。</p>
+</li>
+<li><p><strong>将图的顶点映射到虚拟寄存器</strong></p>
+</li>
+<li><p><strong>将颜色映射到物理寄存器</strong></p>
+</li>
+<li><p>由活跃区间构造<strong>冲突图（conflict graph）</strong></p>
+</li>
+<li><p>给图着色，使得没有两个相邻节点具有相同的颜色</p>
+</li>
+<li><p>如果图需要多于 $k$ 种颜色，则发生溢出（Spilling）</p>
+</li>
+</ul>
+<h4><span id="冲突图conflict-graph">冲突图（Conflict Graph）</span></h4><ul>
+<li><strong>顶点（Vertex）</strong>：虚拟寄存器；</li>
+<li><strong>边（Edges）</strong>：活跃区间有重叠的虚拟寄存器之间存在边。</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618161702935-1779362602045-34.png" alt="image-20250618161702935" style="zoom:50%;">
+
+<ul>
+<li>顶点的度是可着色性的一个宽松上界</li>
+<li>度小于 $k$ 的顶点总是可以 $k$-着色</li>
+</ul>
+<h1><span id="chaitin-算法">Chaitin 算法</span></h1><ul>
+<li>顶点的度是可着色性的一个宽松上界</li>
+<li>度小于 $k$ 的顶点总是可以 $k$-着色</li>
+<li><strong>将这些顶点移除并压入栈，直到图为空（稍后再着色）</strong></li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618162307056-1779362602045-35.png" alt="image-20250618162307056" style="zoom: 50%;">
+
+<ul>
+<li><p>左侧是一个例子冲突图，其中 $k &#x3D; 3$。</p>
+</li>
+<li><p>中间为一个栈，用于存储被移除的顶点。</p>
+</li>
+<li><p>右侧为三种可用颜色的示意。</p>
+</li>
+<li><p>颜色：红、绿、蓝分别代表三种可用颜色。</p>
+</li>
+</ul>
+<p>由于a的度为2，小于3，所以先入栈，并删去a的两条边；随后b和c入栈；随后e和d入栈</p>
+<p>全部入栈后从栈顶依次出栈并分配不同的颜色</p>
+<img src="/2025/06/18/compiler-learning/image-20250618162521428-1779362602045-36.png" alt="image-20250618162521428" style="zoom:50%;">
+
+<p><strong>当算法达到所有顶点的度都大于等于 $k$ 时</strong>：</p>
+<ul>
+<li>立即选择一个顶点进行溢出（spill）<ul>
+<li>将该顶点加入溢出列表</li>
+<li>从图中移除该顶点</li>
+<li>继续将度小于 $k$ 的顶点从图中移除并压入栈</li>
+</ul>
+</li>
+<li>如果溢出列表不为空，插入溢出代码，重建冲突图，并重新分配寄存器</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618162703633-1779362602045-37.png" alt="image-20250618162703633" style="zoom:50%;">
+
+<img src="/2025/06/18/compiler-learning/image-20250618162743404-1779362602045-38.png" alt="image-20250618162743404" style="zoom:50%;">
+
+<img src="/2025/06/18/compiler-learning/image-20250618162812346-1779362602045-39.png" alt="image-20250618162812346" style="zoom:50%;">
+
+<p>插入溢出代码，重建冲突图并重新分配寄存器：</p>
+<img src="/2025/06/18/compiler-learning/image-20250618162917183-1779362602045-40.png" class title="image-20250618162917183">
+
+<img src="/2025/06/18/compiler-learning/image-20250618162949317-1779362602045-41.png" alt="image-20250618162949317" style="zoom:50%;">
+
+<img src="/2025/06/18/compiler-learning/image-20250618163004999-1779362602045-42.png" alt="image-20250618163004999" style="zoom:50%;">
+
+<h3><span id="chaitin-briggs-算法">Chaitin-Briggs 算法</span></h3><ul>
+<li><p>当 Chaitin 算法达到所有顶点的度都大于等于 $k$ 时</p>
+</li>
+<li><p>立即选择一个顶点进行溢出（spill）</p>
+<ul>
+<li>将该顶点加入溢出列表</li>
+<li>…</li>
+</ul>
+</li>
+<li><p><strong>Briggs:</strong></p>
+<ul>
+<li>顶点的度是可着色性的一个宽松（loose）上界</li>
+<li>度小于 $k$ 的顶点总是可以 $k$-着色（always k-colorable）</li>
+<li>度大于等于 $k$ 的顶点也可能（may also be）可以 $k$-着色</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618163234280-1779362602045-43.png" alt="image-20250618163234280" style="zoom:50%;">
+
+<h1><span id="指令调度instruction-scheduling">指令调度（Instruction Scheduling）</span></h1><h4><span id="为什么要调度why-scheduling">为什么要调度（Why Scheduling?）</span></h4><ul>
+<li>每一个现代高性能处理器都能在一个时钟周期内执行多个操作。</li>
+</ul>
+<h4><span id="为什么编译器很重要why-compilers-matter">为什么编译器很重要（Why Compilers Matter?）</span></h4><ul>
+<li><p>硬件只能执行已被取指（fetch）的指令</p>
+</li>
+<li><p>硬件用于缓存停滞操作的空间有限</p>
+</li>
+<li><p>编译器能够将独立操作尽量靠近放置，从而提升硬件利用率</p>
+</li>
+</ul>
+<h3><span id="调度约束scheduling-constraints">调度约束（Scheduling Constraints）</span></h3><ul>
+<li>真依赖（True Dependence，也称为读后写依赖，Read-After-Write Dependence）</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618164236503-1779362602045-44.png" alt="image-20250618164236503" style="zoom: 50%;">
+
+<ul>
+<li>存储（伪）依赖 (Fake Dependence)—— 通过<strong>重命名</strong>消除<ul>
+<li><strong>反依赖（Antidependence，写后读依赖，Write-After-Read）</strong> 和 输出依赖（Output dependence，写后写依赖，Write-After-Write）</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618164439559-1779362602046-45.png" alt="image-20250618164439559" style="zoom:50%;">
+
+<img src="/2025/06/18/compiler-learning/image-20250618164639562-1779362602046-46.png" alt="image-20250618164639562" style="zoom:50%;">
+
+<h2><span id="依赖图dependence-graph">依赖图（Dependence Graph）</span></h2><ul>
+<li>节点（Node）：指令（Instructions）</li>
+<li>边（Edge）：真依赖（True Dependence，<strong>读后写依赖（Read-After-Write Dependence）</strong>）</li>
+</ul>
+<p>注意用<strong>重命名</strong>消除假依赖！</p>
+<img src="/2025/06/18/compiler-learning/image-20250618164937401-1779362602046-47.png" alt="image-20250618164937401" style="zoom:50%;">
+
+<img src="/2025/06/18/compiler-learning/image-20250618165000145-1779362602046-48.png" alt="image-20250618165000145" style="zoom:50%;">
+
+<p>表示出各个指令所需要的时间（圆圈），计算出每个指令一共需要的时间长度（方框）</p>
+<img src="/2025/06/18/compiler-learning/image-20250618165134700-1779362602046-49.png" alt="image-20250618165134700" style="zoom:50%;">
+
+<h3><span id="列表调度list-scheduling">列表调度（List Scheduling）</span></h3><ul>
+<li>检查每一个时钟周期</li>
+<li>指令准备好时进行调度</li>
+<li>当多条指令可被调度时，检查它们的优先级（priority）<ul>
+<li>最长延迟路径（最大深度，max depth）</li>
+<li>使用最多资源</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/18/compiler-learning/image-20250618170024527.png" class title="image-20250618170024527">
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Astera
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;WatchRhine
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

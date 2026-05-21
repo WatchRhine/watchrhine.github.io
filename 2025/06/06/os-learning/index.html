@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>操作系统笔记 | Astera</title>
+    <meta name="author" content="WatchRhine" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/FATALIS_avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/giphy.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>ASTERA</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;ASTERA</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>操作系统笔记</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/6/6
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%88%91%E7%9A%84%E6%9D%A5%E6%97%B6%E8%B7%AF/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                我的来时路
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/study/" style="color: #00bcd4">
+                    study
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/nju/" style="color: #ffa2c4">
+                    nju
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/software/" style="color: #00bcd4">
+                    software
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/operation-system/" style="color: #03a9f4">
+                    operation system
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1><span id="2025操作系统">2025操作系统</span></h1><img src="/2025/06/06/os-learning/image-20250519162450552.png" class title="image-20250519162450552">
+
+<h3><span id="中断是激活操作系统的唯一方式"><strong>中断是激活操作系统的唯一方式</strong></span></h3><img src="/2025/06/06/os-learning/image-20250606154252049.png" class title="image-20250606154252049">
+
+
+
+<img src="/2025/06/06/os-learning/image-20250606194737905.png" class title="image-20250606194737905">
+
+<h3><span id="页式虚拟存储管理">页式虚拟存储管理</span></h3><h4><span id="页式虚拟存储管理的基本思想">页式虚拟存储管理的基本思想</span></h4><p>将进程信息副本存放在外存中，当它被调度投入运行时，程序和数据没有全部装入内存，仅装入当前使用页面，进程执行过程中访问到不在内存的页面时，再由系统自动调入。</p>
+<p>页式虚拟存储是现代 OS 的主流存储管理技术</p>
+<p>首次只把进程第一页信息装入主存，称为<strong>请求页式存储管理</strong>：由于页面在需要时是根据进程请求装入内存的</p>
+<p>请求页式存储管理：</p>
+<ol>
+<li>优点：进程的程序和数据可按页分散存储在内存中，有利于内存利用率和多道程序运行</li>
+<li>缺点：需要硬件支持、处理缺页中断、机器成本增加、系统开销加大，页内存在碎片。</li>
+</ol>
+<h6><span id="页式虚拟存储管理的页表">页式虚拟存储管理的页表</span></h6><img src="/2025/06/06/os-learning/22.png" class title="img">
+
+<p>需要扩充页表项，至少包含如上信息，指出：</p>
+<ol>
+<li>虚拟地址、实际地址</li>
+<li>主存驻留标志：指出页面是否已经装入内存。1 表示在内存中可以被正常访问，0 表示不能立即访问，产生缺页异常。</li>
+<li>修改位：被设置后，该页被调出内存前必须先写回磁盘，保障数据一致性</li>
+<li>保护位：限制页面访问权限</li>
+<li>引用位：在页面被引用无论是读写时设置，用来帮助系统进行页面淘汰。</li>
+<li>内存块号：页面对应的页框号，用来地址转换。</li>
+</ol>
+<p>32 位操作系统：32bit 标识一个页表项</p>
+<p>页号是隐含信息，不是直接存储的信息。</p>
+<h4><span id="页式虚拟存储管理的实现">页式虚拟存储管理的实现</span></h4><p>CPU 处理地址：</p>
+<ol>
+<li>若页驻留，则获得块号形成绝对地址</li>
+<li>若页不在内存，则 CPU 发出缺页中断</li>
+</ol>
+<p>OS 处理缺页中断：</p>
+<ol>
+<li>若有空闲页架，则根据辅存地址（虚存）调入页，更新页表与快表等</li>
+<li>若无空闲页架，则决定淘汰页，调出已修改页，调入页，更新页表与快表</li>
+</ol>
+<h5><span id="页式虚拟存储管理的地址转换">页式虚拟存储管理的地址转换</span></h5><img src="/2025/06/06/os-learning/23.png" class title="img">
+
+<h5><span id="缺页中断的处理流程">缺页中断的处理流程</span></h5><img src="/2025/06/06/os-learning/24.png" class title="img">
+
+<p>本指令没有被处理完，是在查找地址的时候发生的中断，所以要回退指令执行。 缺页中断完成后要<strong>重新执行被中断指令</strong>。</p>
+<h5><span id="页式虚拟存储管理的地址转换全过程">页式虚拟存储管理的地址转换全过程 *</span></h5><img src="/2025/06/06/os-learning/40.png" class title="img">
+
+<p>地址转换过程：</p>
+<ol>
+<li>MMU 接收 CPU 传送来的逻辑地址并自动按页面大小把它从某位起分解成两部分：页号和页内位移。</li>
+<li>以页号为索引快速搜索快表 TLB。</li>
+<li>如果命中，立即送出页框号，并与贾内位移拼接成物理地址，然后进行访问权限检查，如获通过，进程就可以访问物理地址。</li>
+<li>如果不命中，由硬件以页号为索引搜索页表，页表基址由硬件页表基址寄存器指出。</li>
+<li>如果页表被命中，说明访问页面已在内存中，可送出页框号，并与页内位移拼接成物理地址，然后进行访问权限检查，如获通过，进程就可以访问物理地址，同时要把这个页面和页框信息装入快表 TLB，以备再次访问。</li>
+<li>如果发现页表中的对应页面失效，MMU 发出缺页异常，请求操作系统进行处理，MMU 工作到此结束。</li>
+</ol>
+<p>MMU 发现缺页并发出缺页异常，存储管理接收控制，进行缺页异常处理的过程如下：</p>
+<ol>
+<li>挂起请求调页的进程。</li>
+<li>根据页号搜索外页表，找到存放此页的磁盘物理地址。</li>
+<li>查看内存是否有空闲页框，如有则分配一个，转（6）。</li>
+<li>如果内存中无空闲页框，按照替换算法选择淘汰页面，检查其是否被写过或修改过，若否则转（6），若是则转（5）。</li>
+</ol>
+<h3><span id="反置页表">反置页表</span></h3><p>反置页表是针对主存页框建立的一个页表，它的页表项按照页框号排序，其表项包括正占有该页框的进程号&#x2F;页号、特征位和哈希链指针等。之前叙述的页表是按照页号做索引，其页表项中记录页框号，而这种按照页框号做索引，页表项记录进程号&#x2F;页号的页表就自然而然地被称为反置页表。</p>
+<img src="/2025/06/06/os-learning/image-20250606160351375.png" class title="image-20250606160351375">
+
+<h3><span id="io软件的实现层次">IO软件的实现层次</span></h3><img src="/2025/06/06/os-learning/image-20250523143920812.png" class title="image-20250523143920812">
+
+<h3><span id="ix2fo-中断处理程序">I&#x2F;O 中断处理程序</span></h3><ol>
+<li>I&#x2F;O 中断处理程序位于操作系统底层，与硬件设备密切相关，与系统其余部分尽可能少地发生联系</li>
+<li>进程请求 I&#x2F;O 操作时，通常被挂起，直到数据传输结束后并产生 I&#x2F;O 中断时，操作系统接管 CPU 后转向中断处理程序</li>
+<li>当设备向 CPU 提出中断请求时，CPU 响应请求并转入中断处理程序</li>
+</ol>
+<h3><span id="ix2fo-中断处理程序的功能">I&#x2F;O 中断处理程序的功能</span></h3><p>检查设备状态寄存器内容，判断<strong>产生中断的原因</strong>，根据 I&#x2F;O 操作的完成情况进行相应的处理：</p>
+<ol>
+<li>如果数据传输有错，向<strong>上层软件</strong>报告设备的<strong>出错信息</strong>，实施<strong>重新执行</strong></li>
+<li>如果正常结束，唤醒等待传输的进程，使其转换为<strong>就绪态</strong></li>
+<li>如果有等待传输的 I&#x2F;O 命令，通知相关软件启动下一个 I&#x2F;O 请求</li>
+</ol>
+<h3><span id="设备驱动程序">设备驱动程序</span></h3><ol>
+<li>I&#x2F;O 设备驱动程序包括与设备密切相关的所有代码</li>
+<li>I&#x2F;O 设备的功能是从独立于设备的软件中接收并执行 I&#x2F;O 请求：<ol>
+<li>把用户提交的<strong>逻辑 I&#x2F;O 请求</strong>转化为<strong>物理 I&#x2F;O 操作</strong>的启动和执行，如设备名转换为端口等</li>
+<li>监督设备是否正确执行，管理<strong>数据缓冲区</strong>，进行必要的纠错处理</li>
+</ol>
+</li>
+<li>某些控制器一次只能接受一条命令（DMA），有些控制器可以接受一串命令后执行（通道）</li>
+</ol>
+<h4><span id="设备驱动程序的功能">设备驱动程序的功能</span></h4><ol>
+<li>设备初始化：在系统<strong>初次启动或设备传输数据</strong>时，预置设备和控制器以及通道状态</li>
+<li>执行设备驱动例程：<ol>
+<li>负责启动设备，进行数据传输</li>
+<li>对于具有通道方式，还负责生成<strong>通道指令和通道程序</strong>，启动通道工作</li>
+</ol>
+</li>
+<li>调用和执行中断处理程序：负责处理设备和控制器及通道所发出的各种中断</li>
+</ol>
+<h4><span id="设备驱动程序的处理方式">设备驱动程序的处理方式 *</span></h4><ol>
+<li><strong>阻塞自己</strong>：命令开始执行时，进程阻塞自己，直到昨晚才解除阻塞。</li>
+<li><strong>无须阻塞</strong>：很快就可以完成，比如滚屏。</li>
+<li>无论哪种，操作完成后都需要记性数据传输正确性校验，如果有错则报告。</li>
+</ol>
+<h4><span id="设备驱动程序的层次">设备驱动程序的层次</span></h4><p>每个设备驱动程序只处理一种设备，或者一类紧密相关的设备</p>
+<p>设备驱动程序分为<strong>整体驱动程序和分层驱动程序</strong>：</p>
+<ol>
+<li>整体驱动程序直接向操作系统提供接口和控制硬件。适用于功能简单的驱动程序，效率较高，但较难迁移</li>
+<li>分层驱动程序将驱动程序分成多层，放在栈中，系统接到 I&#x2F;O 请求时先调用栈顶的驱动程序，栈顶的驱动程序可以直接处理请求或向下调用更低层的驱动程序，直至请求被处理。适用于功能复杂、重用性要求较高的驱动程序，结构清晰且便于移植，但会增加一部分系统开销</li>
+</ol>
+<h3><span id="独立于设备的-ix2fo-软件">独立于设备的 I&#x2F;O 软件</span></h3><p>执行适用于所有设备的常用 I&#x2F;O 功能，并向<strong>用户层软件</strong>提供一致性接口</p>
+<h3><span id="ix2fo操作执行步骤">I&#x2F;O操作执行步骤</span></h3><img src="/2025/06/06/os-learning/image-20250523144203113.png" class title="image-20250523144203113">
+
+<h3><span id="unix多级文件索引">UNIX多级文件索引</span></h3><img src="/2025/06/06/os-learning/image-20250524154708887.png" class title="image-20250524154708887">
+
+<h3><span id="文件的使用">文件的使用</span></h3><h3><span id="建立文件">建立文件</span></h3><p>“建立文件”用于创建一个文件。</p>
+<p>所需参数：文件名、设备类（号）、文件属性及存取控制信息。</p>
+<p>处理流程：在相应设备上建立一个文件目录项，为文件分配第一个物理块，在活动文件表中申请一个项，登记有关目录信息，并返回一个文件句柄。</p>
+<pre><code class="language-c">int fd;           // 创建成功后系统返回的文件描述符
+int mode;         // mode 是文件所具有的权限
+char *filenamep;  // 指向要创建的文件路径名的字符串指针
+fd = create(filenamep, mode);
+</code></pre>
+<ol>
+<li><p>创建成功后，存取权限存放在 inode 的 i_mode 中。</p>
+</li>
+<li><p>fd 是创建成功后系统返回的<strong>文件描述符</strong>，即用户打开文件表中相应文件表项的序号。</p>
+</li>
+<li><p><code>create()</code> 创建的同时也<strong>打开</strong>了文件。</p>
+</li>
+<li><p>创建过程：</p>
+<pre><code class="language-C">create(&quot;path&quot;, 0775)
+</code></pre>
+<ol>
+<li>为新文件 newfile 分配磁盘 inode 和活动 inode，并把 inode 编号与文件分量名 newfile 组成新目录项，记到目录中，这个过程中执行目录检索程序。</li>
+<li>在新文件所对应的活动 inode 中置初值，如置存取权限 <code>i_mode=0775</code>，连接计数 i_nlink&#x3D;1 等。</li>
+<li>分配<strong>用户打开文件表项</strong>和<strong>系统打开文件表项</strong>，为后者置初值，包括特征位为写，读写位移 <code>f_offset</code> 清 0。</li>
+<li>把各表项及文件对应的活动 inode 用指针连接起来</li>
+<li>把文件描述字 fd 返回给调用者。</li>
+</ol>
+</li>
+</ol>
+<h3><span id="撤销文件">撤销文件</span></h3><p>“撤销文件”用于删除一个文件。</p>
+<p>所需参数：文件名和设备类（号）。</p>
+<p>处理流程：若文件没有关闭，先关闭文件；若为共享文件，进行联访处理；在目录文件中删去相应目录项；释放文件占用的文件存储空间。</p>
+<ol>
+<li>删除把指定文件从所在的<strong>目录文件</strong>中除去。</li>
+<li>如果没有连接用户（i_link 为 1），还要<strong>把文件占用的存储空间释放</strong>。删除系统调用形式为：<code>unlink(filenamep)</code>。</li>
+<li>在执行删除时，必须要求用户对该文件具有”<strong>写</strong>“操作权。</li>
+</ol>
+<h3><span id="打开文件">打开文件</span></h3><p>“打开文件”用于建立起文件和用户进程之间的使用联系。</p>
+<p>所需参数：文件名、设备类（号）、打开方式。</p>
+<p>处理流程：在主存活动文件表中申请一个项，返回一个文件句柄；跟据文件名查找目录文件，把目录信息复制到活动文件表相应栏；按存取控制说明检查访问的合法性；若打开的是共享文件，则应有相应处理。</p>
+<pre><code class="language-C">int fd, mode;
+char * filenamep;
+fd = open(filenamep, mode);
+</code></pre>
+<ol>
+<li>文件使用前需要打开，以建立进程与文件之间的联系，而文件描述符唯一标识了这种连接，其任务是<strong>把文件的磁盘 inode 复制到内存活动 inode</strong>中去，同时建立一个独立的读写文件数据结构，即系统打开文件表的一个表项。</li>
+<li>打开过程：<ol>
+<li>检索目录<ol>
+<li>如果没有则会出错</li>
+<li>检索到指定文件后，把它的磁盘 inode 复制到活动 inode 表中。</li>
+<li>如果 inode 号<strong>已经</strong>在活动表项中则直接执行下一步。</li>
+</ol>
+</li>
+<li>根据参数 mode 核对权限（与创建时的 mode）<ol>
+<li>如果非法，则这次打开失败。</li>
+<li>当“打开”合法时，为文件分配<strong>用户打开文件表项</strong>和<strong>系统打开文件表项</strong>，并为后者赋初值。通过指针建立这些表项与活动 inode 间的联系。把文件描述字，即用户打开文件表中相应文件表项的序号返回给调用者。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>输入是含路径的文件名 → 依据层次式目录结构解释与检索 → 匹配文件名并读取目录项 → 提取 inode 号 → 按号定位，在 inode 区读取 inode 数据结构（主存活动 inode）</li>
+<li>系统实现上必须有 inode 号，但是对文件名而言是透明的。</li>
+</ol>
+<h3><span id="关闭文件">关闭文件</span></h3><p>“关闭文件”用于结束一个文件的读写。</p>
+<p>所需参数：文件句柄。</p>
+<p>处理流程：将活动文件表中该文件的“当前使用用户数”减 1；若此值为 0，则收回此活动文件表；完成“推迟写”；若活动文件表目内容已被改过，则应先将表目内容写回文件存储器上相应表目中，以使文件目录保持最新状态。</p>
+<pre><code class="language-C">int fd;
+close(fd);
+</code></pre>
+<ol>
+<li>关闭文件时需要释放掉 inode 来保证空间。</li>
+<li>关闭过程<ol>
+<li>根据 fd 找到用户打开文件表项，再找到系统打开文件表项。释放<strong>用户打开文件表项</strong>。</li>
+<li>把对应<strong>系统打开文件表项</strong>中的 f_count 减 1，如果非 0，说明还有进程共享这一表项，不用释放直接返回；否则释放表项。</li>
+<li>把活动索引节点中的 i_count 减 1，若不为 0，表明还有用户进程正在使用该文件，不用释放而直接返回，否则在把该活动索引节点中的内容复制回文件卷上的相应索引节点中后，<strong>释放</strong>该活动索引节点。</li>
+</ol>
+</li>
+<li>f_count 和 i_count 分别反映进程动态地共享一个文件的两种方式<ol>
+<li>f_count 反映<strong>不同进程</strong>通过<strong>同一个</strong>系统打开文件表项共享一个文件的情况；</li>
+<li>i_count 反映<strong>不同进程</strong>通过<strong>不同</strong>系统打开文件表项共享一个文件的情况。</li>
+</ol>
+</li>
+<li>通过两种方式，进程之间既可用相同的位移指针 f_offset，也可用不同位移指针 f_offset 共享同一个文件。</li>
+</ol>
+<h3><span id="读x2f写文件">读&#x2F;写文件</span></h3><p>“读&#x2F;写文件”用于读写文件。</p>
+<p>所需参数：文件句柄、用户数据区地址、读写的记录或字节个数。</p>
+<p>处理流程：按文件句柄从活动文件表中找到该文件的目录项信息；根据目录项指出的该文件的逻辑和物理组织方式，把相关逻辑记录转换成物理块。</p>
+<pre><code class="language-C">int nr;     // 系统调用后实际读入的字节数
+int fd;     // 文件描述符
+int count;  // 要求传送的字符
+char buf[]; // 应该输入的用户数据区的首地址
+nr = read(fd, buf, count);
+</code></pre>
+<ol>
+<li>读指将文件的内容读入用户数据区，读入数据的逻辑地址由 offset 决定</li>
+<li>读文件过程<ol>
+<li>系统根据 f_flag 中的信息，检查读操作合法性</li>
+<li>如果合法，再根据当前位移量 f_offset 值，要求读出的字节数，及活动索引节点中 i_addr 指出的文件物理块存放地址，把相应的物理块读到缓冲区中，然后再送到 buf 指向的用户主存区中。</li>
+</ol>
+</li>
+</ol>
+<pre><code class="language-C">int nw;     // 系统调用后实际写入的字节数
+int fd;     // 文件描述符
+int count;  // 要求传送的字符
+char buf[]; // 数据传送的源地址
+nw = write(fd, buf, count);
+</code></pre>
+<p>写是将用户数据区的数据写入文件中，写入数据的逻辑地址由 offset 决定</p>
+<h3><span id="定位文件">定位文件</span></h3><p>“定位文件”用于调整所打开文件的读写指针位置。</p>
+<p>所需参数：文件句柄，定位指针。</p>
+<ol>
+<li>在文件初次“打开”时，文件的位移量 f_offset 清空为 0，以后的文件读写操作总是根据 offset 的当前值，顺序地读写文件。为了支持文件的随机访问，提供系统调用 lseek，它允许用户在<strong>读、写文件</strong>前，事先改变 f_offset 的指向系统调用的形式为：</li>
+</ol>
+<pre><code class="language-C">long offset;      // 当前的 offset
+int whence;       //
+int fd;           // 指向一个以读或写方式打开的文档
+lseek(fd, offset, whence);
+</code></pre>
+<ol>
+<li>文件描述字 fd 必须指向一个用读或写方式打开的文件<ol>
+<li>当 whence 是 0 时，则 f_offset 被置为 offset，</li>
+<li>当 whence 是 1 时，则 f_offset 被置为文件当前位置加上 offset。</li>
+</ol>
+</li>
+</ol>
+<h3><span id="文件系统的实现层次">文件系统的实现层次</span></h3><img src="/2025/06/06/os-learning/10.png" class title="img">
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Astera
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;WatchRhine
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
