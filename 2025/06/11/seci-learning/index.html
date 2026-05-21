@@ -1,0 +1,1044 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>软件工程与计算I笔记 | Astera</title>
+    <meta name="author" content="WatchRhine" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/FATALIS_avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/giphy.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>ASTERA</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;ASTERA</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>软件工程与计算I笔记</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/6/11
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%88%91%E7%9A%84%E6%9D%A5%E6%97%B6%E8%B7%AF/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                我的来时路
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/study/" style="color: #03a9f4">
+                    study
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/nju/" style="color: #00bcd4">
+                    nju
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/software/" style="color: #03a9f4">
+                    software
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <!-- toc -->
+
+<ul>
+<li><a href="#%E5%9C%A8%E5%9B%BE%E4%B8%AD%E4%BB%A3%E7%A0%81%E7%9A%84%E4%BD%9C%E7%94%A8">在图中代码的作用：</a></li>
+<li><a href="#define-make-rat-n-d-cons-n-d"><code>(define (make-rat n d) (cons n d))</code></a></li>
+<li><a href="#2-define-numer-x-car-x">2. <code>(define (numer x) (car x))</code></a></li>
+<li><a href="#3-define-denom-x-cdr-x">3. <code>(define (denom x) (cdr x))</code></a></li>
+<li><a href="#%E5%8E%9F%E5%A7%8B%E8%A1%A8%E8%BE%BE%E5%BC%8F">原始表达式：</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5">第一步：</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5">第二步：</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5">第三步：</a></li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5">第四步：</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5">第五步：</a></li>
+<li><a href="#jvm-run-time-data-areas">JVM Run-Time Data Areas</a></li>
+<li><a href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F%E5%AF%B9java%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE%E7%9A%84%E5%AE%9E%E7%8E%B0">引用类型变量对Java对象访问的实现</a></li>
+</ul>
+<ul>
+<li><a href="#%E5%AD%97%E8%8A%82%E7%A0%81">字节码</a></li>
+<li><a href="#jvm%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%97%B6%E6%A0%88%E5%B8%A7%E5%8F%98%E5%8C%96%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81">JVM方法调用时栈帧变化示例代码</a><ul>
+<li><a href="#%E7%BB%93%E6%9E%84%E5%8C%96%E7%BC%96%E7%A8%8B%E7%9A%84%E7%BC%BA%E7%82%B9">结构化编程的缺点</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">面向对象</a><ul>
+<li><a href="#%E5%88%9B%E5%BB%BA%E7%B1%BB%E7%9A%84%E5%8E%9F%E5%9B%A0"><strong>创建类的原因</strong></a></li>
+</ul>
+</li>
+<li><a href="#jvm">JVM</a><ul>
+<li><a href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD">类加载</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA">运行时数据区</a></li>
+<li><a href="#%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E">执行引擎</a></li>
+<li><a href="#jvm%E8%BF%90%E8%A1%8Cjava%E4%BB%A3%E7%A0%81">JVM运行java代码</a></li>
+<li><a href="#%E5%B0%8F%E7%BB%93">小结</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA-1">运行时数据区</a></li>
+<li><a href="#%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4%E9%9B%86">字节码指令集</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%B0%81%E8%A3%85">面向对象：封装</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a></li>
+<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%8D%8F%E4%BD%9C">面向对象：协作</a><ul>
+<li><a href="#%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><strong>类之间的关系</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81">面向对象：继承和多态</a><ul>
+<li><a href="#%E7%BB%A7%E6%89%BF">继承</a></li>
+<li><a href="#java%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%87%8C%E9%9D%A2%E6%8F%90%E4%BE%9B%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4">Java虚拟机⾥⾯提供四种⽅法调⽤字节码指令</a><ul>
+<li><a href="#1-%E7%BC%96%E8%AF%91%E6%97%B6%E7%B1%BB%E5%9E%8Ba-vs-%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E5%9E%8Bb">1. <strong>编译时类型（A） vs 运行时类型（B）</strong></a></li>
+<li><a href="#2-%E5%A4%9A%E6%80%81%E7%9A%84%E8%A1%A8%E7%8E%B0">2. <strong>多态的表现</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B3%E9%94%AE%E7%82%B9%E8%AF%B4%E6%98%8E">关键点说明：</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90"><strong>错误原因分析</strong></a><ul>
+<li><a href="#%E6%A0%B9%E6%9C%AC%E5%8E%9F%E5%9B%A0"><strong>根本原因</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88-interfacebsuperfoo-%E5%8F%AF%E4%BB%A5"><strong>为什么 <code>InterfaceB.super.foo()</code> 可以？</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E5%BC%82%E5%B8%B8">异常</a><ul>
+<li><a href="#%E5%9C%A8%E7%BB%A7%E6%89%BF%E4%B8%AD%E9%87%8D%E5%86%99%E6%96%B9%E6%B3%95%E6%97%B6%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98">在继承中重写方法时抛出异常的问题</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<img src="/2025/06/11/seci-learning/image-20250531153629744.png" class title="image-20250531153629744">
+
+<p><code>let</code> 关键字在 Lisp&#x2F;Scheme（图中所示为类似 Scheme 的语法）中用于创建<strong>局部变量绑定</strong>。</p>
+<hr>
+<h3><span id="在图中代码的作用">在图中代码的作用：</span></h3><pre><code class="language-scheme">(define (f x y)
+  (let ((a (+ 1 (* x y)))
+        (b (- 1 y)))
+    (+ (* x (square a))
+       (* y b)
+       (* a b))))
+</code></pre>
+<p>这段代码的意思是：</p>
+<ol>
+<li>定义一个函数 <code>f</code>，带两个参数 <code>x</code> 和 <code>y</code>。</li>
+<li>在函数体中，使用 <code>let</code> 定义两个<strong>局部变量</strong>：<ul>
+<li><code>a</code> 被绑定为 <code>(+ 1 (* x y))</code></li>
+<li><code>b</code> 被绑定为 <code>(- 1 y)</code></li>
+</ul>
+</li>
+</ol>
+<h3><span id="define-make-rat-n-d-cons-n-d"><code>(define (make-rat n d) (cons n d))</code></span></h3><ul>
+<li><p><strong>作用</strong>：创建一个有理数，由分子 <code>n</code> 和分母 <code>d</code> 构成。</p>
+</li>
+<li><p><strong>解释</strong>：调用 <code>make-rat</code> 时，会返回一个由 <code>cons</code> 构造的二元对（pair）。</p>
+<pre><code>scheme
+
+
+复制编辑
+(make-rat 3 4)  ; 返回 (3 . 4)
+</code></pre>
+</li>
+<li><p><code>cons</code> 是用来构造 pair 的函数。</p>
+</li>
+</ul>
+<hr>
+<h3><span id="2-define-numer-x-car-x">2. <code>(define (numer x) (car x))</code></span></h3><ul>
+<li><p><strong>作用</strong>：从有理数 <code>x</code> 中提取<strong>分子</strong>。</p>
+</li>
+<li><p><strong>解释</strong>：</p>
+<ul>
+<li><p><code>car</code> 返回 pair 的第一个元素（即 <code>n</code>）。</p>
+</li>
+<li><p>举例：</p>
+<pre><code>scheme
+
+
+复制编辑
+(numer (make-rat 3 4)) ; 返回 3
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3><span id="3-define-denom-x-cdr-x">3. <code>(define (denom x) (cdr x))</code></span></h3><ul>
+<li><p><strong>作用</strong>：从有理数 <code>x</code> 中提取<strong>分母</strong>。</p>
+</li>
+<li><p><strong>解释</strong>：</p>
+<ul>
+<li><p><code>cdr</code> 返回 pair 的第二个元素（即 <code>d</code>）。</p>
+</li>
+<li><p>举例：</p>
+<pre><code>scheme
+
+
+复制编辑
+(denom (make-rat 3 4)) ; 返回 4
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/06/11/seci-learning/image-20250531142803260.png" class title="image-20250531142803260">
+
+<img src="/2025/06/11/seci-learning/image-20250531143102517.png" class title="image-20250531143102517">
+
+<img src="/2025/06/11/seci-learning/image-20250531150256723.png" class title="image-20250531150256723">
+
+<h3><span id="原始表达式">原始表达式：</span></h3><pre><code>LENGTH (CONS a NIL)
+</code></pre>
+<p>我们想要计算列表 <code>CONS a NIL</code> 的长度，即一个只有一个元素的列表。</p>
+<hr>
+<h3><span id="第一步">第一步：</span></h3><pre><code>= Y (\g.\c.\x. NULL x c (g (SUCC c) (CDR x))) ZERO (CONS a NIL)
+</code></pre>
+<p><strong>解释：</strong></p>
+<ul>
+<li><code>Y</code> 是 <strong>Y combinator</strong>，用于支持 λ-演算中的递归定义。</li>
+<li>这里定义了一个递归函数 <code>g</code>，其主体是 <code>(\c.\x. NULL x c (g (SUCC c) (CDR x)))</code>。<ul>
+<li>参数 <code>c</code> 是当前累加器（用于计数）。</li>
+<li>参数 <code>x</code> 是当前列表。</li>
+<li>如果 <code>x</code> 是空（<code>NULL x</code>），就返回 <code>c</code>（即当前计数），否则递归处理尾部 <code>CDR x</code>，并将 <code>c</code> 增加（<code>SUCC c</code>）。</li>
+</ul>
+</li>
+<li>整体是：从 <code>c = ZERO</code> 开始，作用于 <code>CONS a NIL</code>。</li>
+</ul>
+<hr>
+<h3><span id="第二步">第二步：</span></h3><pre><code>= (\g.\c.\x. NULL x c (g (SUCC c) (CDR x))) (Y (\g.\c.\x. NULL x c (g (SUCC c) (CDR x)))) ZERO (CONS a NIL)
+</code></pre>
+<p><strong>解释：</strong></p>
+<ul>
+<li>将 <code>Y f</code> 展开为 <code>f (Y f)</code>。</li>
+<li>所以 <code>g</code> 被替换为 <code>Y (\g...\x...)</code> 本体。</li>
+</ul>
+<hr>
+<h3><span id="第三步">第三步：</span></h3><pre><code>= NULL (CONS a NIL) ZERO ((Y (\g.\c.\x. NULL x c (g (SUCC c) (CDR x)))) ONE NIL)
+</code></pre>
+<p><strong>解释：</strong></p>
+<ul>
+<li><code>(\c.\x. NULL x c (g (SUCC c) (CDR x)))</code> 被应用于 <code>ZERO</code> 和 <code>CONS a NIL</code>。</li>
+<li>然后进行应用化简：<ul>
+<li>判断 <code>NULL (CONS a NIL)</code>，由于 <code>CONS a NIL</code> 是非空，<code>NULL</code> 返回 <strong>false</strong>。</li>
+<li>因此返回的是递归调用：<code>(Y ...) (SUCC ZERO) (CDR (CONS a NIL))</code><ul>
+<li><code>SUCC ZERO = ONE</code></li>
+<li><code>CDR (CONS a NIL) = NIL</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3><span id="第四步">第四步：</span></h3><pre><code>= Y (\g.\c.\x. NULL x c (g (SUCC c) (CDR x))) ONE NIL
+</code></pre>
+<ul>
+<li>正在进行下一轮递归，此时参数变成 <code>c = ONE</code>，<code>x = NIL</code></li>
+</ul>
+<hr>
+<h3><span id="第五步">第五步：</span></h3><pre><code>= ONE
+</code></pre>
+<p><strong>解释：</strong></p>
+<ul>
+<li><code>x = NIL</code>，所以 <code>NULL x</code> 为 true，返回 <code>c</code>，即 ONE。</li>
+</ul>
+<img src="/2025/06/11/seci-learning/image-20250531151437060.png" class title="image-20250531151437060">
+
+<img src="/2025/06/11/seci-learning/image-20250601140543160.png" class title="image-20250601140543160">
+
+<img src="/2025/06/11/seci-learning/image-20250531152049233.png" class title="image-20250531152049233">
+
+<img src="/2025/06/11/seci-learning/image-20250531152441178.png" class title="image-20250531152441178">
+
+<p><img src="/seci-learning/image-20250531152504252.png" alt="image-20250531152504252"><img src="/seci-learning/image-20250531152511152.png" alt="image-20250531152511152"></p>
+<img src="/2025/06/11/seci-learning/image-20250531154021995.png" class title="image-20250531154021995">
+
+<img src="/2025/06/11/seci-learning/image-20250531154911724.png" class title="image-20250531154911724">
+
+<img src="/2025/06/11/seci-learning/image-20250531154955689.png" class title="image-20250531154955689">
+
+<img src="/2025/06/11/seci-learning/image-20250601140019018.png" class title="image-20250601140019018">
+
+<img src="/2025/06/11/seci-learning/image-20250601140130656.png" class title="image-20250601140130656">
+
+<img src="/2025/06/11/seci-learning/image-20250601140655630.png" class title="image-20250601140655630">
+
+<img src="/2025/06/11/seci-learning/image-20250601140702968.png" class title="image-20250601140702968">
+
+<p>重载：在⼀个类里面，不同的方法，恰好名字相同</p>
+<img src="/2025/06/11/seci-learning/image-20250601141018936.png" class title="image-20250601141018936">
+
+<h3><span id="jvm-run-time-data-areas">JVM Run-Time Data Areas</span></h3><p>• The pc Register </p>
+<p>• Java Virtual Machine Stacks </p>
+<p>• Heap </p>
+<p>• Method Area </p>
+<p>• Run-Time Constant Pool </p>
+<p>• Native Method Stacks</p>
+<img src="/2025/06/11/seci-learning/image-20250601141912600.png" class title="image-20250601141912600">
+
+<h3><span id="引用类型变量对java对象访问的实现">引用类型变量对Java对象访问的实现</span></h3><p>访问数据</p>
+<p>• 实例数据值（对象中各个实例字段的数据）</p>
+<p>• 对象类型数据（对象类型、⽗类、实现的接⼝、⽅法等）</p>
+<p>访问⽅式</p>
+<p>• 句柄访问⽅式</p>
+<p>• 直接指针访问⽅式</p>
+<img src="/2025/06/11/seci-learning/image-20250601141317692.png" class title="image-20250601141317692">
+
+<img src="/2025/06/11/seci-learning/image-20250601141325169.png" class title="image-20250601141325169">
+
+<h2><span id="字节码">字节码</span></h2><img src="/2025/06/11/seci-learning/image-20250601141745134.png" class title="image-20250601141745134">
+
+<img src="/2025/06/11/seci-learning/image-20250601141753024.png" class title="image-20250601141753024">
+
+<img src="/2025/06/11/seci-learning/image-20250601142145122.png" class title="image-20250601142145122">
+
+<img src="/2025/06/11/seci-learning/image-20250601143214337.png" class title="image-20250601143214337">
+
+<img src="/2025/06/11/seci-learning/image-20250601143228748.png" class title="image-20250601143228748">
+
+<h2><span id="jvm方法调用时栈帧变化示例代码">JVM方法调用时栈帧变化示例代码</span></h2><pre><code class="language-java">public class TestDemo &#123; 
+	public static int minus(int x)&#123; 
+		return -x; 
+	&#125; 
+
+	public static void main(String[] args) &#123; 
+		int x = 5; 
+		int y = minus(x); 
+	&#125; 
+&#125;
+</code></pre>
+<p>⾸先检查main的访问标志、描述符描述的返回类型和参数列表，确定可以访问后进⼊Code属性表执⾏命令，读⼊栈深度建⽴符合要求的操作数栈，读⼊局部变量⼤⼩建⽴符合要求的局部变量表，根据参数数向局部变量表中依序加⼊参数（第⼀个参数是引⽤当前对象的this，所以空参数列表的参数数也是1），然后开始根据命令正式执⾏：</p>
+<p>• 0: iconst_5 </p>
+<p>• 将整数5压⼊栈顶</p>
+<p>• 1: istore_1 </p>
+<p>• 将栈顶整数值存⼊局部变量表的slot1（slot0是参数String[] args指向的对象的地址）</p>
+<p>• 2: iload_1 </p>
+<p>• 将slot1压⼊栈顶</p>
+<p>• 3: invokestatic #2 &#x2F;&#x2F; Method minus:(I)I </p>
+<p>• ⼆进制invokestatic⽅法⽤于调⽤静态⽅法，参数是根据常量池中已经转换为直接引⽤的常量，意即minus函数在⽅法区中的地址，找到这个地址调⽤函数，向其中加⼊的参数为栈顶的值</p>
+<p>• 6: istore_2 </p>
+<p>• 将栈顶整数存⼊局部变量的slot2 </p>
+<p>• 7: return </p>
+<p>• 将返回地址中存储的PC地址返到PC，栈帧恢复到调⽤前</p>
+<p>现在我们分析调⽤minus函数的时候进⼊minus函数的过程：</p>
+<p>• 同样的⾸先检查minus函数的访问标志、描述符描述的返回类型和参数列表，确定可以访问后进⼊Code属性表执⾏命令，读⼊栈</p>
+<p>深度建⽴符合要求的操作数栈，读⼊局部变量⼤⼩建⽴符合要求的局部变量表，根据参数数向局部变量表中依序加⼊参数，然后</p>
+<p>开始根据命令正式执⾏：</p>
+<p>• 0: iload_0 </p>
+<p>• 将slot0压⼊栈顶，也就是传⼊的参数</p>
+<p>• 1: ineg </p>
+<p>• 将栈顶的值弹出取负后压回栈顶</p>
+<p>• 2: ireturn </p>
+<p>• 将返回地址中存储的PC地址返到PC，栈帧恢复到调⽤前</p>
+<h3><span id="结构化编程的缺点">结构化编程的缺点</span></h3><p>Not easy to read</p>
+<p>Not easy to maintain</p>
+<h2><span id="面向对象">面向对象</span></h2><p><strong>对象</strong>是面向对象中的术语，既表示客观世界问题空间(Namespace)中的某个具体的事物，又表示软件系统解空间中的基本元素。</p>
+<p>在软件系统中，对象具有唯—的标识符，对象包括属性(Properties)和⽅法(Methods)，属性就是需要记忆的信息，方法就是对象能够提供的服务。</p>
+<p><strong>类</strong>是—个描述或蓝图（被表示成—段代码），⽤于定义组成某类特定对象的所有特性。</p>
+<p>编程中使⽤类的思想与现实世界中把东⻄进⾏分类的思想相—致，这是—种⽅便⽽明确的事物组织⽅式。</p>
+<p>**类是对某个对象的定义。**它包含有关对象动作⽅式的信息，包括它的名称、⽅法、属性和事件。</p>
+<p>当引⽤类的代码运⾏时，类的—个新的实例，即对象，就在内存中创建了。虽然只有—个类，但能从这个类在内存中创建多个相同类型的对象。</p>
+<h3><span id="创建类的原因"><strong>创建类的原因</strong></span></h3><p>• 对现实世界中的对象建模</p>
+<p>• 对抽象对象建模</p>
+<p>• 限制变化所影响的范围</p>
+<p>• 降低复杂度</p>
+<p>• 创建中⼼控制点</p>
+<p>• 隔离复杂度</p>
+<p>• 隐藏实现细节</p>
+<h2><span id="jvm">JVM</span></h2><img src="/2025/06/11/seci-learning/image-20250601171101066.png" class title="image-20250601171101066">
+
+<p>类加载器：JVM 需要将编译后的字节码文件加载到其内部的运行时数据区域中进行执行。这个过程涉及到了 Java的类加载机制（双亲委派机制）。</p>
+<p>运行时数据区：JVM 定义了 Java 程序运行期间需要使用到的内存区域，简单来说，这块内存区域存放了字节码信息以及程序执行过程的数据，垃圾收集器也会针对运行时数据区进行对象回收的工作</p>
+<p>执行引擎：将字节码指令解释&#x2F;编译为对应平台上的本地机器指令以。简单来说，JVM 中的执行引擎充当了将高级语言翻译为机器语言的译者。</p>
+<h3><span id="类加载">类加载</span></h3><p>加载、验证、准备、解析、初始化、使用和卸载。</p>
+<p>1）Loading（载入）：将字节码从不同的数据源转化为二进制字节流加载到内存中，并生成一个代表该类的 java.lang.Class 对象。</p>
+<p>2）Verification（验证）：对二进制字节流进行校验</p>
+<p>3）Preparation（准备）：对类变量（也称为静态变量，static 关键字修饰的）分配内存并初始化。</p>
+<p>4）Resolution（解析）：该阶段将常量池中的符号引用转化为直接引用。</p>
+<p>5）Initialization（初始化）：类变量将被赋值为代码期望赋的值。换句话说，执行类构造器方法的过程。</p>
+<h3><span id="运行时数据区">运行时数据区</span></h3><p>方法区、堆、虚拟机栈、本地方法栈以及程序计数器（PC寄存器）</p>
+<p>• PC寄存器：当前运行方法的字节码指令地址。</p>
+<p>• 本地方法栈：运行本地方法（java代码调用其它语言）。Native方法参数、局部变量。</p>
+<p>• 虚拟机栈（栈）：存储方法调用和局部变量。栈帧：包括方法参数、返回地址、操作数栈等。</p>
+<p>• 堆：存储Java运行时所有的对象实例。对象实例、数组</p>
+<p>• 方法区：存储类信息、常量、静态变量等。</p>
+<h3><span id="执行引擎">执行引擎</span></h3><p>解释器：读取字节码，然后执行指令。因为它是一行一行地解释和执行指令，所以它可以很快地解释字节码，但是执行起来会比较慢（毕竟要一行执行完再执行下一行）。</p>
+<p>即时编译器：执行引擎首先按照解释执行的方式来执行，随着时间推移，即时编译器会选择性的把一些热点代码编译成本地代码。执行本地代码比一条一条进行解释执行的速度快很多，因为本地代码是保存在缓存里的。</p>
+<p>垃圾回收器，用来回收堆内存中的垃圾对象。</p>
+<h3><span id="jvm运行java代码">JVM运行java代码</span></h3><p>源码编译生成字节码，启动JVM运行字节码文件，</p>
+<img src="/2025/06/11/seci-learning/image-20250601174226618.png" class title="image-20250601174226618">
+
+<img src="/2025/06/11/seci-learning/image-20250601174253018.png" class title="image-20250601174253018">
+
+<p><strong>访问标记</strong></p>
+<p>常量池之后的区域就是访问标记（Access flags），这个标记用于识别类或接口的访问信息，比如说：</p>
+<p>•到底是 class 类 还是 interface 接口？</p>
+<p>•是 public 吗？</p>
+<p>•是 abstract 抽象类吗？</p>
+<p>•是 final 类吗？</p>
+<img src="/2025/06/11/seci-learning/image-20250601174433073.png" class title="image-20250601174433073">
+
+<p><strong>类索引、父类索引和接口索引</strong></p>
+<p>这三部分用来确定类的继承关系，this_class 为当前类的索引，super_class 为父类的索引，interfaces 为接口。</p>
+<p><strong>字段表</strong></p>
+<p>一个类中定义的字段会被存储在字段表</p>
+<img src="/2025/06/11/seci-learning/image-20250601174824950.png" class title="image-20250601174824950">
+
+<img src="/2025/06/11/seci-learning/image-20250601174957591.png" class title="image-20250601174957591">
+
+<p><strong>方法表</strong></p>
+<p>方法表和字段表类似，区别是用来存储方法的信息，包括方法名，方法的参数，方法的签名。</p>
+<h3><span id="小结">小结</span></h3><p>•class 文件是一串连续的二进制，由 0 和 1 组成，但我们仍然可以借助一些工具来看清楚它的真面目。</p>
+<p>•class 文件的内容通常可以分为下面这几部分，魔数、版本号、常量池、访问标记、类索引、父类索引、接口索引、字段表、方法表、属性表。</p>
+<p>•常量池包含了类、接口、字段和方法的符号引用，以及字符串字面量和数值常量。</p>
+<p>•访问标记用于识别类或接口的访问信息，比如说是不是 public | private | protected，是不是 static，是不是 final 等。</p>
+<p>•类索引、父类索引和接口索引用来确定类的继承关系。</p>
+<p>•字段表用来存储字段的信息，包括字段名，字段的参数，字段的签名。</p>
+<p>•方法表用来存储方法的信息，包括方法名，方法的参数，方法的签名。</p>
+<p>•属性表用来存储属性的信息，包括字段的初始值，方法的字节码指令等。</p>
+<h3><span id="运行时数据区">运行时数据区</span></h3><p>虚拟机栈操作的基本元素就是<strong>栈帧</strong>，栈帧主要包含了局部变量表、操作数栈、动态连接以及方法返回地址。栈帧是一个先进后出的数据结构，每个方法从调用到执行完成都会对应一个栈帧在虚拟机栈中入栈和出栈。</p>
+<img src="/2025/06/11/seci-learning/image-20250601192940414.png" class title="image-20250601192940414">
+
+<img src="/2025/06/11/seci-learning/image-20250601193144734.png" class title="image-20250601193144734">
+
+<p>JVM将内存分为年轻代和老年代，其中年轻代又分为Eden区和两个Survivor区</p>
+<p>•年轻代</p>
+<p>• 用于存放新生的对象，其中Eden区是新对象的分配区域</p>
+<p>• 当Eden区满时，会触发Minor GC，将存活的对象移动到Survivor区，同时清空Eden区</p>
+<p>• Survivor区则用于存放经过一次Minor GC后存活的对象</p>
+<p>•老年代</p>
+<p>• 用于存放长时间存活的对象，当年轻代中的对象经过多次Minor GC后仍然存活，就会被移动到老年代</p>
+<p>• 当老年代满时，会触发Full GC</p>
+<h3><span id="字节码指令集">字节码指令集</span></h3><p><strong>指令分类</strong></p>
+<p>• 指令可以基本分为以下几类：</p>
+<p>• 存储指令 （例如：aload_0, istore）</p>
+<p>• 算术与逻辑指令 （例如: ladd, fcmpl）</p>
+<p>• 类型转换指令 （例如：i2b, d2i）</p>
+<p>• 对象创建与操作指令 （例如：new, putfield）</p>
+<p>• 堆栈操作指令 （例如：swap, dup2）</p>
+<p>• 控制转移指令 （例如：ifeq, goto）</p>
+<p>• 方法调用与返回指令 （例如：invokespecial, areturn)</p>
+<p><strong>前&#x2F;后缀 操作数类型</strong></p>
+<p>• i整数</p>
+<p>• l长整数</p>
+<p>• s 短整数</p>
+<p>• b 字节</p>
+<p>• c 字符</p>
+<p>• f单精度浮点数</p>
+<p>• d 双精度浮点数</p>
+<p>• z 布尔值</p>
+<p>• a 引用</p>
+<p>加载和存储指令用于将数据从栈帧的局部变量表和操作数栈之间来回传输。</p>
+<p>• 将一个<strong>局部变量</strong>加载到<strong>操作数栈</strong>的指令包括：iload,iload_n，lload、lload_n、fload、 fload_n、</p>
+<p>dload、dload_n，aload、aload_n。</p>
+<p>• 将一个数值从<strong>操作数栈</strong>存储到局部变量表的指令：</p>
+<p>istore,istore_n,lstore,lstore_n,fstore,fstore_n,dstore,dstore_n,astore,astore_n</p>
+<p>• 将<strong>常量</strong>加载到<strong>操作数栈</strong>的指令：</p>
+<p>bipush,sipush,ldc,ldc_w,ldc2_w,aconst_null,iconst_ml,iconst_i,lconst_l,fconst_f,dconst_d</p>
+<p>• 局部变量表的访问索引指令:wide</p>
+<p>JVM直接就支持宽化类型转换(小范围类型向大范围类型转换)：</p>
+<p>• 1)int类型到long,float,double类型</p>
+<p>• 2)long类型到float,double类型</p>
+<p>• 3)float到double类型</p>
+<p>• 但在处理窄化类型转换时，必须显式使用转换指令来完成，包括：i2b、i2c、i2s、l2i、f2i、f2l、d2i、d2l和 d2f。</p>
+<h2><span id="面向对象封装">面向对象：封装</span></h2><p>封装</p>
+<p>●封装规则1:</p>
+<p>将数据和对该数据进行操作的行为放在同一个类中。</p>
+<p>●封装规则2:</p>
+<p>使用职责驱动设计来确定数据和行为在类中的组合方式。</p>
+<p>●封装规则3:</p>
+<p>职责应当是完整的。</p>
+<p>关键字<code>static</code>允许一个方法在没有类实例的情况下运行。</p>
+<img src="/2025/06/11/seci-learning/image-20250601200122639.png" class title="image-20250601200122639">
+
+<p>静态变量初始化</p>
+<p>●静态变量在类被加载时初始化。</p>
+<p>●类之所以被加载，是因为JVM决定现在是加载它的时候。</p>
+<p>●关于静态变量初始化，有两个规则</p>
+<ol>
+<li><p>在创建该类的任何对象之前，类中的静态变量会被初始化，</p>
+</li>
+<li><p>在运行该类的任何静态方法之前，类中的静态变量也会被初始化。</p>
+</li>
+</ol>
+<p>被标记为final的变量在类中必须被初始化，被标记为final的方法不能被override，被标记为final的类不能被继承或产生子类<br>使用final方法的原因有两个。</p>
+<p>第一个原因是把方法锁定，以预防任何继承类修改它的意义。这是出于设计的考虑，你想要确保在继承中方法行为保持不变，并且不会被重写。</p>
+<p>使用final方法的第二个原因是效率。如果你将一个方法指明为final，就是同意编译器将针对该方法的所有调用都转为内嵌(inline)调用。</p>
+<p><strong>对象初始化初步</strong><br>●变量会在任何方法被调用之前初始化，甚至在构造方法之前；</p>
+<p>●静态数据先初始化，然后是非静态数据，</p>
+<p>●静态数据的初始化和静态代码块的执行按照代码中的书写顺序进行。</p>
+<img src="/2025/06/11/seci-learning/image-20250601200956357.png" class title="image-20250601200956357">
+
+<h2><span id="字符串">字符串</span></h2><img src="/2025/06/11/seci-learning/image-20250601201854285.png" class title="image-20250601201854285">
+
+<img src="/2025/06/11/seci-learning/image-20250601202005025.png" class title="image-20250601202005025">
+
+<p>以及<code>str3 = str1 + str2</code>和<code>str3 = &quot;test&quot; + &quot;test&quot;</code>的区别</p>
+<h2><span id="面向对象协作">面向对象：协作</span></h2><p>基本问题求解的原则：分解与抽象</p>
+<p>面向对象方法的原则：职责与协作</p>
+<p>面向对象方法的三要素：封装、继承、多态</p>
+<h3><span id="类之间的关系"><strong>类之间的关系</strong></span></h3><p><strong>General Relationship</strong></p>
+<p>• 依赖</p>
+<p><strong>Instance Level Relationship</strong></p>
+<p>• 连接</p>
+<p>• 关联</p>
+<p><strong>Class Level Relationship</strong></p>
+<p>• 继承</p>
+<p>• 实现</p>
+<img src="/2025/06/11/seci-learning/image-20250601202804518.png" class title="image-20250601202804518">
+
+<img src="/2025/06/11/seci-learning/image-20250601202824822.png" class title="image-20250601202824822">
+
+<img src="/2025/06/11/seci-learning/image-20250601202928844.png" class title="image-20250601202928844">
+
+<img src="/2025/06/11/seci-learning/image-20250601202948842.png" class title="image-20250601202948842">
+
+<p>在图书管理系统中</p>
+<p>• 图书馆和图书</p>
+<p>• 借阅记录和学生</p>
+<p>• 图书和图书中的一页</p>
+<p>• 图书馆和学生助手（拥有整理图书的行为）</p>
+<ol>
+<li><p><strong>图书馆和图书</strong></p>
+<ul>
+<li><strong>关联关系（Association）</strong><br>图书馆和图书之间是典型的关联关系，表示图书馆拥有（管理）多个图书。这种关系通常用成员变量（如<code>List&lt;Book&gt;</code>）实现，体现为”has-a”的关系。<ul>
+<li>可能是<strong>单向关联</strong>（仅图书馆知道图书的存在）或<strong>双向关联</strong>（图书也可能持有图书馆的引用，但实践中较少见）。</li>
+<li>如果图书的生命周期独立于图书馆（如图书可以被转移到其他图书馆），则是普通关联；如果图书严格属于某个图书馆且不能独立存在，则可能是<strong>组合关系（Composition）</strong>，但通常前者更常见。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>借阅记录和学生</strong></p>
+<ul>
+<li><strong>关联关系（Association）</strong><br>借阅记录与学生之间是关联关系，表示一条借阅记录关联到一个学生。<ul>
+<li>借阅记录类中可能包含一个<code>Student</code>类型的成员变量，体现”谁借了书”。</li>
+<li>如果借阅记录是学生的组成部分（如学生对象内部管理自己的借阅记录），则可能是<strong>组合关系（Composition）</strong>，但通常借阅记录由系统统一管理，因此普通关联更合适。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>图书和图书中的一页</strong></p>
+<ul>
+<li><strong>组合关系（Composition）</strong><br>图书和页之间是严格的组合关系，表示页是图书的一部分，生命周期完全由图书控制（”部分”不能脱离”整体”存在）。<ul>
+<li>图书类可能包含一个<code>List&lt;Page&gt;</code>成员变量，且当图书被销毁时，所有页也应被销毁。</li>
+<li>体现为<strong>强”拥有”关系</strong>，符合组合的定义。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>图书馆和学生助手（拥有整理图书的行为）</strong></p>
+<ul>
+<li><p><strong>依赖关系（Dependency）</strong> 或 <strong>关联关系（Association）</strong></p>
+<ul>
+<li><p>如果学生助手只是临时参与整理图书（如通过方法参数传递），则是<strong>依赖关系</strong>（临时性使用）。<br>示例：</p>
+<pre><code class="language-java">public class Library &#123;
+    public void organizeBooks(StudentAssistant assistant) &#123; ... &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>如果学生助手是图书馆的固定成员（如作为图书馆的属性），则是<strong>关联关系</strong>。<br>示例：</p>
+<pre><code class="language-java">public class Library &#123;
+    private StudentAssistant assistant;
+&#125;
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2><span id="面向对象继承和多态">面向对象：继承和多态</span></h2><h3><span id="继承">继承</span></h3><p>• ⼦类继承了⽗类所有的成员变量和成员⽅法</p>
+<p>• 可以增加成员变量和成员⽅法</p>
+<p>• 可以覆盖⽗类的成员⽅法</p>
+<p>• 不可以覆盖⽗类的成员变量</p>
+<p>如果父类中的成员变量和方法被声明为 <code>private</code>，那么子类就无法直接使用它们。 除此之外，如果父类的成员变量和方法被声明为 <code>protected</code>或<code>public</code>，那么子类就可以直接使用它们。</p>
+<p>⾮抽象类中不可以有抽象⽅法，抽象类中可以有⾮抽象⽅法</p>
+<p>抽象⽅法的存在就是为了多态，具体的⼦类必须实现所有⽗类的抽象⽅法，实现抽象⽅法就像⼦类覆盖⽗类⽅法—样</p>
+<img src="/2025/06/11/seci-learning/image-20250602133012295.png" class title="image-20250602133012295">
+
+<p>编译时，编译器决定你是否能调⽤某个⽅法，依据引⽤变量的类型，⽽不是引⽤变量指向的对象的类型</p>
+<p>执⾏时，JVM虚拟机决定实际哪个⽅法被调⽤，依据实际引⽤变量指向的对象的类型</p>
+<p><strong>Overriding的规则</strong></p>
+<p>• 条件：</p>
+<p>• 在<strong>不同类</strong>（⽗类和⼦类）、同—个⽅法、⽅法名字相同</p>
+<p>• 参数必须—致，返回值必须兼容</p>
+<p>• 例如：⽗类返回Animal，⼦类返回dog </p>
+<p>• ⽅法的可达性不能降低。</p>
+<p>• 例如：⽗类是缺省的，⼦类是public</p>
+<img src="/2025/06/11/seci-learning/1a25736cca455def9e8788f8d2e3d7ab.png" class title="img">
+
+<p>不能overriding一个<code>private</code>的方法！！！because a parent class’s private methods are “automatically final, and hidden from the derived class”.</p>
+<p><strong>Overloading的规则</strong></p>
+<p>• 条件：</p>
+<p>• <strong>同—个类</strong>中，不同⽅法，恰好名字相同</p>
+<p>• 参数不同（类型、个数、顺序）</p>
+<p>• 返回值可以不同，但是不能只是返回值不同</p>
+<p>• ⽅法的可达性提⾼降低都⾏。</p>
+<p>⽅法的调⽤</p>
+<h3><span id="java虚拟机里面提供四种方法调用字节码指令">Java虚拟机⾥⾯提供四种⽅法调⽤字节码指令</span></h3><p>• invokestatic：静态⽅法</p>
+<p>• invokespecial：实例构造器<init>方法，私有⽅法和⽗类⽅法</init></p>
+<ul>
+<li>用于调用<strong>无需多态的方法</strong>，包括：<ul>
+<li>私有方法（<code>private</code>）。</li>
+<li>构造方法（<code>&lt;init&gt;</code>）。</li>
+<li>父类的非覆盖方法（通过<code>super.method()</code>调用）。</li>
+</ul>
+</li>
+<li>采用<strong>静态绑定（编译时确定）</strong>，直接调用指定类的方法，忽略子类覆盖。</li>
+</ul>
+<p>• invokevirtual：虚⽅法</p>
+<ul>
+<li>用于调用<strong>实例方法</strong>（非私有、非静态、非构造方法），且目标方法是**普通类（非接口）**的方法。</li>
+<li>支持<strong>动态绑定（运行时多态）</strong>，即实际调用的方法由对象的运行时类型决定（虚方法分派）。</li>
+</ul>
+<p>• invokeinterface：接⼝⽅法，会在运⾏时再确定—个实现此接⼝的对象</p>
+<ul>
+<li>专门用于调用<strong>接口方法</strong>（通过接口引用调用实现类的方法）。</li>
+<li>支持动态绑定（类似<code>invokevirtual</code>），但优化方式不同（接口方法搜索更复杂）。</li>
+</ul>
+<p>• invokedynamic: 先在运⾏时动态解析出调⽤点限定符所引⽤的⽅法,然后再执⾏该⽅法。把如何查找⽬标⽅法的决定权从虚拟机转嫁到具体⽤户代码之中，让⽤户（包含其他语⾔的设计者）有更⾼的⾃由度。</p>
+<p><strong>静态绑定：</strong><br>在程序执行前方法已经被绑定，针对java简单的可以理解为程序编译期的绑定；<br>java当中的方法只有final，static，private和构造方法是前期绑定</p>
+<p><strong>动态绑定：</strong><br>后期绑定：在运行时根据具体对象的类型进行绑定。</p>
+<p><strong>静态绑定 VS 动态绑定</strong><br>1、静态绑定是发生在编译阶段；而动态绑定是在运行阶段；<br>2、private, final and static方法和变量使用静态绑定，而虚函数(virtual methods)则会根据运行时的具体对象进行绑定（注：在Java语言中, 所有的方法默认都是”虚函数”。只有以关键字 final 标记的方法才是非虚函数。）<br>3、静态绑定使用的是类信息，而动态绑定使用的是对象信息<br>4、重载方法(overloaded methods)使用的是静态绑定，而重写方法(overridden methods)使用的是动态绑定</p>
+<p><strong>overloading匹配优先级</strong></p>
+<p>• char 》int》long》Character》Serializable》Object》char…</p>
+<img src="/2025/06/11/seci-learning/image-20250602140412818.png" class title="image-20250602140412818">
+
+<p>对于样例代码：</p>
+<pre><code class="language-java">public class HidingDemo &#123;
+    public static void main(String[] args) &#123;
+        A x = new B();
+        System.out.println(&quot;(1) x.i is &quot; + x.i);
+        System.out.println(&quot;(2) (B)x.i is &quot; + ((B)x).i);
+        System.out.println(&quot;(3) x.j is &quot; + x.j);
+        System.out.println(&quot;(4) ((B)x).j is &quot; + ((B)x).j);
+        System.out.println(&quot;(5) x.m1() is &quot; + x.m1());
+        System.out.println(&quot;(6) ((B)x).m1() is &quot; + ((B)x).m1());
+        System.out.println(&quot;(7) x.m2() is &quot; + x.m2());
+        System.out.println(&quot;(8) x.m3() is &quot; + x.m3());
+    &#125;
+&#125;
+
+class A &#123;
+    public int i = 1;
+    public static int j = 11;
+    public static String m1() &#123; return &quot;A&#39;s static m1&quot;; &#125;
+    public String m2() &#123; return &quot;A&#39;s instance m2&quot;; &#125;
+    public String m3() &#123; return &quot;A&#39;s instance m3&quot;; &#125;
+&#125;
+
+class B extends A &#123;
+    public int i = 2;
+    public static int j = 12;
+    public static String m1() &#123; return &quot;B&#39;s static m1&quot;; &#125;
+    public String m2() &#123; return &quot;B&#39;s instance m2&quot;; &#125;
+&#125;
+</code></pre>
+<p>输出是：</p>
+<pre><code class="language-java">(1) x.i is 1
+(2) (B)x.i is 2
+(3) x.j is 11
+(4) ((B)x).j is 12
+(5) x.m1() is A&#39;s static m1
+(6) ((B)x).m1() is B&#39;s static m1
+(7) x.m2() is B&#39;s instance m2
+(8) x.m3() is A&#39;s instance m3
+</code></pre>
+<p><code>A x = new B();</code> 是 Java 中的 <strong>多态（Polymorphism）</strong> 的典型用法，它表示：</p>
+<ol>
+<li><strong><code>A x</code></strong>：声明一个 <strong>编译时类型（声明类型）为 <code>A</code></strong> 的变量 <code>x</code>。</li>
+<li><strong><code>new B()</code></strong>：创建一个 <strong>运行时类型（实际类型）为 <code>B</code></strong> 的对象。</li>
+<li><strong><code>=</code></strong>：将 <code>B</code> 的实例赋值给 <code>x</code>，但 <code>x</code> 的 <strong>访问权限受限于 <code>A</code> 类中定义的成员</strong>（除非发生多态）。</li>
+</ol>
+<h4><span id="1-编译时类型a-vs-运行时类型b">1. <strong>编译时类型（A） vs 运行时类型（B）</strong></span></h4><ul>
+<li><strong>编译时类型（A）</strong>：决定了变量能 <strong>访问哪些成员（方法、变量）</strong>（由 <code>A</code> 类的定义决定）。</li>
+<li><strong>运行时类型（B）</strong>：决定了实际调用 <strong>方法时的行为</strong>（如果方法被覆盖）。</li>
+</ul>
+<h4><span id="2-多态的表现">2. <strong>多态的表现</strong></span></h4><ul>
+<li><p><strong>实例方法</strong>（如 <code>m2()</code>）：动态绑定，实际调用 <code>B</code> 类的方法（运行时决定）。</p>
+<pre><code class="language-java">x.m2(); // 输出 &quot;B&#39;s instance m2&quot;（因为 B 覆盖了 m2）
+</code></pre>
+</li>
+<li><p><strong>静态方法&#x2F;变量</strong>（如 <code>m1()</code>, <code>j</code>）：静态绑定，按编译时类型 <code>A</code> 访问。</p>
+<pre><code class="language-java">x.m1(); // 输出 &quot;A&#39;s static m1&quot;（静态方法无多态）
+x.j;    // 输出 11（变量隐藏，按 A 的 j 访问）
+</code></pre>
+</li>
+<li><p><strong>成员变量</strong>（如 <code>i</code>）：无多态，按编译时类型 <code>A</code> 访问。</p>
+<pre><code class="language-java">x.i;    // 输出 1（变量隐藏，访问 A 的 i）
+</code></pre>
+</li>
+</ul>
+<hr>
+<p><strong>继承体系下的初始化流程</strong>  </p>
+<ol>
+<li><strong>入口阶段</strong>：从<code>Main()</code>方法开始，先加载基类，递归向上直至最顶层的根基类  </li>
+<li><strong>静态初始化</strong>：从根基类开始，依次向下执行各派生类的静态代码块（<code>static&#123;&#125;</code>）和静态变量赋值  </li>
+<li><strong>默认值设置</strong>：所有实例变量（基本类型初始化为<code>0</code>&#x2F;<code>0.0</code>&#x2F;<code>false</code>，对象引用初始化为<code>null</code>）  </li>
+<li><strong>构造函数调用</strong>：从根基类的构造函数开始逐层向下调用  </li>
+<li><strong>实例变量初始化</strong>：按代码中的书写顺序初始化成员变量（显式赋值或实例代码块<code>&#123;&#125;</code>）  </li>
+<li><strong>构造函数执行</strong>：最后执行当前构造函数体内的剩余逻辑</li>
+</ol>
+<hr>
+<h3><span id="关键点说明">关键点说明：</span></h3><ul>
+<li><strong>静态优先</strong>：静态初始化（步骤2）在类加载时完成，仅执行一次。  </li>
+<li><strong>父类优先</strong>：实例化时始终先完成父类初始化（步骤4→5→6），再处理子类。  </li>
+<li><strong>顺序规则</strong>：实例变量按代码中的出现顺序初始化（步骤5），随后才执行构造函数内其他代码（步骤6）。</li>
+</ul>
+<p>例如：</p>
+<pre><code class="language-java">class Root &#123;
+    static &#123; System.out.println(&quot;Root静态块&quot;); &#125;  // 步骤2
+    int a = initA();                            // 步骤5
+    Root() &#123; System.out.println(&quot;Root构造器&quot;); &#125; // 步骤6
+    int initA() &#123; return 1; &#125;
+&#125;
+class Derived extends Root &#123;
+    static &#123; System.out.println(&quot;Derived静态块&quot;); &#125; // 步骤2（子类）
+    int b = 2;                                    // 步骤5
+    Derived() &#123; System.out.println(&quot;Derived构造器&quot;); &#125; // 步骤6
+&#125;
+// 执行 new Derived() 时，输出顺序：
+// Root静态块 → Derived静态块 → Root构造器 → Derived构造器
+</code></pre>
+<p><strong>类的初始化</strong></p>
+<p>• 事实上，⼀个类的初始化包括3个步骤：</p>
+<p>• 加载（Loading），由类加载器执⾏，查找字节码，并创建⼀个Class对象（只是创建）；</p>
+<p>• 链接（Linking），验证字节码，为静态域分配存储空间（只是分配，并不初始化该存储空间），解析该类创建所需要的对其它类的应⽤；</p>
+<p>• 初始化（Initialization），⾸先执⾏静态初始化块static{}，初始化静态变量，执⾏静态⽅法（如构造⽅法）。</p>
+<p><strong>可能造成类被初始化的操作</strong></p>
+<p>• 创建⼀个Java类的实例对象</p>
+<p>• 调⽤⼀个Java类的静态⽅法</p>
+<p>• 为类或接⼝中的静态域赋值</p>
+<p>• 访问类或接⼝中声明的静态域，并且该域的值不是常值变量</p>
+<p>• 在⼀个顶层Java类中执⾏assert语句</p>
+<p>• 调⽤Class类和反射API中进⾏反射操作</p>
+<p>对如下例子：</p>
+<pre><code class="language-java">abstract class Glyph &#123;
+    abstract void draw();
+    Glyph() &#123;
+        System.out.println(&quot;Glyph() before draw()&quot;);
+        draw();
+        System.out.println(&quot;Glyph() after draw()&quot;);
+    &#125;
+&#125;
+
+class RoundGlyph extends Glyph &#123;
+    private int radius = 1;
+    RoundGlyph(int r) &#123;
+        radius = r;
+        System.out.println(&quot;RoundGlyph.RoundGlyph(), radius = &quot; + radius);
+    &#125;
+    void draw() &#123;
+        System.out.println(&quot;RoundGlyph.draw(), radius = &quot; + radius);
+    &#125;
+&#125;
+public class PolyConstructors &#123;
+    private static Test monitor = new Test();
+    public static void main(String[] args) &#123;
+        new RoundGlyph(5);
+    &#125;
+&#125;
+</code></pre>
+<p>输出结果应为：</p>
+<pre><code class="language-java">Glyph() before draw()
+RoundGlyph.draw(), radius = 0
+Glyph() after draw()
+RoundGlyph.RoundGlyph(), radius = 5
+</code></pre>
+<img src="/2025/06/11/seci-learning/image-20250602144722593.png" class title="image-20250602144722593">
+
+<p>案例代码最终输出为<code>null</code>（因为动态绑定调用的是子类sub的callname，而子类的callname使用的basename是子类的basename，但是子类的basename还没有初始化，为null）</p>
+<p>看PPT第13号，55页以后的例子！</p>
+<p>例题1输出：</p>
+<pre><code class="language-java">Main method starts
+ClassB initialized:1
+ClassA initialized
+ClassA instance created
+Main method ends
+</code></pre>
+<p>例题2输出：</p>
+<pre><code class="language-java">父类 s1成员初始化
+父类 s2成员初始化
+父类 Father默认构造函数被调用
+子类 s1成员初始化
+子类 s2成员初始化
+子类 Son默认构造函数被调用
+</code></pre>
+<p>例题3输出：</p>
+<pre><code class="language-java">Main class initialized:2
+Main method starts
+ClassB initialized:1
+ClassA initialized
+ClassA instance created
+Main method ends
+</code></pre>
+<img src="/2025/06/11/seci-learning/f169c95bd7c47e93bb14a7443a452bc5.png" class title="img">
+
+<img src="/2025/06/11/seci-learning/image-20250602153702567.png" class title="image-20250602153702567">
+
+<h3><span id="错误原因分析"><strong>错误原因分析</strong></span></h3><p>在 <code>ClassB</code> 中，以下代码会报错：</p>
+<pre><code class="language-java">InterfaceA.super.foo(); // 错误
+</code></pre>
+<p>而以下代码是正确的：</p>
+<pre><code class="language-java">InterfaceB.super.foo();
+</code></pre>
+<h4><span id="根本原因"><strong>根本原因</strong></span></h4><ol>
+<li><p><strong>Java 接口默认方法的继承规则</strong>：</p>
+<ul>
+<li>当一个类实现多个接口，且这些接口有<strong>相同的默认方法</strong>（如 <code>foo()</code>），必须<strong>显式覆盖</strong>该方法，否则会编译错误（除非其中一个接口是另一个的子接口）。</li>
+<li>在 <code>ClassB</code> 中，<code>InterfaceB</code> 已经覆盖了 <code>InterfaceA</code> 的 <code>foo()</code> 方法，因此 <code>InterfaceA</code> 的 <code>foo()</code> 默认方法<strong>不再直接可见</strong>。</li>
+</ul>
+</li>
+<li><p><strong><code>InterfaceX.super.foo()</code> 的访问限制</strong>：</p>
+<ul>
+<li>使用 <code>InterfaceX.super.foo()</code> 语法时，<code>InterfaceX</code> 必须是当前类<strong>直接实现的接口</strong>，且该接口的默认方法<strong>未被覆盖</strong>。</li>
+<li>在 <code>ClassB</code> 中：<ul>
+<li><code>InterfaceB</code> 是直接实现的接口，且它覆盖了 <code>foo()</code>，因此可以调用 <code>InterfaceB.super.foo()</code>。</li>
+<li><code>InterfaceA</code> 的 <code>foo()</code> 已被 <code>InterfaceB</code> 覆盖，因此不能通过 <code>InterfaceA.super.foo()</code> 直接访问。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="为什么-interfacebsuperfoo-可以"><strong>为什么 <code>InterfaceB.super.foo()</code> 可以？</strong></span></h3><ul>
+<li><code>InterfaceB</code> 是 <code>ClassB</code> 直接实现的接口，且它的 <code>foo()</code> 是当前类继承链中的<strong>最新覆盖版本</strong>，因此允许调用。</li>
+</ul>
+<p>当接⼝继承⾏为发⽣冲突时的另⼀个规则是，类的⽅法声明优先于接⼝默认⽅法，⽆论该⽅法是具体的还是抽象的</p>
+<h2><span id="异常">异常</span></h2><p>编译器不会检查RuntimeExceptions</p>
+<img src="/2025/06/11/seci-learning/image-20250602155701366.png" class title="image-20250602155701366">
+
+<img src="/2025/06/11/seci-learning/image-20250602160046833.png" class title="image-20250602160046833">
+
+<h3><span id="在继承中重写方法时抛出异常的问题">在继承中重写方法时抛出异常的问题</span></h3><p>规则1：<strong>异常范围一致性原则</strong></p>
+<p>子类重写父类方法时：</p>
+<p>允许抛出与父类方法完全相同的受检异常（checked exception）；</p>
+<p>允许抛出父类方法声明异常的子类异常（更具体的异常）；</p>
+<p>允许不抛出任何受检异常（缩减异常范围）；</p>
+<p>禁止抛出比父类方法声明更宽泛或无关的受检异常。</p>
+<p>非检查型异常（unchecked exceptions）（如 RuntimeException 及其子类）不受此规则限制，子类可自由抛出。</p>
+<p>规则2: <strong>多继承场景下的异常交集原则</strong></p>
+<p>若子类同时满足以下条件：</p>
+<p>• 重写父类中声明异常的方法；</p>
+<p>• 实现某接口中同名且声明异常的方法；</p>
+<p>则子类重写方法的异常声明必须满足：</p>
+<p>• 抛出父类声明异常与接口声明异常的交集；</p>
+<p>• 或不抛出任何检查型异常。</p>
+<img src="/2025/06/11/seci-learning/image-20250602162402015.png" class title="image-20250602162402015">
+
+<p>实际输出：2</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Astera
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;WatchRhine
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
