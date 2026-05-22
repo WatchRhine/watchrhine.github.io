@@ -1676,19 +1676,13 @@ public boolean isPrint() &#123;
 <img src="/2026/05/21/se-architecture/image-20230611170659360-1779437273961-21.png" class title="img">
 
 <h1><span id="桥接与装饰者">桥接与装饰者</span></h1><h3><span id="桥接模式">桥接模式</span></h3><p>设想如果要绘制矩形、圆形、椭圆、正方形，我们至少需要 4 个形状类，但是如果绘制的图形需要具有不同的颜色，如红色、绿色、蓝色等，此时至少有如下两种设计方案：</p>
-<table>
-<thead>
-<tr>
-<th>方案 1</th>
-<th>方案 2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="/se-architecture/image-20230611171009265.png" alt="img"></td>
-<td><img src="/%E8%BD%AF%E7%BB%9F%E9%9A%8F%E7%AC%94/image-20230611171013462.png" alt="img"></td>
-</tr>
-</tbody></table>
-<p>对于有两个变化维度（即两个变化的原因）的系统，采用方案二来进行设计系统中类的个数更少，且系统扩展更为方便。设计方案二即是桥接模式的应用。桥接模式将继承关系转换为关联关系，从而降低了类与类之间的耦合，减少了代码编写量。</p>
+<p>方案 1：</p>
+<img src="/2026/05/21/se-architecture/image-20230611171009265-1779444619261-1.png" class title="img">
+
+<p>方案 2：</p>
+<img src="/2026/05/21/se-architecture/image-20230611171013462-1779444780259-11.png" class title="img">
+
+<p>对于有两个变化维度（即两个变化的原因）的系统，采用方案二进行设计系统中类的个数更少，且系统扩展更为方便。设计方案二即是桥接模式的应用。桥接模式将继承关系转换为关联关系，从而降低了类与类之间的耦合，减少了代码编写量。</p>
 <p>定义：桥接模式（Bridge Pattern）<strong>将抽象部分与它的实现部分分离，使它们都可以独立地变化</strong>。它是一种<strong>对象结构型</strong>模式，又称为柄体（Handle and Body）模式或接口（Interface）模式。</p>
 <img src="/2026/05/21/se-architecture/3-1686484569415-1022.png" class title="img">
 
