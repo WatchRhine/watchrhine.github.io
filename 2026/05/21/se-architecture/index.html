@@ -189,21 +189,21 @@
             
             <span class="tag">
                 
-                <a href="/tags/study/" style="color: #ff7d73">
+                <a href="/tags/study/" style="color: #00a596">
                     study
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/nju/" style="color: #00a596">
+                <a href="/tags/nju/" style="color: #03a9f4">
                     nju
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/software/" style="color: #ff7d73">
+                <a href="/tags/software/" style="color: #ffa2c4">
                     software
                 </a>
             </span>
@@ -326,6 +326,22 @@
 <li><a href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F">适配器模式</a><ul>
 <li><a href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9">适配器模式的优点</a></li>
 <li><a href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%BC%BA%E7%82%B9">适配器模式的缺点</a></li>
+<li><a href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E6%89%A9%E5%B1%95">适配器模式扩展</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F">组合模式</a><ul>
+<li><a href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9">组合模式的优点</a></li>
+<li><a href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%BC%BA%E7%82%B9">组合模式的缺点</a></li>
+<li><a href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%E6%89%A9%E5%B1%95">组合模式扩展</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%A1%A5%E6%8E%A5%E4%B8%8E%E8%A3%85%E9%A5%B0%E8%80%85">桥接与装饰者</a><br>- <a href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9">桥接模式的优点</a><br>- <a href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%BC%BA%E7%82%B9">桥接模式的缺点</a><br>- <a href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E6%89%A9%E5%B1%95">桥接模式扩展</a><ul>
+<li><a href="#%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F">装饰模式</a><ul>
+<li><a href="#%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9">装饰模式的优点</a></li>
+<li><a href="#%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%BC%BA%E7%82%B9">装饰模式的缺点</a></li>
+<li><a href="#%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E6%89%A9%E5%B1%95">装饰模式扩展</a></li>
 </ul>
 </li>
 </ul>
@@ -334,6 +350,7 @@
 <!-- tocstop -->
 
 <p>[TOC]</p>
+<p>这篇笔记实际上是对熊佬笔记（<a target="_blank" rel="noopener" href="https://eaglebear2002.github.io/categories/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%E6%9C%AC%E7%A7%91%E8%AF%BE%E7%A8%8B/2023Spring-%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">EagleBear2002 的博客</a>）的整合，所以致谢熊佬。</p>
 <h1><span id="概述">概述</span></h1><h3><span id="软件模式">软件模式</span></h3><p>软件模式是将模式的一般概念应用于软件开发领域，即<strong>软件开发的总体指导思路或参照样板</strong>。它并非仅限于设计模式，还包括架构模式、分析模式和过程模式等。</p>
 <p>软件模式可以认为是对软件开发这一特定“问题”的“解法”的某种统一表示，<strong>软件模式等于一定条件下的出现的问题以及解法</strong>。软件模式的基础结构由4个部分构成：<strong>问题描述</strong>、前提条件（环境或约束条件）、<strong>解法</strong>和<strong>效果</strong>。</p>
 <p>软件模式与具体的应用域无关，在模式发现过程中需要遵循大三律（Rule of Three），即只有经过<strong>三个以上不同类型（或不同领域）的系统</strong>的校验，一个解决方案才能从候选模式升格为模式。</p>
@@ -1524,16 +1541,320 @@ public boolean isPrint() &#123;
 
 <p>适用：</p>
 <ol>
-<li>系统需要使用现有的类，而这些类的接口不符合系统的需要。</li>
-<li>想要建立一个可以重复使用的类，用于与一些彼此之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作。</li>
+<li>系统<strong>需要使用现有的类</strong>，而<strong>这些类的接口不符合系统的需要</strong>。</li>
+<li><strong>想要建立一个可以重复使用的类，用于与一些彼此之间没有太大关联的一些类</strong>，包括一些可能在将来引进的类<strong>一起工作</strong>。</li>
 </ol>
 <h4><span id="适配器模式的优点">适配器模式的优点</span></h4><ol>
 <li><strong>将目标类和适配者类解耦</strong>，通过引入一个适配器类来重用现有的适配者类，而无须修改原有代码。</li>
 <li><strong>增加了类的透明性和复用性</strong>，将具体的实现封装在适配者类中，对于客户端类来说是透明的，而且提高了适配者的复用性。</li>
 <li><strong>灵活性和扩展性都非常好</strong>，通过使用配置文件，可以很方便地更换适配器，也可以在不修改原有代码的基础上增加新的适配器类，完全符合“开闭原则”。</li>
-<li>由于适配器类是适配者类的子类，因此<strong>可以在适配器类中置换一些适配者的方法，使得适配器的灵活性更强</strong>。</li>
 </ol>
-<h4><span id="适配器模式的缺点">适配器模式的缺点</span></h4><p>对于 Java、C# 等不支持多重继承的语言，一次最多只能适配一个适配者类，而且目标抽象类只能为抽象类，不能为具体类，其使用有一定的局限性，不能将一个适配者类和它的子类都适配到目标接口。</p>
+<p>类适配器模式还具有如下优点：由于适配器类是适配者类的子类，因此<strong>可以在适配器类中置换一些适配者的方法，使得适配器的灵活性更强</strong>。</p>
+<p>对象适配器模式还具有如下优点：一个对象适配器可以把多个不同的适配者适配到同一个目标，也就是说，同一个适配器可以把适配者类和它的子类都适配到目标接口。</p>
+<h4><span id="适配器模式的缺点">适配器模式的缺点</span></h4><p>类适配器模式的缺点如下：对于 Java、C# 等不支持多重继承的语言，一次最多只能适配一个适配者类，而且目标抽象类只能为抽象类，不能为具体类，<strong>其使用有一定的局限性</strong>，不能将一个适配者类和它的子类都适配到目标接口。</p>
+<p>对象适配器模式的缺点如下：与类适配器模式相比，要想置换适配者类的方法就不容易。如果一定要置换掉适配者类的一个或多个方法，就只好先做一个适配者类的子类，将适配者类的方法置换掉，然后再把适配者类的子类当做真正的适配者进行适配，实现过程较为复杂。</p>
+<h4><span id="适配器模式扩展">适配器模式扩展</span></h4><p>默认适配器模式（Default Adapter Pattern）或缺省适配器模式：</p>
+<p>当不需要全部实现接口提供的方法时，可先设计一个抽象类实现接口，并为该接口中每个方法提供一个默认实现（空方法），那么该抽象类的子类可有选择地覆盖父类的某些方法来实现需求，它适用于一个接口不想使用其所有的方法的情况。因此也称为单接口适配器模式。</p>
+<img src="/2026/05/21/se-architecture/image-20230609102447774.png" alt="img" style="zoom:50%;">
+
+<img src="/2026/05/21/se-architecture/image-20230609102501104.png" alt="img" style="zoom:50%;">
+
+<p>双向适配器：在对象适配器的使用过程中，如果在适配器中同时包含对目标类和适配者类的引用，适配者可以通过它调用目标类中的方法，目标类也可以通过它调用适配者类中的方法，那么该适配器就是一个双向适配器。</p>
+<img src="/2026/05/21/se-architecture/8-1686484548868-982.png" class title="img">
+
+<h3><span id="组合模式">组合模式</span></h3><p>在树形结构（比如电脑里的文件夹和文件）中：</p>
+<ol>
+<li><strong>痛点</strong>：本来“文件夹”（容器）和“文件”（叶子）是两种不同的东西。如果不使用组合模式，你在写代码操作它们时，就得不停地写 <code>if...else</code> 来判断：“这是个文件夹吗？如果是，就递归打开；这是个文件吗？如果是，就直接读取。” 这会让代码非常复杂。</li>
+<li><strong>解决</strong>：组合模式通过设计，让<strong>文件夹</strong>和<strong>文件</strong>看起来像是同一种东西（实现相同的接口）。</li>
+<li><strong>结果</strong>：客户端代码在操作时，<strong>不需要区分</strong>它拿到的是文件夹还是文件，直接统一调用同一个方法即可。</li>
+</ol>
+<p>定义：组合模式（Composite Pattern）组合多个对象形成<strong>树形结构</strong>以<strong>表示“整体-部分”的结构层次</strong>。组合模式对<strong>单个对象（即叶子对象）<strong>和</strong>组合对象（即容器对象）<strong>的</strong>使用具有一致性</strong>。</p>
+<img src="/2026/05/21/se-architecture/image-20230609102730137.png" class title="img">
+
+<p>组合模式包含如下角色：</p>
+<ol>
+<li><code>Component</code>：抽象构件</li>
+<li><code>Leaf</code>：叶子构件</li>
+<li><code>Composite</code>：容器构件</li>
+<li><code>Client</code>：客户类</li>
+</ol>
+<p>分析：</p>
+<ol>
+<li>组合模式的关键是<strong>定义了一个抽象构件类</strong>，它既可以代表叶子，又可以代表容器，而<strong>客户端针对该抽象构件类进行编程</strong>，无须知道它到底表示的是叶子还是容器，可以对其进行统一处理。</li>
+<li>同时<strong>容器对象与抽象构件类之间还建立一个聚合关联关系</strong>，在容器对象中既可以包含叶子，也可以包含容器，以此<strong>实现递归组合，形成一个树形结构</strong>。</li>
+<li>文件系统组合模式结构图：</li>
+</ol>
+<img src="/2026/05/21/se-architecture/11-1686484548868-983.png" class title="img">
+
+<p>典型的抽象构件角色代码：</p>
+<pre><code class="language-java">public abstract class Component &#123;
+    public abstract void add(Component c);
+
+    public abstract void remove(Component c);
+
+    public abstract Component getChild(int i);
+
+    public abstract void operation();
+&#125;
+</code></pre>
+<p>典型的叶子构件角色代码：</p>
+<pre><code class="language-java">public class Leaf extends Component &#123;
+    public void add(Component c) &#123; //异常处理或错误提示
+    &#125;
+
+    public void remove(Component c) &#123; //异常处理或错误提示
+    &#125;
+
+    public Component getChild(int i) &#123; //异常处理或错误提示
+    &#125;
+
+    public void operation() &#123;
+        //实现代码
+    &#125;
+&#125;
+</code></pre>
+<p>典型的容器构件角色代码：</p>
+<pre><code class="language-java">public class Composite extends Component &#123;
+    private ArrayList list = new ArrayList();
+
+    public void add(Component c) &#123;
+        list.add(c);
+    &#125;
+
+    public void remove(Component c) &#123;
+        list.remove(c);
+    &#125;
+
+    public Component getChild(int i) &#123;
+        (Component) list.get(i);
+    &#125;
+
+    public void operation() &#123;
+        for (Object obj : list) &#123;
+            ((Component) obj).operation();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>实例：</p>
+<p>在水果盘（Plate）中有一些水果，如苹果（Apple）、香蕉（Banana）、梨子（Pear），当然大水果盘中还可以有小水果盘，现需要对盘中的水果进行遍历（吃），当然如果对一个水果盘执行”吃”方法，实际上就是吃其中的水果。使用组合模式模拟该场景。</p>
+<img src="/2026/05/21/se-architecture/12-1686484548868-984.png" class title="img">
+
+<p>文件有不同类型，不同类型的文件其浏览方式有所区别，如文本文件和图片文件的浏览方式就不相同。对文件夹的浏览实际上就是对其中所包含文件的浏览，而客户端可以一致地对文件和文件夹进行操作，无须关心它们的区别。使用组合模式来模拟文件的浏览操作。</p>
+<img src="/2026/05/21/se-architecture/13-1686484548868-985.png" class title="img">
+
+<p>适用：</p>
+<ol>
+<li>需要表示一个<strong>对象整体或部分层次</strong>，在具有整体和部分的层次结构中，希望通过一种方式忽略整体与部分的差异，可以一致地对待它们。</li>
+<li>让客户能够忽略不同对象层次的变化，<strong>客户端可以针对抽象构件编程，无须关心对象层次结构的细节</strong>。</li>
+<li><strong>对象的结构是动态的并且复杂程度不一样，但客户需要一致地处理它们</strong>。</li>
+</ol>
+<h4><span id="组合模式的优点">组合模式的优点</span></h4><ol>
+<li>可以清楚地定义<strong>分层次的复杂对象</strong>，表示对象的全部或部分层次，使得增加新构件也更容易。</li>
+<li>客户端调用简单，<strong>客户端可以一致的使用组合结构或其中单个对象</strong>。</li>
+<li>定义了包含叶子对象和容器对象的<strong>类层次结构</strong>，叶子对象可以被组合成更复杂的容器对象，而这个容器对象又可以被组合，这样不断递归下去，<strong>可以形成复杂的树形结构</strong>。</li>
+<li><strong>更容易在组合体内加入对象构件</strong>，客户端不必因为加入了新的对象构件而更改原有代码。</li>
+</ol>
+<h4><span id="组合模式的缺点">组合模式的缺点</span></h4><ol>
+<li>使<strong>设计变得更加抽象</strong>，对象的业务规则如果很复杂，则实现组合模式具有很大挑战性，而且不是所有的方法都与叶子对象子类都有关联。</li>
+<li>增加新构件时可能会产生一些问题，<strong>很难对容器中的构件类型进行限制</strong>。</li>
+</ol>
+<h4><span id="组合模式扩展">组合模式扩展</span></h4><p>更复杂的组合模式</p>
+<img src="/2026/05/21/se-architecture/07%E9%96%AB%E5%82%9E%E5%8E%A4%E9%8D%A3%E3%84%A4%E7%AC%8C%E7%BC%81%E5%8B%AB%E6%82%8E-1686484548868-987.jpg" class title="img">
+
+<p>组合模式根据抽象构件类的定义形式，又可以分为透明组合模式和安全组合模式。</p>
+<p>透明组合模式</p>
+<img src="/2026/05/21/se-architecture/image-20230611170645952.png" class title="img">
+
+<p>安全组合模式（违反了里氏代换原则）</p>
+<img src="/2026/05/21/se-architecture/image-20230611170659360-1779437273961-21.png" class title="img">
+
+<h1><span id="桥接与装饰者">桥接与装饰者</span></h1><p>设想如果要绘制矩形、圆形、椭圆、正方形，我们至少需要 4 个形状类，但是如果绘制的图形需要具有不同的颜色，如红色、绿色、蓝色等，此时至少有如下两种设计方案：</p>
+<table>
+<thead>
+<tr>
+<th>方案 1</th>
+<th>方案 2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/se-architecture/image-20230611171009265.png" alt="img"></td>
+<td><img src="/%E8%BD%AF%E7%BB%9F%E9%9A%8F%E7%AC%94/image-20230611171013462.png" alt="img"></td>
+</tr>
+</tbody></table>
+<p>对于有两个变化维度（即两个变化的原因）的系统，采用方案二来进行设计系统中类的个数更少，且系统扩展更为方便。设计方案二即是桥接模式的应用。桥接模式将继承关系转换为关联关系，从而降低了类与类之间的耦合，减少了代码编写量。</p>
+<p>定义：桥接模式（Bridge Pattern）<strong>将抽象部分与它的实现部分分离，使它们都可以独立地变化</strong>。它是一种<strong>对象结构型</strong>模式，又称为柄体（Handle and Body）模式或接口（Interface）模式。</p>
+<img src="/2026/05/21/se-architecture/3-1686484569415-1022.png" class title="img">
+
+<p>桥接模式包含如下角色：</p>
+<ol>
+<li><code>Abstraction</code>：抽象类</li>
+<li><code>RefinedAbstraction</code>：扩充抽象类</li>
+<li><code>Implementor</code>：实现类接口</li>
+<li><code>ConcreteImplementor</code>：具体实现类</li>
+</ol>
+<p>分析：</p>
+<p>理解桥接模式，重点需要理解如何将**抽象化（Abstraction）<strong>与</strong>实现化（Implementation）**脱耦，使得二者可以独立地变化。</p>
+<ol>
+<li><strong>抽象化</strong>：抽象化就是忽略一些信息，把不同的实体当作同样的实体对待。在面向对象中，<strong>将对象的共同性质抽取出来形成类的过程</strong>即为抽象化的过程。</li>
+<li><strong>实现化</strong>：<strong>针对抽象化给出的具体实现，就是实现化</strong>，抽象化与实现化是一对互逆的概念，实现化产生的对象比抽象化更具体，是对抽象化事物的进一步具体化的产物。</li>
+<li><strong>脱耦</strong>：脱耦就是<strong>将抽象化和实现化之间的耦合解脱开，或者说是将它们之间的强关联改换成弱关联，将两个角色之间的继承关系改为关联关系</strong>。桥接模式中的所谓脱耦，就是指在一个软件系统的抽象化和实现化之间使用关联关系（组合或者聚合关系）而不是继承关系，从而使两者可以相对独立地变化，这就是桥接模式的用意。</li>
+</ol>
+<p>典型的实现类接口代码：</p>
+<pre><code class="language-java">public interface Implementor &#123;
+    public void operationImpl();
+&#125;
+</code></pre>
+<p>典型的抽象类代码：</p>
+<pre><code class="language-java">public abstract class Abstraction &#123;
+    protected Implementor impl;
+
+    public void setImpl(Implementor impl) &#123;
+        this.impl = impl;
+    &#125;
+
+    public abstract void operation();
+&#125;
+</code></pre>
+<p>典型的扩充抽象类代码：</p>
+<pre><code class="language-java">public class RefinedAbstraction extends Abstraction &#123;
+    public void operation() &#123;
+        //代码
+        impl.operationImpl();
+        //代码
+    &#125;
+&#125;
+</code></pre>
+<p>实例：</p>
+<p>现需要提供大中小 3 种型号的画笔，能够绘制 5 种不同颜色，如果使用蜡笔，我们需要准备 $3 \times 5&#x3D;15$ 支蜡笔，也就是说必须准备 15 个具体的蜡笔类。而如果使用毛笔的话，只需要 3 种型号的毛笔，外加 5 个颜料盒，用 $3 + 5 &#x3D; 8$  个类就可以实现 15 支蜡笔的功能。本实例使用桥接模式来模拟毛笔的使用过程。</p>
+<img src="/2026/05/21/se-architecture/4-1686484569415-1023.png" class title="img">
+
+<p>如果需要开发一个跨平台视频播放器，可以在不同操作系统平台（如 Windows、Linux、Unix 等）上播放多种格式的视频文件，常见的视频格式包括 MPEG、RMVB、AVI、WMV 等。现使用桥接模式设计该播放器。</p>
+<img src="/2026/05/21/se-architecture/5-1686484569415-1024.png" class title="img">
+
+<p>适用：</p>
+<ol>
+<li>如果一个系统<strong>需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系</strong>，通过桥接模式可以使它们在抽象层建立一个关联关系。</li>
+<li><strong>抽象化角色和实现化角色可以以继承的方式独立扩展而互不影响</strong>，在程序运行时可以动态将一个抽象化子类的对象和一个实现化子类的对象进行组合，即系统需要对抽象化角色和实现化角色进行动态耦合。</li>
+<li>一个类<strong>存在两个独立变化的维度</strong>，且这两个维度都需要进行扩展。</li>
+<li>虽然在系统中使用继承是没有问题的，但是由于抽象化角色和具体化角色需要独立变化，设计要求需要独立管理这两者。</li>
+<li>对于那些<strong>不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统</strong>，桥接模式尤为适用。</li>
+</ol>
+<h4><span id="桥接模式的优点">桥接模式的优点</span></h4><ol>
+<li><strong>分离抽象接口及其实现部分</strong>。</li>
+<li>桥接模式有时类似于多继承方案，但是多继承方案违背了类的单一职责原则（即一个类只有一个变化的原因），复用性比较差，而且多继承结构中类的个数非常庞大，<strong>桥接模式是比多继承方案更好的解决方法</strong>。</li>
+<li>桥接模式<strong>提高了系统的可扩充性</strong>，在两个变化维度中任意扩展一个维度，都不需要修改原有系统。</li>
+<li><strong>实现细节对客户透明，可以对用户隐藏实现细节</strong>。</li>
+</ol>
+<h4><span id="桥接模式的缺点">桥接模式的缺点</span></h4><ol>
+<li>桥接模式的引入会<strong>增加系统的理解与设计难度</strong>，由于聚合关联关系建立在抽象层，要求开发者针对抽象进行设计与编程。</li>
+<li>桥接模式要求正确识别出系统中两个独立变化的维度，因此<strong>其使用范围具有一定的局限性</strong>。</li>
+</ol>
+<h4><span id="桥接模式扩展">桥接模式扩展</span></h4><p>桥接模式和适配器模式用于设计的不同阶段，桥接模式用于系统的初步设计，对于存在两个独立变化维度的类可以将其分为抽象化和实现化两个角色，使它们可以分别进行变化；而在初步设计完成之后，当发现系统与已有类无法协同工作时，可以采用适配器模式。但有时候在设计初期也需要考虑适配器模式，特别是那些涉及到大量第三方应用接口的情况。</p>
+<img src="/2026/05/21/se-architecture/image-20230611171731288.png" class title="img">
+
+<h3><span id="装饰模式">装饰模式</span></h3><p>定义：装饰模式（Decorator Pattern）<strong>动态地给一个对象增加一些额外的职责</strong>（Responsibility），就增加对象功能来说，装饰模式比生成子类实现更为灵活。其别名也可以称为<strong>包装器</strong>（Wrapper），与适配器模式的别名相同，但它们适用于不同的场合。根据翻译的不同，装饰模式也有人称之为“油漆工模式”，它是一种<strong>对象结构型</strong>模式。</p>
+<img src="/2026/05/21/se-architecture/9-1686484569415-1025.png" class title="img">
+
+<p>装饰模式包含如下角色：</p>
+<ol>
+<li><code>Component</code>：抽象构件</li>
+<li><code>ConcreteComponent</code>：具体构件</li>
+<li><code>Decorator</code>：抽象装饰类</li>
+<li><code>ConcreteDecorator</code>：具体装饰类</li>
+</ol>
+<p>分析：</p>
+<ol>
+<li>与继承关系相比，关联关系的主要优势在于<strong>不会破坏类的封装性</strong>，而且<strong>继承是一种耦合度较大的静态关系，无法在程序运行时动态扩展</strong>。在软件开发阶段，关联关系虽然不会比继承关系减少编码量，但是到了软件维护阶段，由于关联关系使系统具有较好的<strong>松耦合性</strong>，因此使得<strong>系统更加容易维护</strong>。当然，关联关系的缺点是<strong>比继承关系要创建更多的对象</strong>。</li>
+<li>使用装饰模式来实现扩展比继承更加灵活，<strong>它以对客户透明的方式动态地给一个对象附加更多的责任</strong>。装饰模式可以在不需要创造更多子类的情况下，将对象的功能加以扩展。</li>
+</ol>
+<p>典型的抽象装饰类代码：</p>
+<pre><code class="language-java">public class Decorator extends Component &#123;
+    private Component component;
+
+    public Decorator(Component component) &#123;
+        this.component = component;
+    &#125;
+
+    public void operation() &#123;
+        component.operation();
+    &#125;
+&#125;
+</code></pre>
+<p>典型的具体装饰类代码：</p>
+<pre><code class="language-java">public class ConcreteDecorator extends Decorator &#123;
+    public ConcreteDecorator(Component component) &#123;
+        super(component);
+    &#125;
+
+    public void operation() &#123;
+        super.operation();
+        addedBehavior();
+    &#125;
+
+    public void addedBehavior() &#123;
+        // 新增方法
+    &#125;
+&#125;
+</code></pre>
+<p>变形金刚在变形之前是一辆汽车，它可以在陆地上移动。当它变成机器人之后除了能够在陆地上移动之外，还可以说话；如果需要，它还可以变成飞机，除了在陆地上移动还可以在天空中飞翔。</p>
+<blockquote>
+<ul>
+<li>Q：为什么 <code>Changer</code> 在继承自 <code>Transform</code> 的同时还要有一个 <code>Transform</code>？</li>
+<li>A：因为我们希望 <code>Changer</code> 能够装饰 <code>Car</code> 或其他的 <code>Transform</code> （如果有，例如 <code>Bicycle</code>），因此需要组合一个 <code>transform</code>。</li>
+</ul>
+</blockquote>
+<img src="/2026/05/21/se-architecture/image-20230611185744944.png" alt="img" style="zoom: 67%;">
+
+<p>某系统提供了一个数据加密功能，可以对字符串进行加密。最简单的加密算法通过对字母进行移位来实现，同时还提供了稍复杂的逆向输出加密，还提供了更为高级的求模加密。用户先使用最简单的加密算法对字符串进行加密，如果觉得还不够可以对加密之后的结果使用其他加密算法进行二次加密，当然也可以进行第三次加密。现使用装饰模式设计该多重加密系统。</p>
+<img src="/2026/05/21/se-architecture/11-1686484569416-1026.png" class title="img">
+
+<p>适用：</p>
+<ol>
+<li>在不影响其他对象的情况下，<strong>以动态、透明的方式给单个对象添加职责</strong>。</li>
+<li>需要<strong>动态地给一个对象增加功能</strong>，这些功能也可以<strong>动态地被撤销</strong>。</li>
+<li><strong>当不能采用继承的方式对系统进行扩充或者采用继承不利于系统扩展和维护时</strong>。不能采用继承的情况主要有两类：第一类是系统中存在大量独立的扩展，为支持每一种组合将产生大量的子类，使得子类数目呈爆炸性增长；第二类是因为类定义不能继承（如 final 类）。</li>
+</ol>
+<h4><span id="装饰模式的优点">装饰模式的优点</span></h4><ol>
+<li>装饰模式与继承关系的目的都是要扩展对象的功能，但是<strong>装饰模式可以提供比继承更多的灵活性</strong>。</li>
+<li>可以<strong>通过一种动态的方式来扩展一个对象的功能</strong>，通过配置文件可以在运行时选择不同的装饰器，从而实现不同的行为。</li>
+<li><strong>通过使用不同的具体装饰类以及这些装饰类的排列组合，可以创造出很多不同行为的组合</strong>。可以使用多个具体装饰类来装饰同一对象，得到功能更为强大的对象。</li>
+<li><strong>具体构件类与具体装饰类可以独立变化</strong>，用户可以根据需要增加新的具体构件类和具体装饰类，在使用时再对其进行组合，原有代码无须改变，符合”开闭原则”。</li>
+</ol>
+<h4><span id="装饰模式的缺点">装饰模式的缺点</span></h4><ol>
+<li>使用装饰模式进行系统设计时<strong>将产生很多小对象</strong>，这些对象的区别在于它们之间相互连接的方式有所不同，而不是它们的类或者属性值有所不同，同时还将产生很多具体装饰类。这些装饰类和小对象的产生将增加系统的复杂度，加大学习与理解的难度。</li>
+<li>这种比继承更加灵活机动的特性，也同时意味着<strong>装饰模式比继承更加易于出错，排错也很困难，对于多次装饰的对象，调试时寻找错误可能需要逐级排查，较为烦琐</strong>。</li>
+</ol>
+<h4><span id="装饰模式扩展">装饰模式扩展</span></h4><ol>
+<li>装饰模式的简化-需要注意的问题：<ol>
+<li><strong>一个装饰类的接口必须与被装饰类的接口保持相同</strong>，对于客户端来说无论是装饰之前的对象还是装饰之后的对象都可以一致对待。</li>
+<li>尽量保持具体构件类 Component 作为一个”轻”类，也就是说<strong>不要把太多的逻辑和状态放在具体构件类中</strong>，可以通过装饰类对其进行扩展。</li>
+<li><strong>如果只有一个具体构件类而没有抽象构件类，那么抽象装饰类可以作为具体构件类的直接子类</strong>。</li>
+</ol>
+</li>
+<li>装饰模式的简化</li>
+</ol>
+<blockquote>
+<p>你简化在哪了？</p>
+</blockquote>
+<img src="/2026/05/21/se-architecture/13-1686484569416-1027.png" alt="img" style="zoom:67%;">
+
+<p><strong>透明</strong>装饰模式（多重加密系统）</p>
+<p>在透明装饰模式中，要求客户端<strong>完全针对抽象编程</strong>，装饰模式的透明性要求客户端程序不应该声明具体构件类型和具体装饰类型，而应该全部声明为抽象构件类型。</p>
+<pre><code class="language-java">Cipher sc, cc, ac;
+sc = new SimpleCipher();
+cc = new ComplexCipher(sc);
+ac = new AdvancedCipher(cc);
+</code></pre>
+<p>半透明装饰模式（变形金刚）</p>
+<p><strong>半透明</strong>（semi-transparent）的装饰模式允许用户在客户端声明具体装饰者类型的对象，调用在具体装饰者中新增的方法。</p>
+<pre><code class="language-java">Transform camaro;
+camaro = new Car();
+camaro.move();
+Robot bumblebee = new Robot(camaro);
+bumblebee.move();
+bumblebee.say();
+</code></pre>
 
     </div>
     
