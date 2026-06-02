@@ -44,6 +44,9 @@
 <script src="/js/lib/preview.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
 
 
 
@@ -189,14 +192,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/study/" style="color: #00a596">
+                <a href="/tags/study/" style="color: #00bcd4">
                     study
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/nju/" style="color: #ff7d73">
+                <a href="/tags/nju/" style="color: #00a596">
                     nju
                 </a>
             </span>
@@ -212,18 +215,20 @@
         
     </div>
     
-    <div class="content" v-pre>
-        <p>写软统笔记的时候我就在想，我是不是写的字太多了，这考个试不至于吧。</p>
-<p>但是真让我删减些东西，我又不想删。</p>
-<p>大概也许是高考和高中三年给我养成的坏习惯，学生和出卷人的博弈，他会出这个知识点吗，他会出那个知识点吗？我也曾经漏掉不少知识点，导致我考试的时候看着那些题目只能发呆。</p>
-<p>可是写那么多又有什么用呢，在学校在本子上手写了那么多文言文字词和对应的翻译，高考前又过了几遍，真正考试的时候还是力不从心。自己变成了自己最讨厌的样子，表面上那么努力，最后还是狠狠打自己的脸。</p>
-<p>大学的考试的确好了些，但是还是避免不了这种博弈啊，我大概不能忘的，一是近代史的“府院之争”，二是编译原理那会的大脑互搏吧，一个说只考复习PPT涵盖的内容，另一个说还要考不在PPT内的某些东西，最后想来想去还是去打印了那部分的PPT，结果最后也没考嘛。</p>
-<p>也许真的没必要写那么多字来轰炸的我本来就脆弱的神经与记忆，早说大学应该跳出高中的思维了，可实际上我已经被高中的思维污染了很多吧。</p>
-<p>好像在画地为牢困住自己，我真的走出了高中的那段时期了吗？</p>
-<p>现在的我做题味这么大，我也会嘲笑自己变成做题区的样子吧。</p>
-<p>2026.6.2 二编：我何时变成了这副模样呢，，，</p>
-
-    </div>
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoStatus]"
+        :disabled="cryptoStatus === 'success'"
+        ref="crypto"
+        placeholder="文章被加密，请输入密码"
+        data-encrypted="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"
+        data-shasum="aec1024afcf4e5d2ec61f524c4737fb47ee639f8fea95a3489029f975951274a"
+        v-model="crypto"
+    />
+    <transition name="fade">
+        <div class="content" ref="content" v-show="cryptoStatus === 'success'"></div>
+    </transition>
     
     
     
