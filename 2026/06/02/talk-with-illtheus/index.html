@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Categories: 精神娱乐剂 | Astera</title>
+    <title>和“伊尔修斯”的对话 | Astera</title>
     <meta name="author" content="WatchRhine" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -42,6 +42,13 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
+
+
 
 
 
@@ -155,14 +162,20 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
+            <div class="article">
+    <div>
+        <h1>和“伊尔修斯”的对话</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/6/2
+        </span>
         
-        
-        
-        <span>
-            <a href="/categories/%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD/" style="background: #ff7d73">
+        <span class="category">
+            <a href="/categories/%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -171,87 +184,54 @@
         </span>
         
         
-        
-        <span>
-            <a href="/categories/%E6%88%91%E7%9A%84%E6%9D%A5%E6%97%B6%E8%B7%AF/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                我的来时路
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/my-life/" style="color: #00a596">
+                    my-life
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/diary/" style="color: #00bcd4">
+                    diary
+                </a>
+            </span>
+            
         </span>
-        
-        
-        
-        <span>
-            <a href="/categories/%E5%88%9D%E5%88%B0%E6%96%B0%E5%A4%A7%E9%99%86/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                初到新大陆
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/categories/%E7%B2%BE%E7%A5%9E%E5%A8%B1%E4%B9%90%E5%89%82/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                精神娱乐剂
-            </a>
-        </span>
-        
-        
-        
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2024/12/25</div>
-            <a href="/2024/12/25/wargame-red-dragon/">
-                <h3>《Wargame: Red Dragon》战役剧情</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/categories/%E7%B2%BE%E7%A5%9E%E5%A8%B1%E4%B9%90%E5%89%82/">
-                        <span class="icon">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </span>
-                        精神娱乐剂
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/games/" style="color: #00bcd4">
-                            games
-                        </a>
-                    </span>
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/entertainment/" style="color: #ffa2c4">
-                            entertainment
-                        </a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoStatus]"
+        :disabled="cryptoStatus === 'success'"
+        ref="crypto"
+        placeholder="文章被加密，请输入密码"
+        data-encrypted="U2FsdGVkX1/h65PcUini9kCBOWIiUDRS/OSSvl0d+c4Bj4w4vvRJzrp/PDW/qE5LQPdElNhZkA9REU3ikH+66/Fwvd8RUQMsrkYA9BO1QCKpmH3g8IQzQndWOrM/uApbJjiK2g/umZ06cOeU9EtAPetic/3i3S6dLtdgpe8HcJTFtoCuMEa1dzEQGwNCUC380VksTjZ5obJLTCg4qt8482MpsI9Cp76+pdDpBdhzokVJsST6vpFUEhipafRk5yn9P4cwUTNEurpZ5WGigGdSAWGM0GpjYMeu31GLDsWY7FvSEXxbegWKu4F9rpQ1JmAOCikmXkz+/WROlI2KL+zpBMUBaNQOcOTkrWbaaxadFoQJDdeSZ6XyiMt03nXqjOmvufux2xmFQxK7uskwWkolug+faTiKQUmlEacfElxWoqgvmH464jfcTXS6IIpJkE/OP51YZPgqsGFqBtXgftCCfp+XYLZWdTUGlPJR0DtfQyaB8BYnkWtZmkhbKLAGna5BZrgvuAgpDkyNIZiwXn1Y9UjH9NMU+1gB44xxzUmnPk/4AAG+CZa5b+myJu1PVh7kR0cWtJo17kMuZQ3XAMC8Ra5axn/ms68UGRAEhY3XVTuDSJ41dTMsmn8J9FXCS0YBJdXXWcGzTk+DErZbf21hmvBE9utZlelydbr7yqBglFCqNBNu0la/ckRWxedbghG+36PAGNY4hTGfdE9aFsN/jehKte/e6ByPaWfsG+MmQEU3KEWjox8jgslfb8XEYhsyT/5ABiLJOhA8K7Z/+oIHRiqRH+vOFsMi5UguIo/1jx+nYIDRIhRy332bQ++iiBvDH8qJ4dw0ZnBsdXmgv/tKAqTjjLYtN9lBQs60iZTnA01ga4FtWwaA9ewmEfwsna1gX8yt5HQGKvOpqzu1KjpDzHXdhhCYLOxoOTeL3pjjysIYy6CxuHEnVquD4XtptWzeiFQ9KYnR4RUTmObZPPT5D4lhOimpVevAEFqL2IrCsBYhccIaUbn9PAF2xkHmiRaWpic66Dth+bJ97+yG+dXSjURAasLtokLJCzX12G6KUMhaJWePNUng5E/pfmfpck/GODjcPvRRwWhOHbgpCi5QHlzC6+NjD6XiXdMjgVjh8xNjTNuGDmjz8ffnwzu807Mnb/6euJwABjghP27sRMNpMYkyOK9tTaKQcKHYG6u7b3rW7NzNV4Emm9V3ip10chAZxRbNUzt893sCmFLfhTIHxsvMEAUMflHlAw33zKyjs22oBK15foG6ZT2/mfGn/yhe8YdM4FgVUy/Ipus2CaAHnhOiWaHyZeA4i+DNIBwr7BVSOcct5JEH9TYpk3aUOAGSZ/aOeb3EIGpYG23kPBaYYDdfwLGjmvO+ZhZXAE/IcrujjocypfavCjsK6dL8Kl6j05oB84JJm+itrNCbZGtjjlcGwAyOvH1zpm0Ssor5ITWnYI3JgsngnhDVz2NcXACfxAxy2VDG1S7yAiEw+GbyNmL8PxOISAoxBfyiFCRrMMlaIqVM0NN7uGfUZNzUdk/cbdNGOCxT+RbWdNAmvI8fzZitP5NAH0XAcQNmL7nTd8hyW0KcsrsPC7/H8hgORQn5gg2RdXrJWzPopceCH2o9M5enfrFOcv3L/dKiTOyta9kt8J4p9VrEfDSQOb177Bm3Xg8hMM6qriUm9NAEolIshg=="
+        data-shasum="2ddf7aa71cc90ac372b5ef087f68bcab63c02c3b48ebd0774888e14adda48b36"
+        v-model="crypto"
+    />
+    <transition name="fade">
+        <div class="content" ref="content" v-show="cryptoStatus === 'success'"></div>
+    </transition>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
     </div>
+    
+    
+    
     
 </div>
 
@@ -283,6 +263,29 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="WatchRhine/watchrhine.github.io"
+    data-repo-id="R_kgDONVkWLw"
+    data-category="General"
+    data-category-id="DIC_kwDONVkWL84Ckpml"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
     
 </body>
 </html>
