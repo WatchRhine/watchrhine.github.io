@@ -196,7 +196,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/nju/" style="color: #00bcd4">
+                <a href="/tags/nju/" style="color: #ffa2c4">
                     nju
                 </a>
             </span>
@@ -352,6 +352,26 @@
 </li>
 </ul>
 </li>
+<li><a href="#%E8%A1%A5%E5%85%85%E6%9D%A5%E8%87%AAai">补充（来自AI）</a><ul>
+<li><a href="#%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F">外观模式</a><ul>
+<li><a href="#%E4%B8%80-%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F">一、 怎么理解外观模式？</a><ul>
+<li><a href="#1-%E9%80%9A%E4%BF%97%E7%9A%84%E6%AF%94%E5%96%BB%E7%94%B5%E8%84%91%E4%B8%80%E9%94%AE%E5%BC%80%E6%9C%BA">1. 通俗的比喻：电脑“一键开机”</a></li>
+<li><a href="#2-%E6%A0%B8%E5%BF%83%E8%A7%92%E8%89%B2">2. 核心角色</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E6%B2%A1%E6%9C%89%E5%A4%96%E8%A7%82-vs-%E6%9C%89%E5%A4%96%E8%A7%82">二、 代码示例：没有外观 vs 有外观</a></li>
+<li><a href="#%E4%B8%89-%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F%E6%BB%A1%E8%B6%B3%E4%BA%86%E5%93%AA%E4%BA%9B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99">三、 外观模式满足了哪些设计原则？</a></li>
+<li><a href="#%E5%9B%9B-%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%E4%B8%8E%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF">四、 外观模式的优缺点与适用场景</a><ul>
+<li><a href="#%E4%BC%98%E7%82%B9">优点：</a></li>
+<li><a href="#%E7%BC%BA%E7%82%B9">缺点：</a></li>
+<li><a href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF">适用场景：</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 
@@ -419,14 +439,26 @@
 </blockquote>
 <h4><span id="妈妈我看不懂类图了怎么办">😭妈妈我看不懂类图了怎么办</span></h4><img src="/2026/05/21/se-architecture/3427087-20240901225904612-933159263.png" class title="img">
 
+<img src="/2026/05/21/se-architecture/588f77a6d228f8e57ed44843e99ca29e.png" class title="组合的实例">
+
+<img src="/2026/05/21/se-architecture/image-20260609163740039.png" alt="image-20260609163740039" style="zoom:50%;">
+
 <ul>
-<li>车的类图结构为<code>&lt;&lt;abstract&gt;&gt;</code>，表示车是一个抽象类；</li>
-<li>它有两个继承类：小汽车和自行车；它们之间的关系为<code>实现关系</code>，使用带空心箭头的虚线表示，箭头指向接口；</li>
-<li>小汽车为与SUV之间也是继承关系，它们之间的关系为<code>泛化关系</code>（is-a），使用带空心箭头的实线表示，箭头指向父类；</li>
-<li>小汽车与发动机之间是<code>组合关系</code>（部分不能离开整体而单独存在），使用带实心箭头的实线表示，箭头指向整体；</li>
-<li>学生与班级之间是<code>聚合关系</code>（has-a，个体可以离开整体而单独存在），使用带空心箭头的实线表示，箭头指向整体；</li>
-<li>学生与身份证之间为<code>关联关系</code>，使用一根实线（实线是因为双向关联，如果是单向关联要画实线箭头，箭头指向目标类）表示；（在Java中，单向关联表现为：类A当中使用了类B，其中B作为类A的成员变量。即一个对象含有另一个对象的引用）</li>
-<li>学生上学需要用到自行车，与自行车是一种<code>依赖关系</code>（一个类的实现需要另一个类的协助），使用带箭头的虚线表示，箭头指向目标类；</li>
+<li><p>车的类图结构为<code>&lt;&lt;abstract&gt;&gt;</code>，表示车是一个抽象类；</p>
+</li>
+<li><p>它有两个继承类：小汽车和自行车；它们之间的关系为<code>实现关系</code>，使用带空心箭头的虚线表示，箭头指向接口；</p>
+</li>
+<li><p>小汽车为与SUV之间也是继承关系，它们之间的关系为<code>泛化关系</code>（is-a），使用带空心箭头的实线表示，箭头指向父类；</p>
+</li>
+<li><p>小汽车与发动机之间是<code>组合关系</code>（部分不能离开整体而单独存在），使用带实心菱形的箭头表示，菱形指向整体；（第一张图的箭头不规范，看下面的图）</p>
+</li>
+<li><p>学生与班级之间是<code>聚合关系</code>（has-a，个体可以离开整体而单独存在），使用带空心菱形的实线表示，菱形指向整体；（第一张图的箭头不规范，看下面的图）</p>
+</li>
+<li><p>学生与身份证之间为<code>关联关系</code>，使用一根实线（实线是因为双向关联，如果是单向关联要画实线箭头，箭头指向目标类）表示；</p>
+<p>（在Java中，单向关联表现为：类A当中使用了类B，其中B作为类A的成员变量。即一个对象含有另一个对象的引用）</p>
+</li>
+<li><p>学生上学需要用到自行车，与自行车是一种<code>依赖关系</code>（一个类的实现需要另一个类的协助），使用带箭头的虚线表示，箭头指向目标类；</p>
+</li>
 </ul>
 <h4><span id="单一职责原则single-responsibility-principle-srp">单一职责原则（Single Responsibility Principle, SRP）</span></h4><p>定义：一个对象应该只包含<strong>单一的职责</strong>，并且该职责被完整地封装在一个类中。&#x2F; 就一个类而言，应该仅有一个引起它变化的原因。</p>
 <p>分析：</p>
@@ -1855,6 +1887,148 @@ Robot bumblebee = new Robot(camaro);
 bumblebee.move();
 bumblebee.say();
 </code></pre>
+<h1><span id="补充来自ai">补充（来自AI）</span></h1><h3><span id="外观模式">外观模式</span></h3><p>外观模式（Facade Pattern）是软件工程中非常常用且极易理解的一种<strong>结构型设计模式</strong>。</p>
+<p>简单来说，它的核心思想就是：<strong>“化繁为简，提供一个统一的、高层的入口”</strong>。</p>
+<p>下面我从通俗比喻、代码实现、以及它满足的设计原则三个维度为你详细拆解。</p>
+<hr>
+<h4><span id="一-怎么理解外观模式">一、 怎么理解外观模式？</span></h4><h5><span id="1-通俗的比喻电脑一键开机">1. 通俗的比喻：电脑“一键开机”</span></h5><p>假设你要启动一台电脑，底层的真实过程非常复杂：</p>
+<ol>
+<li>CPU 开始通电自检。</li>
+<li>内存加载操作系统内核。</li>
+<li>硬盘读取引导扇区。</li>
+<li>显卡初始化显示画面。</li>
+</ol>
+<p>如果让用户（客户端）自己去操作，用户必须知道这四个步骤的顺序和细节，这太痛苦了。<br><strong>外观模式的做法是</strong>：提供一个“电源键”（Facade）。用户只需要按下电源键，电源键背后的逻辑会自动按正确顺序调用 CPU、内存、硬盘和显卡的启动方法。用户<strong>不需要知道</strong>底层有多复杂。</p>
+<h5><span id="2-核心角色">2. 核心角色</span></h5><ul>
+<li><strong>Facade（外观类）</strong>：知道哪些子系统类负责处理请求，它将客户的请求代理给适当的子系统对象。</li>
+<li><strong>SubSystem（子系统类）</strong>：实现子系统的具体功能，处理由 Facade 对象指派的任务。<strong>子系统不知道 Facade 的存在</strong>。</li>
+<li><strong>Client（客户端）</strong>：通过调用 Facade 的方法来请求子系统，而不需要直接与子系统交互。</li>
+</ul>
+<hr>
+<h4><span id="二-代码示例没有外观-vs-有外观">二、 代码示例：没有外观 vs 有外观</span></h4><p>假设我们要实现一个“家庭影院”系统，包含：灯光、投影仪、音响。</p>
+<p><strong>❌ 没有外观模式（客户端直接操作子系统）</strong></p>
+<p>客户端必须了解所有子系统的细节和调用顺序，耦合度极高。</p>
+<pre><code class="language-java">public class Client &#123;
+    public void watchMovie() &#123;
+        Light light = new Light();
+        Projector projector = new Projector();
+        SoundSystem sound = new SoundSystem();
+
+        // 客户端必须知道正确的开启顺序和细节
+        light.dim(10);               // 调暗灯光
+        projector.on();              // 打开投影
+        projector.setInput(&quot;DVD&quot;);   // 设置输入源
+        sound.on();                  // 打开音响
+        sound.setVolume(20);         // 设置音量
+        System.out.println(&quot;开始看电影...&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p><strong>✅ 使用外观模式（引入 HomeTheaterFacade）</strong></p>
+<p>将复杂的逻辑封装到外观类中，客户端变得极其清爽。</p>
+<pre><code class="language-java">// 1. 子系统类 (保持不变)
+class Light &#123; public void dim(int level) &#123; /*...*/ &#125; &#125;
+class Projector &#123; public void on() &#123; /*...*/ &#125; public void setInput(String s) &#123; /*...*/ &#125; &#125;
+class SoundSystem &#123; public void on() &#123; /*...*/ &#125; public void setVolume(int v) &#123; /*...*/ &#125; &#125;
+
+// 2. 外观类 (核心)
+public class HomeTheaterFacade &#123;
+    private Light light;
+    private Projector projector;
+    private SoundSystem sound;
+
+    // 外观类在内部组合了所有子系统
+    public HomeTheaterFacade(Light light, Projector projector, SoundSystem sound) &#123;
+        this.light = light;
+        this.projector = projector;
+        this.sound = sound;
+    &#125;
+
+    // 提供高层的统一接口
+    public void watchMovie() &#123;
+        System.out.println(&quot;--- 准备观影 ---&quot;);
+        light.dim(10);
+        projector.on();
+        projector.setInput(&quot;DVD&quot;);
+        sound.on();
+        sound.setVolume(20);
+        System.out.println(&quot;开始看电影...&quot;);
+    &#125;
+    
+    public void endMovie() &#123;
+        System.out.println(&quot;--- 结束观影 ---&quot;);
+        light.dim(100);
+        projector.off();
+        sound.off();
+    &#125;
+&#125;
+
+// 3. 客户端 (极其简单)
+public class Client &#123;
+    public static void main(String[] args) &#123;
+        // 初始化子系统
+        Light light = new Light();
+        Projector projector = new Projector();
+        SoundSystem sound = new SoundSystem();
+        
+        // 创建外观对象
+        HomeTheaterFacade facade = new HomeTheaterFacade(light, projector, sound);
+        
+        // 客户端只需调用一个方法
+        facade.watchMovie();
+    &#125;
+&#125;
+</code></pre>
+<hr>
+<h4><span id="三-外观模式满足了哪些设计原则">三、 外观模式满足了哪些设计原则？</span></h4><p>外观模式是践行面向对象设计原则的典范，它主要完美契合了以下原则：</p>
+<ol>
+<li><strong>迪米特法则（Law of Demeter，最少知识原则） ⭐️ 最核心</strong></li>
+</ol>
+<ul>
+<li><strong>原则定义</strong>：一个对象应该对其他对象有最少的了解。只与直接的朋友通信。</li>
+<li><strong>外观模式的体现</strong>：客户端（Client）只与外观类（Facade）通信，<strong>完全不知道</strong>底层子系统（Light, Projector 等）的存在。这极大地降低了系统的耦合度，子系统的内部修改不会波及客户端。</li>
+</ul>
+<ol start="2">
+<li><strong>单一职责原则（Single Responsibility Principle）</strong></li>
+</ol>
+<ul>
+<li><strong>原则定义</strong>：一个类应该只有一个引起它变化的原因。</li>
+<li><strong>外观模式的体现</strong>：<ul>
+<li>子系统类（如 <code>Projector</code>）只负责自己单一的硬件控制逻辑。</li>
+<li>外观类（<code>HomeTheaterFacade</code>）只负责“编排”和“封装”这些子系统的调用顺序，充当一个协调者。职责划分非常清晰。</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><strong>开闭原则（Open-Closed Principle）</strong></li>
+</ol>
+<ul>
+<li><strong>原则定义</strong>：对扩展开放，对修改关闭。</li>
+<li><strong>外观模式的体现</strong>：如果我们需要增加一个新的观影模式（比如“听音乐模式”），我们<strong>不需要修改</strong>现有的 <code>watchMovie()</code> 方法，也<strong>不需要修改</strong>任何子系统类。只需要在 Facade 中<strong>新增</strong>一个 <code>listenMusic()</code> 方法即可。</li>
+</ul>
+<ol start="4">
+<li><strong>依赖倒置原则（Dependency Inversion Principle）（在良好设计下）</strong></li>
+</ol>
+<ul>
+<li><strong>原则定义</strong>：高层模块不应该依赖低层模块，两者都应该依赖其抽象。</li>
+<li><strong>外观模式的体现</strong>：在优秀的实现中，Facade 内部持有的应该是子系统的<strong>接口</strong>（如 <code>ILight</code>, <code>IProjector</code>），而不是具体的实现类。这样即使底层硬件更换了品牌（具体实现变了），Facade 的代码也不需要修改。</li>
+</ul>
+<hr>
+<h4><span id="四-外观模式的优缺点与适用场景">四、 外观模式的优缺点与适用场景</span></h4><h5><span id="优点">优点：</span></h5><ol>
+<li><strong>减少系统相互依赖</strong>：客户端与子系统解耦。</li>
+<li><strong>提高灵活性</strong>：子系统内部怎么变化，只要接口不变，客户端就无感知。</li>
+<li><strong>提高安全性</strong>：Facade 可以控制哪些子系统功能对外暴露，哪些隐藏起来。</li>
+</ol>
+<h5><span id="缺点">缺点：</span></h5><ol>
+<li><strong>不符合开闭原则的特定情况</strong>：如果需要增加新的<strong>子系统</strong>，可能需要修改 Facade 的源代码（除非使用抽象外观类）。</li>
+<li><strong>可能变成“上帝类”</strong>：如果 Facade 承担了过多的逻辑，它会变得非常庞大，违背单一职责原则。</li>
+</ol>
+<h5><span id="适用场景">适用场景：</span></h5><ol>
+<li><strong>为一个复杂的子系统提供一个简单的接口</strong>（如各种 SDK 的封装、第三方 API 的包装）。</li>
+<li><strong>客户端与多个子系统之间存在很大的依赖性</strong>，引入 Facade 可以将它们解耦。</li>
+<li><strong>在层叠架构中</strong>（如 MVC），Facade 常被用来定义系统中每一层的入口点（例如 Service 层就是 Controller 层和 DAO 层之间的 Facade）。</li>
+</ol>
+<h4><span id="总结">总结</span></h4><p>外观模式不是要“限制”你访问子系统，而是为你提供一个“快捷方式”。它通过<strong>迪米特法则</strong>将复杂性隐藏在幕后，是重构遗留代码、降低系统耦合度的利器。</p>
 
     </div>
     
