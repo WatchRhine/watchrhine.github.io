@@ -44,6 +44,9 @@
 <script src="/js/lib/preview.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
 
 
 
@@ -203,7 +206,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/software-of-nju/" style="color: #00a596">
+                <a href="/tags/software-of-nju/" style="color: #03a9f4">
                     software of nju
                 </a>
             </span>
@@ -212,27 +215,20 @@
         
     </div>
     
-    <div class="content" v-pre>
-        <p>洗澡的时候突然想到自己高中当初选择物化生是为了什么，是因为我<strong>不想背政史地那些繁杂的书</strong></p>
-<p>当初选择代码，从功利角度上是因为能拿米，实际上我也有一层心理因素，我觉得代码是很神奇的东西，就像当初小时候玩mc造大楼造地下设施，我觉得代码是现实世界中可以帮我实现自己兴趣的一种方式，我想做游戏，我想做工具，我想做对自己、对朋友、对他人有用的东西，Contribute是非常有意义的一件事。</p>
-<p>现在听起来当初自己还是有够天真，毕竟<font color="red">想凭着一腔热爱与兴趣去学习代码</font>终究不能和<font color="red">靠代码吃饭而去学习代码</font>相提并论</p>
-<p>二编：我其实一直在想，可能是我错怪了一些东西，也许很多东西根本不需要背。“背书”只是所谓“上课没听讲”这个<font color="red">因</font>带来的<font color="red">果</font>罢了，可是我转念又想，有的课上课去听讲也是和背书一样枯燥恶心自己，这几个学期来，认真听过讲的好像只有CPL，FLA和Linux系统基础。</p>
-<p>我之前和Zsir聊天的时候谈了背书这个问题，Zsir说他也知道软院的这个问题，还说：</p>
-<blockquote>
-<p>“背书是一种懒政”。</p>
-</blockquote>
-<p>老师懒，那就让同学去背书。Zsir说他已经多次在教学会议上提到了这点，很多老师也去改正了，后面他还说了一句让我特别印象深刻的话：</p>
-<blockquote>
-<p>“<strong>教书是良心活</strong>，一个老师，哪怕台下没有人听，也在认真地讲课，说明他认识到自己有教书育人的责任和义务。”</p>
-</blockquote>
-<p>但是我不知道该如何去正确的看待一个老师，因为看待本身就是一件非常主观的事情，或许可以从他的PPT，从他的教学方法中可以窥知一二。我这两周在给Zsir做PPT的时候有深刻的感觉，想去认真地担负起教学这个责任，其实是很累的。</p>
-<p>我感觉，从大一到大三，软院的课程氛围对于我而言正在越来越压抑，我不知道究竟是因为学生正在从大一活跃的状态渐渐习惯于这种保守古板，一个个正在成为我们口中的“老油条”，还是因为老师们没有去大幅度地改变这种情况。也可能是以前天真的我早已被现实的残酷蹂躏殆尽丧失之前的活力，也可能是现在的我被未来的黑暗所吞没以至于我不得不忍气吞声参与这场无尽的攀爬，又苦又累积攒了一身的怨气。我越来越不想去主动的学习某些课程的知识，反而是被迫地接受这些知识。我想一棒子把这些内容都打成无用的知识来安慰自己的无为和愤怒，可我又尝试说服自己这些内容的一部分实际上确实是有用的，在软件工程中是有实际应用的，而且还很有可能有助于实际工作的。可是明明如此，这种鱼龙混杂也让我感到深深的恶心。</p>
-<p>这几天来我有很多憋着的话，但是我总会将自己的想法反驳回去，因为我的想法未必正确，说出来说不定还要引别人的讨论来，争起来惹的双方并不舒服，<strong>倒不如保持沉默</strong>（<strong>这也是这篇文章看起来扭扭捏捏的原因</strong>）。况且既然如果最终选择了公开，必然要对自己的言论负责，只能用自嘲的方式将这些想法的目标全部指向自己，<font color="red">这样读者就能抱着看笑话的态度来看待这些无意义的话了。</font></p>
-<p>我本来还想说些什么，可是经过这两年在软院学习到了这么多有用的理论，也许是我的想法在和软件工程背道而驰，也许是我的想法在和软件学院背道而驰。</p>
-<p>以前的我太天真，用错误的眼光看待了这个世界。</p>
-<p><font color="red">现在的我只能爱着这个世界，因为恨着这个世界，浪费心情，毫无意义。</font></p>
-
-    </div>
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoStatus]"
+        :disabled="cryptoStatus === 'success'"
+        ref="crypto"
+        placeholder="文章被加密，请输入密码"
+        data-encrypted="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"
+        data-shasum="25a65a340da2d3e9506bd59a537bbad71a092796ac09b59691a0be32ef093be5"
+        v-model="crypto"
+    />
+    <transition name="fade">
+        <div class="content" ref="content" v-show="cryptoStatus === 'success'"></div>
+    </transition>
     
     
     
