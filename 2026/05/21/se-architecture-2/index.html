@@ -189,6 +189,13 @@
             
             <span class="tag">
                 
+                <a href="/tags/nju/" style="color: #ffa2c4">
+                    nju
+                </a>
+            </span>
+            
+            <span class="tag">
+                
                 <a href="/tags/study/" style="color: #00a596">
                     study
                 </a>
@@ -196,14 +203,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/nju/" style="color: #ff7d73">
-                    nju
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/software/" style="color: #ffa2c4">
+                <a href="/tags/software/" style="color: #03a9f4">
                     software
                 </a>
             </span>
@@ -215,13 +215,262 @@
     <div class="content" v-pre>
         <!-- toc -->
 
-
-
+<ul>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84">软件架构</a></li>
+<li><a href="#%E9%9D%9E%E5%8A%9F%E8%83%BD%E6%80%A7%E9%9C%80%E6%B1%82-nfrs">非功能性需求 NFRs</a></li>
+<li><a href="#%E9%80%9A%E7%94%A8%E8%AE%BE%E8%AE%A1%E5%86%B3%E7%AD%96">⭐通用设计决策</a></li>
+<li><a href="#41-views">⭐4+1 Views</a></li>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88">软件架构做了什么</a></li>
+<li><a href="#%E6%9E%B6%E6%9E%84%E6%B4%BB%E5%8A%A8">架构活动</a><ul>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E8%BF%87%E7%A8%8B">⭐软件架构过程</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9E%B6%E6%9E%84%E7%9A%84%E8%A7%92%E8%89%B2%E5%92%8C%E9%87%8D%E8%A6%81%E6%80%A7">架构的角色和重要性</a></li>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E7%9A%84%E6%9D%A5%E6%BA%90">软件架构的来源</a></li>
+</ul>
+</li>
+<li><a href="#%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7">质量属性</a><ul>
+<li><a href="#%E5%8A%9F%E8%83%BD%E6%80%A7%E9%9C%80%E6%B1%82">功能性需求</a></li>
+<li><a href="#%E8%B4%A8%E9%87%8F%E9%9C%80%E6%B1%82">质量需求</a></li>
+<li><a href="#%E9%9D%9E%E5%8A%9F%E8%83%BD%E6%80%A7%E9%9C%80%E6%B1%82">非功能性需求</a></li>
+<li><a href="#%E7%BA%A6%E6%9D%9F">约束</a></li>
+<li><a href="#%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7-1">质量属性</a><ul>
+<li><a href="#%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7%E6%96%B9%E6%A1%88">质量属性方案</a></li>
+<li><a href="#%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7%E5%BB%BA%E6%A8%A1%E5%88%BA%E6%BF%80-%E5%93%8D%E5%BA%94%E5%9B%BE">⭐⭐⭐质量属性建模（刺激-响应图）</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AD%96%E7%95%A5tactics">策略（Tactics）</a><ul>
+<li><a href="#%E7%AD%96%E7%95%A5-vs-%E6%A8%A1%E5%BC%8F">策略 vs 模式</a></li>
+<li><a href="#%E8%B4%A8%E9%87%8F%E8%AE%BE%E8%AE%A1%E5%86%B3%E7%AD%96">质量设计决策</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#architecturally-significant-requirements-asrs"><strong>Architecturally Significant Requirements</strong>, ASRs</a><ul>
+<li><a href="#%E5%A6%82%E4%BD%95%E8%AF%86%E5%88%ABasr%E5%92%8C%E5%85%B6%E4%BB%96%E5%9B%A0%E7%B4%A0">⭐如何识别ASR和其他因素</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9E%B6%E6%9E%84%E9%A9%B1%E5%8A%A8%E5%9B%A0%E7%B4%A0">架构驱动因素</a></li>
+</ul>
 <!-- tocstop -->
 
-<p>待施工，如果6月份这个文章还是空的，大概是烂尾了</p>
-<p>架构部分完全看不懂，不知道怎么整理，已烂尾</p>
+<p>[TOC]</p>
+<h1><span id="introduction">Introduction</span></h1><h2><span id="软件架构">软件架构</span></h2><p>定义1：程序或计算系统的软件体系结构是系统的一个或多个结构，其中包括软件组件，这些组件的外部可见属性以及它们之间的关系。</p>
+<p>定义2：系统的基本组织，体现在其组件，它们之间的相互关系以及环境以及支配其设计和演进的原则。</p>
+<p>体系结构是关于软件设计的（software design）</p>
+<ol>
+<li>所有的体系结构都是软件设计，但不是所有的软件设计都是体系结构</li>
+<li>体系结构是设计过程的一个过程</li>
+</ol>
+<p>体系结构是更高层的设计，是设计决策的组合 </p>
+<p>元素（Elements)：部件（Components）和连接件（Connectors)</p>
+<p>关系：静态（static）和动态（dynamic）的关系</p>
+<blockquote>
+<p>【2019】Architecture，structure和Design的区别？</p>
+<ol>
+<li>Design 包含 Architecture，Architecture 包含 Structure</li>
+<li>结构是静态的、逻辑的，是关于系统如何构成的，但是架构除了包含结构，还会增加组件的相互之间的关系接口，还会定义一些动态的行为</li>
+<li>体系架构是关于软件设计的，所有体系架构都是设计，但是不是所有的设计都是体系架构，体系架构是软件设计的⼀个部分</li>
+</ol>
+</blockquote>
+<ol>
+<li>体系结构将系统分解成部件&#x2F;模块&#x2F;子系统，降低每一部分的复杂度</li>
+<li>体系结构定义<ol>
+<li>部件接口：部件可以做什么？</li>
+<li>部件交流和依赖：部件可以怎么沟通交流？</li>
+<li>部件职责：当我们询问它时，部件需要精确的知道自己将要做什么？</li>
+</ol>
+</li>
+</ol>
+<p>体系结构确定通信，包括：</p>
+<ol>
+<li>数据通过机器传递，比如<ol>
+<li>函数调用</li>
+<li>远程方法调用异步信息</li>
+</ol>
+</li>
+<li>控制流<ol>
+<li>组件间的信息流来满足需要的功能</li>
+<li>序列化的</li>
+<li>并发&#x2F;并行</li>
+<li>同步</li>
+</ol>
+</li>
+</ol>
+<h2><span id="非功能性需求-nfrs">非功能性需求 NFRs</span></h2><ol>
+<li>非功能性需求（Non-functional requirements）定义了系统运行的有多好</li>
+<li>当然也需要考虑功能性需求。</li>
+<li>非功能性需求很少在功能性需求中很少被发现<ol>
+<li>又名体系结构需求 （aka. architecture requirements）</li>
+<li>必须通过体系结构引出</li>
+</ol>
+</li>
+<li>非功能性需求包括<ol>
+<li>技术约束 Technical constraints</li>
+<li>商业约束 Business constraints</li>
+<li>质量属性 Quality attrilbutes</li>
+</ol>
+</li>
+</ol>
+<h2><span id="通用设计决策">⭐通用设计决策</span></h2><blockquote>
+<p>以前考了</p>
+</blockquote>
+<ol>
+<li><font color="red">分解</font>：针对某⼀个系统关注点分解后处理，比如将整个系统分解或将某个模块分解。</li>
+<li><font color="red">抽象</font>：使用抽象让设计师关注本身结构而不关心实现</li>
+<li><font color="red">分而治之</font>：将每个模块分别处理</li>
+<li><font color="red">生成和测试</font>：将⼀个特定的设计看作是⼀个假设；根据测试路径生成测试⽤例。</li>
+<li><font color="red">迭代</font>：使用迭代的方法，ADD方法多次迭代直到满足所有ASR</li>
+<li><font color="red">重用元素</font>：重用在设计过程中可以复用的元素或架构</li>
+</ol>
+<h2><span id="41-views">⭐4+1 Views</span></h2><blockquote>
+<p>以前考了</p>
+</blockquote>
+<ol>
+<li>逻辑视图：描述了对架构而言重要的元素和他们之间的关系（功能需求）</li>
+<li>过程视图：描述了元素之间的并发和交互。</li>
+<li>物理视图：描述了主要过程和组件是如何被映射到硬件上的。</li>
+<li>发展视图：描述了软件组件的内部组织联系（比如使用配置管理工具）。</li>
+<li>用例场景（Use Case）：捕获架构需求，与一个或多个特定视图相关。</li>
+</ol>
+<img src="/2026/05/21/se-architecture-2/image-20260618132135897.png" class title="image-20260618132135897">
 
+<h2><span id="软件架构做了什么">软件架构做了什么</span></h2><ol>
+<li>联络人<ol>
+<li>在客户、技术团队和商业&#x2F;需求分析师之间</li>
+<li>包含管理和市场分析</li>
+</ol>
+</li>
+<li>软件工程：软件工程的最佳实践</li>
+<li>技术知识：深入理解技术领域</li>
+<li>风险管理：与设计、技术决策相关的风险</li>
+</ol>
+<h2><span id="架构活动">架构活动</span></h2><ol>
+<li>创建系统的商业案例</li>
+<li>理解需求</li>
+<li>创建和选择体系结构</li>
+<li>沟通体系结构（涉众，包括开发商）</li>
+<li>分析或评估体系结构<ol>
+<li>整体的方法论</li>
+<li>具体技术的质量</li>
+</ol>
+</li>
+<li>实现体系结构</li>
+<li>保证和体系结构的一致性</li>
+</ol>
+<h3><span id="软件架构过程">⭐软件架构过程</span></h3><blockquote>
+<p>以前考了</p>
+</blockquote>
+<img src="/2026/05/21/se-architecture-2/6.png" class title="img">
+
+<p>a) 通过 StackHolder 获取到 ASRs（架构攸关需求）</p>
+<p>b) 通过分析得到 高优先级质量属性解决方案 和 需求和约束</p>
+<p>c) 将上述部分，结合模式和策略，综合可以得到架构的设计</p>
+<p>d) 根据架构的设计得到由模式决定的候选视图的示意图，之后完成文档化</p>
+<p>e) 选择、组合视图，将文档进行进一步的评估，这一部分需要 StackHolder 的参与、也需要 高优先级质量属性解决方案 和 文档 等作为参考。</p>
+<h2><span id="架构的角色和重要性">架构的角色和重要性</span></h2><p>角色：</p>
+<ol>
+<li>架构是代表决定如何实现需求的决策的第一批人工制品。作为早期设计决策的体现，架构代表了那些最难更改的设计决策，因此值得最仔细的考虑</li>
+<li>架构是成功完成产品线工程，与独立开发每个系统相比，以较少的工作量，成本和风险来有序地开发一系列相似系统的关键要素</li>
+<li>当有人开始在系统上工作时，架构通常是首先要检查的设计工件</li>
+<li>软件架构为维护和修改决策提供了参考框架</li>
+</ol>
+<p>重要性：</p>
+<ol>
+<li>提供了沟通的工具</li>
+<li>表现最早期的决策集合</li>
+<li>表现早期设计决策</li>
+<li>促进&#x2F;阻碍质量属性实现</li>
+<li>影响质量</li>
+<li>引发潜在变更的讨论</li>
+<li>将更改分为本地、非本地和架构三种类型</li>
+<li>可迁移和可重用的抽象</li>
+<li>产品通用性的基础</li>
+<li>集成独立开发的组件</li>
+</ol>
+<h2><span id="软件架构的来源">软件架构的来源</span></h2><p>NFRs、ASRs、质量需求、涉众、组织、技术环境等等</p>
+<h1><span id="质量属性">质量属性</span></h1><h2><span id="功能性需求">功能性需求</span></h2><ol>
+<li>功能性需求定义了系统必须做什么并且强调了系统如何提供价值给涉众</li>
+<li>功能性需求意味着系统的行为</li>
+<li>功能是系统完成其预期工作的能力，例如，使学生能够在线注册。</li>
+<li>通过使用许多可能的结构可以实现功能。</li>
+<li>功能在很大程度上与结构无关，因为它可以作为单个整体系统存在而没有任何内部结构。</li>
+</ol>
+<h2><span id="质量需求">质量需求</span></h2><ol>
+<li>质量需求是系统应在其功能要求之上提供的整个系统的合乎需要的特性（又称质量属性）</li>
+<li>质量要求是功能要求或整个产品的资格。</li>
+<li>如果质量属性很重要，软件架构便会约束功能向各种结构的分配（映射）。</li>
+</ol>
+<h2><span id="非功能性需求">非功能性需求</span></h2><ol>
+<li>非功能要求或体系结构要求是用于质量属性的替代术语</li>
+<li>不可能先实现功能正确，然后再试图兼顾非功能性需求（质量无法事后补装）。</li>
+<li>在任何设计决策中都必须考虑非功能性要求</li>
+<li>⭐非功能性需求分为两大类：<ol>
+<li>在执行过程中可观察（外部）：系统满足其行为要求的程度如何？例如<strong>性能，安全性，可用性，易用性</strong>等。</li>
+<li>执行期间不可观察（内部）：系统的维护，集成或测试有多容易？ 例如，<strong>可修改性，可移植性，可重用性，可测试性</strong>等。</li>
+</ol>
+</li>
+</ol>
+<h2><span id="约束">约束</span></h2><p>约束是具有<strong>零自由度</strong>的设计决策，是已经做出的预先指定的设计决策。通过接受设计决策并将其与其他受影响的设计决策进行协调来满足约束条件。</p>
+<h2><span id="质量属性">质量属性</span></h2><p>$\to$质量需求、非功能性需求</p>
+<p>为什么软件系统结构被认为是解决质量问题的最合适层次：</p>
+<p>i. 开发完成后，质量不能被添加到软件密集型系统中，软件开发的所有阶段都需要解决质量问题：没有办法先实现功能，然后再尝试实现非功能性需求。</p>
+<p>ii. 软件体系结构限制了各种质量属性的实现，例如性能、安全性和可用性等。</p>
+<h3><span id="质量属性方案">质量属性方案</span></h3><p>确定质量属性：质量属性的精确定义对于在体系结构级别对其进行评估是必要的，使用<strong>质量属性方案</strong>用于定义所需的质量需求。</p>
+<p>质量属性方案用于定义所需的质量属性，是具有一定结构的简单句子。方案的主要类别为通用方案与具体方案。</p>
+<ul>
+<li><p>通用方案是与<strong>系统无关的方案</strong>，用于指导质量属性要求的规范。它提供了一个框架，用于生成大量通用的、独立于系统的、质量属性特定的方案。</p>
+</li>
+<li><p>具体方案是<strong>系统特定方案</strong>，用于指导特定系统的质量属性要求的规范，是通用方案的实例。</p>
+</li>
+</ul>
+<h3><span id="质量属性建模刺激-响应图">⭐⭐⭐质量属性建模（刺激-响应图）</span></h3><ol>
+<li>刺激（Stimulus）：到达系统时需要考虑的条件</li>
+<li>刺激源（Source of Stimulus）：产生刺激的实体（人，系统或任何促动器），可能是输入、消息等等，对当前的状态有一个变化。</li>
+<li>应对（Response）：刺激措施到来之后开展的活动</li>
+<li>响应度量（Response Measure）：对刺激的响应应以某种方式进行测量，以便可以测试需求。</li>
+<li>环境（Environment）：发生刺激时系统的状况，例如过载，运行等</li>
+<li>工件（Artifact）：需求适用的整个系统或系统的一部分。</li>
+</ol>
+<img src="/2026/05/21/se-architecture-2/image-20260618125105120.png" class title="image-20260618125105120">
+
+<p>从上到下：可用性、互操作性、可修改性、性能、安全性、可测试性、易用性</p>
+<h2><span id="策略tactics">策略（Tactics）</span></h2><p>策略是影响质量属性相应控制的设计决策，比如冗余。</p>
+<p>策略的集合称为体系结构策略 （<strong>A collection of tactics is called an architectural <font color="red">strategy</font>.</strong>）</p>
+<p>样式（Style）或模式（Pattern）运用策略来提供预期的收益。</p>
+<p>像模式一样，策略也可以由其他策略组成，例如，冗余可以由数据的冗余，计算的冗余组成。</p>
+<h3><span id="策略-vs-模式">策略 vs 模式</span></h3><p>i. 策略比模式更简单，仅有单一的结构或机制来应对单一的架构驱动</p>
+<p>ii. 策略是创建架构设计的重要组成块。</p>
+<p>iii. 模式通常将多个设计决策组合到一个包中。</p>
+<p>iv. 模式和策略共同构成了软件设计师的主要工具。</p>
+<p>v. 大多数模式包含几种不同的策略，这些策略可能有共同的目的或者经常被选择来实现不同的质量属性。</p>
+<h3><span id="质量设计决策">质量设计决策</span></h3><ol>
+<li><font color="red">职责分配</font>：将大的职责进行分配</li>
+<li><font color="red">协调模型</font>：各部分之间的沟通、交互</li>
+<li><font color="red">数据模型</font>：数据格式、存储方式（缓存等）</li>
+<li><font color="red">资源管理</font>：CPU、网络、内存、时间（部分时间敏感的场景）等资源</li>
+<li><font color="red">架构元素之间的映射</font>：将架构元素如何映射到软件的实现上</li>
+<li><font color="red">绑定时间决策</font>：<ol>
+<li>设置时间点（也就是这个时间前，系统还是可以变化的，但是这个时间之后就不可以变化了）</li>
+<li>比如选择安装环境是需要在一个时间点前完成的，技术是否添加、编译时间、初始化时间，运行时绑定，但运行时是弹性最大的</li>
+<li>实际上我们希望绑定时间越往后越好，但是也就要付出相应的代价。</li>
+</ol>
+</li>
+<li><font color="red">技术选择</font>：前面的部分都确定后，我们可以选择的技术栈相对比较局限。</li>
+</ol>
+<h1><span id="architecturally-significant-requirements-asrs"><strong>Architecturally Significant Requirements</strong>, ASRs</span></h1><blockquote>
+<p>什么是ASR？列出提取和识别ASR的四种来源和方法。</p>
+</blockquote>
+<p><strong>架构攸关需求</strong>是对体系结构产生深远影响的需求（如果缺失了这个需求，架构就会变得截然不同）。</p>
+<p>需求越困难和重要，就越可能显著影响体系结构，从而成为 ASR。</p>
+<h2><span id="如何识别asr和其他因素">⭐如何识别ASR和其他因素</span></h2><ol>
+<li><font color="red">从需求文档中收集ASR</font>：可以使用“MoSCoW”样式或用户故事来收集需求（不过难以收集质量需求），但其中大部分的内容都不会影响体系结构，对架构师有用的部分甚至没有出现在需求文档中。</li>
+<li><font color="red">通过采访涉众来收集ASR</font>：使用质量属性工作坊（QA Workshop）</li>
+<li><font color="red">通过了解业务目标来收集ASR</font></li>
+<li><font color="red">通过效用树来捕获ASR</font>：使用方案量化描述需求后，逐渐对质量需求进行分解细化，直到含有量化指标为止。</li>
+</ol>
+<h1><span id="架构驱动因素">架构驱动因素</span></h1>
     </div>
     
     
