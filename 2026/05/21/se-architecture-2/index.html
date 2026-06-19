@@ -189,21 +189,21 @@
             
             <span class="tag">
                 
-                <a href="/tags/study/" style="color: #00bcd4">
+                <a href="/tags/study/" style="color: #ff7d73">
                     study
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/nju/" style="color: #00a596">
+                <a href="/tags/nju/" style="color: #ffa2c4">
                     nju
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/software/" style="color: #00bcd4">
+                <a href="/tags/software/" style="color: #03a9f4">
                     software
                 </a>
             </span>
@@ -285,6 +285,96 @@
 </li>
 <li><a href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84">微服务架构</a><ul>
 <li><a href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7">主要特性</a></li>
+<li><a href="#%E6%A8%A1%E5%BC%8F%E5%92%8C%E6%A8%A1%E5%BC%8F%E8%AF%AD%E8%A8%80">模式和模式语言</a></li>
+<li><a href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86">微服务拆分</a><ul>
+<li><a href="#%E5%85%B3%E9%94%AE%E6%AD%A5%E9%AA%A4">关键步骤</a><ul>
+<li><a href="#%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C">定义系统操作</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89%E5%BE%AE%E6%9C%8D%E5%8A%A1">定义微服务</a><ul>
+<li><a href="#%E6%A0%B9%E6%8D%AE%E4%B8%9A%E5%8A%A1%E8%83%BD%E5%8A%9B%E6%8B%86%E5%88%86">根据业务能力拆分</a></li>
+<li><a href="#%E6%A0%B9%E6%8D%AE%E5%AD%90%E5%9F%9F%E6%8B%86%E5%88%86">根据子域拆分</a></li>
+<li><a href="#%E6%A0%B9%E6%8D%AE%E5%8A%A8%E9%9D%99%E6%80%81%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB%E6%8B%86%E5%88%86">根据动静态调用关系拆分</a></li>
+</ul>
+</li>
+<li><a href="#api%E5%AE%9A%E4%B9%89-%E5%AE%9E%E7%8E%B0">API定义、实现</a></li>
+<li><a href="#%E9%87%8D%E6%9E%84%E7%AD%96%E7%95%A5">重构策略</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%80%9A%E4%BF%A1">微服务架构通信</a><ul>
+<li><a href="#%E5%BA%94%E7%94%A8%E5%B1%82%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E6%A8%A1%E5%BC%8F">应用层服务发现模式</a></li>
+<li><a href="#%E5%B9%B3%E5%8F%B0%E5%B1%82%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E6%A8%A1%E5%BC%8F">平台层服务发现模式</a></li>
+<li><a href="#api%E7%BD%91%E5%85%B3%E6%A8%A1%E5%BC%8F">API网关模式</a></li>
+<li><a href="#%E6%96%AD%E8%B7%AF%E5%99%A8%E6%A8%A1%E5%BC%8F">断路器模式</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F">微服务架构部署模式</a><ul>
+<li><a href="#%E5%B0%86%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2%E5%88%B0%E5%AE%B9%E5%99%A8">将服务部署到容器</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%A8%A1%E5%BC%8F">微服务架构可观测模式</a><ul>
+<li><a href="#%E6%97%A5%E5%BF%97%E8%81%9A%E5%90%88%E6%A8%A1%E5%BC%8F">日志聚合模式</a></li>
+<li><a href="#%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E6%A8%A1%E5%BC%8F">审计日志模式</a></li>
+<li><a href="#%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8C%87%E6%A0%87%E6%A8%A1%E5%BC%8F">应用程序指标模式</a></li>
+<li><a href="#%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%BD%E8%B8%AA%E6%A8%A1%E5%BC%8F">分布式追踪模式</a></li>
+<li><a href="#%E5%BC%82%E5%B8%B8%E8%B7%9F%E8%B8%AA%E6%A8%A1%E5%BC%8F">异常跟踪模式</a></li>
+<li><a href="#%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5api%E6%A8%A1%E5%BC%8F">健康检查API模式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F">架构模式</a><ul>
+<li><a href="#%E4%B8%BB%E6%9C%BA%E7%BB%88%E7%AB%AF">主机&#x2F;终端</a><ul>
+<li><a href="#%E8%BF%81%E7%A7%BB%E5%8E%9F%E5%9B%A0">迁移原因</a></li>
+<li><a href="#%E6%9E%B6%E6%9E%84%E7%BB%93%E6%9E%84">架构结构</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3">核心思想</a></li>
+<li><a href="#%E5%AF%B9%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BD%B1%E5%93%8D">对质量属性的影响</a></li>
+<li><a href="#%E5%85%B7%E4%BD%93%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F">具体业务系统</a></li>
+</ul>
+</li>
+<li><a href="#cs">C&#x2F;S</a><ul>
+<li><a href="#%E8%BF%81%E7%A7%BB%E5%8E%9F%E5%9B%A0-1">迁移原因</a></li>
+<li><a href="#%E6%9E%B6%E6%9E%84%E7%BB%93%E6%9E%84-1">架构结构</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3-1">核心思想</a></li>
+<li><a href="#%E5%AF%B9%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BD%B1%E5%93%8D-1">对质量属性的影响</a></li>
+<li><a href="#%E5%85%B7%E4%BD%93%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F-1">具体业务系统</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89%E5%B1%82%E5%88%86%E5%B1%82">三层&#x2F;分层</a><ul>
+<li><a href="#%E8%BF%81%E7%A7%BB%E5%8E%9F%E5%9B%A0-2">迁移原因</a></li>
+<li><a href="#%E6%9E%B6%E6%9E%84%E7%BB%93%E6%9E%84-2">架构结构</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3-2">核心思想</a></li>
+<li><a href="#%E5%AF%B9%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BD%B1%E5%93%8D-2">对质量属性的影响</a></li>
+<li><a href="#%E5%85%B7%E4%BD%93%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F-2">具体业务系统</a></li>
+</ul>
+</li>
+<li><a href="#soa">SOA</a><ul>
+<li><a href="#%E8%BF%81%E7%A7%BB%E5%8E%9F%E5%9B%A0-3">迁移原因</a></li>
+<li><a href="#%E6%9E%B6%E6%9E%84%E7%BB%93%E6%9E%84-3">架构结构</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3-3">核心思想</a></li>
+<li><a href="#%E5%AF%B9%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BD%B1%E5%93%8D-3">对质量属性的影响</a></li>
+<li><a href="#%E5%85%B7%E4%BD%93%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F-3">具体业务系统</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1">微服务</a><ul>
+<li><a href="#%E8%BF%81%E7%A7%BB%E5%8E%9F%E5%9B%A0-4">迁移原因</a></li>
+<li><a href="#%E6%9E%B6%E6%9E%84%E7%BB%93%E6%9E%84-4">架构结构</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3-4">核心思想</a></li>
+<li><a href="#%E5%AF%B9%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BD%B1%E5%93%8D-4">对质量属性的影响</a></li>
+<li><a href="#%E5%85%B7%E4%BD%93%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F-4">具体业务系统</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E4%BA%91%E5%8E%9F%E7%94%9F">事件驱动&#x2F;云原生</a><ul>
+<li><a href="#%E8%BF%81%E7%A7%BB%E5%8E%9F%E5%9B%A0-5">迁移原因</a></li>
+<li><a href="#%E6%9E%B6%E6%9E%84%E7%BB%93%E6%9E%84-5">架构结构</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3-5">核心思想</a></li>
+<li><a href="#%E5%AF%B9%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BD%B1%E5%93%8D-5">对质量属性的影响</a></li>
+<li><a href="#%E5%85%B7%E4%BD%93%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F-5">具体业务系统</a></li>
+</ul>
+</li>
+<li><a href="#ljskill%E6%95%B4%E7%90%86%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E9%80%9F%E8%AE%B0">LJ.skill整理的核心思想速记</a></li>
+<li><a href="#ljskill%E6%95%B4%E7%90%86%E7%9A%84%E8%BF%81%E7%A7%BB%E5%8E%9F%E5%9B%A0%E9%80%9F%E8%AE%B0">LJ.skill整理的迁移原因速记</a></li>
+<li><a href="#ljskill%E6%95%B4%E7%90%86%E7%9A%84%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7%E5%8F%96%E8%88%8D%E9%80%9F%E8%AE%B0">LJ.skill整理的质量属性取舍速记</a></li>
 </ul>
 </li>
 </ul>
@@ -369,7 +459,7 @@
 <li>发展视图：描述了软件组件的内部组织联系（比如使用配置管理工具）。</li>
 <li>用例场景（Use Case）：捕获架构需求，与一个或多个特定视图相关。</li>
 </ol>
-<img src="/2026/05/21/se-architecture-2/image-20260618132135897-1781771604812-1.png" class title="image-20260618132135897">
+<img src="/2026/05/21/se-architecture-2/image-20260618132135897.png" class title="image-20260618132135897">
 
 <h2><span id="软件架构师做了什么">软件架构师做了什么</span></h2><ol>
 <li>联络人<ol>
@@ -397,7 +487,7 @@
 <h3><span id="软件架构过程">⭐软件架构过程</span></h3><blockquote>
 <p>以前考了</p>
 </blockquote>
-<img src="/2026/05/21/se-architecture-2/6-1781771604812-2.png" class title="img">
+<img src="/2026/05/21/se-architecture-2/6.png" class title="img">
 
 <p>a) 通过 StackHolder 获取到 ASRs（架构攸关需求）</p>
 <p>b) 通过分析得到 高优先级质量属性解决方案 和 需求和约束</p>
@@ -468,7 +558,7 @@
 <li>环境（Environment）：发生刺激时系统的状况，例如过载，运行等</li>
 <li>工件（Artifact）：需求适用的整个系统或系统的一部分。</li>
 </ol>
-<img src="/2026/05/21/se-architecture-2/image-20260618125105120-1781771604812-3.png" class title="image-20260618125105120">
+<img src="/2026/05/21/se-architecture-2/image-20260618125105120.png" class title="image-20260618125105120">
 
 <p>从上到下：可用性、互操作性、可修改性、性能、安全性、可测试性、易用性</p>
 <h2><span id="策略tactics">策略（Tactics）</span></h2><p>策略是影响质量属性相应控制的设计决策，比如冗余。</p>
@@ -769,7 +859,9 @@
 <p><strong>视图间映射</strong>：帮助读者理解视图间的关联。可以用表格记录。</p>
 <p><strong>基本原理</strong>：记录适用于多个视图的架构决策</p>
 <p><strong>目录</strong>：参考资料，帮助读者快速找到更多信息：术语索引、词汇表、缩略语列表</p>
-<h1><span id="微服务架构">微服务架构</span></h1><p>微服务架构是把应用程序<strong>功能性分解</strong>为一组服务的架构风格，每一个服务都是由一组<strong>专注、内聚</strong>的功能职责组成。</p>
+<h1><span id="微服务架构">微服务架构</span></h1><img src="/2026/05/21/se-architecture-2/image-20260619142928701.png" class title="image-20260619142928701">
+
+<p>微服务架构是把应用程序<strong>功能性分解</strong>为一组服务的架构风格，每一个服务都是由一组<strong>专注、内聚</strong>的功能职责组成。</p>
 <h2><span id="主要特性">主要特性</span></h2><ol>
 <li>通过服务组件化</li>
 <li>围绕业务能力组织</li>
@@ -780,6 +872,775 @@
 </ol>
 <p>其余特性：</p>
 <p>高可伸缩、每个服务相对较小并容易维护、技术栈不受限、服务可以独立扩展、大型复杂程序可以持续部署和交付</p>
+<h2><span id="模式和模式语言">模式和模式语言</span></h2><p>模式：针对特定上下文中发生的问题的可重用解决方案</p>
+<p>上下文（Context）：问题特定的场景</p>
+<p>问题（Problems）：需要解决的问题</p>
+<p>需求（Forces）：需求、优先级和其他约束</p>
+<p>方案（Solution）：可重用的解决方案</p>
+<p>结果（Consequences）：采用模式后的后果</p>
+<ul>
+<li>好处</li>
+<li>弊端</li>
+<li>问题</li>
+</ul>
+<p>相关模式（Related patterns）：与其他模式之间的关系</p>
+<ul>
+<li><p>前导（Predecessor ）</p>
+</li>
+<li><p>后续（Successor ）</p>
+</li>
+<li><p>替代（Alternative ）</p>
+</li>
+<li><p>泛化（Generalization）</p>
+</li>
+<li><p>特化（Specialization）</p>
+</li>
+</ul>
+<p>微服务架构模式语言就是一组模式，帮助解决微服务架构设计问题，包括应用相关模式组，应用基础设施相关模式组，基础设施相关模式组</p>
+<h2><span id="微服务拆分">微服务拆分</span></h2><img src="/2026/05/21/se-architecture-2/image-20260619142920016.png" class title="image-20260619142920016">
+
+<p>问题：如何将应用拆分为合适粒度的微服务？或如何划分合适的微服务边界？</p>
+<p>需求：</p>
+<ul>
+<li>高内聚</li>
+<li>低耦合</li>
+<li>单一职责原则</li>
+<li>共同封闭原则</li>
+<li>双披萨团队开发</li>
+<li>团队自洽</li>
+<li>……</li>
+</ul>
+<h3><span id="关键步骤">关键步骤</span></h3><ol>
+<li><font color="red">定义系统操作</font>：将需求提炼为系统关键请求</li>
+<li><font color="red">定义微服务</font>：根据<strong>业务能力</strong>或<strong>子域</strong>或<strong>动静态调用关系</strong>进行服务拆分</li>
+<li><font color="red">定义服务API和协作方式</font>：将标识的系统操作分配给服务，独立或与其他服务协作</li>
+</ol>
+<blockquote>
+<p>⚠️ 以下部分考虑设计题</p>
+</blockquote>
+<h4><span id="定义系统操作">定义系统操作</span></h4><p>输入：需求，用户故事&#x2F;相关用户场景&#x2F;源代码恢复等</p>
+<p>流程：</p>
+<ul>
+<li><strong>步骤1：创建领域模型</strong><ul>
+<li>关键概念&#x2F;类组成<ul>
+<li>关键类是用户故事中的名词</li>
+<li>从输入中提取</li>
+<li>领域专家沟通或事件风暴</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>步骤2：确定系统操作</strong><ul>
+<li>用户故事中的动词</li>
+<li>操作行为指对领域对象的影响及之间关系</li>
+<li>创建&#x2F;删除&#x2F;更新领域对象，创建&#x2F;破坏关系</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260618184848114.png" class title="image-20260618184848114">
+
+<img src="/2026/05/21/se-architecture-2/image-20260618184901447.png" class title="image-20260618184901447">
+
+<img src="/2026/05/21/se-architecture-2/image-20260618185415697.png" class title="image-20260618185415697">
+
+<h4><span id="定义微服务">定义微服务</span></h4><h5><span id="根据业务能力拆分">根据业务能力拆分</span></h5><p>业务能力：业务架构建模的术语</p>
+<ul>
+<li>为企业产生价值的商业活动，较为稳定</li>
+<li>示例<ul>
+<li>保险公司：承保、理赔服务、账务和合规等</li>
+<li>在线商店：订单管理、库存管理和发货等</li>
+<li>……</li>
+</ul>
+</li>
+<li>业务能力的实现方式相对不稳定<ul>
+<li>示例：银行“兑现支票” — 纸质&#x2F;ATM机&#x2F;手机等</li>
+</ul>
+</li>
+<li>获取方式<ul>
+<li>通过分析组织目标、结构、商业流程得到</li>
+</ul>
+</li>
+<li>特征<ul>
+<li>一个业务能力往往对应特定的业务对象</li>
+<li>能力可分解为子能力<ul>
+<li>示例：订单获取和履行的5个子能力</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260618185719419.png" alt="image-20260618185719419" style="zoom:67%;">
+
+<p><strong>业务能力到服务</strong></p>
+<ul>
+<li>顶级能力或子能力映射到服务<ul>
+<li>顶级能力直接映射<ul>
+<li>用户服务</li>
+<li>会计记账服务（统一处理支付和计费）</li>
+</ul>
+</li>
+<li>子能力分解映射<ul>
+<li>供应商管理2个服务（两个不同的供应商）</li>
+<li>订单获取和履行3个服务（3个阶段）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>映射具有一定的主观性</li>
+<li>分解方式可能会变化（组合或进一步拆分）<ul>
+<li>通信效率</li>
+<li>变更频率</li>
+<li>……</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260618185901927.png" alt="image-20260618185901927" style="zoom:67%;">
+
+<ul>
+<li><strong>结果-优点</strong><ul>
+<li>架构稳定（业务能力相对稳定）</li>
+<li>开发团队跨职能、自治，围绕交付业务价值而非技术特性进行组织</li>
+<li>服务高内聚和松耦合</li>
+</ul>
+</li>
+<li><strong>结果-问题</strong><ul>
+<li>如何分析业务能力：分析组织的目的、结构、业务流程</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>根据子域拆分、动静态调用关系进行服务拆分</li>
+</ul>
+</li>
+</ul>
+<h5><span id="根据子域拆分">根据子域拆分</span></h5><p><strong>子域：领域驱动设计方法论的核心</strong></p>
+<ul>
+<li><p>领域驱动设计（DDD）</p>
+<ul>
+<li>解决复杂软件业务领域范围&#x2F;业务边界划分的问题</li>
+<li>业务出发，以面向对象和领域模型为核心</li>
+</ul>
+</li>
+<li><p>领域</p>
+<ul>
+<li>描述问题域，一种特定的范围，电商、外卖、保险…</li>
+<li>子域是领域的细分，电商（订单、商品、物流）</li>
+<li>核心域、通用域、支撑域</li>
+</ul>
+</li>
+<li><p>核心思想和流程</p>
+<ul>
+<li>将问题域逐级细分，降低理解和实现的复杂度</li>
+<li>从业务需求中提炼统一语言</li>
+<li>战略设计<ul>
+<li>构建领域模型，识别限界上下文，确定领域边界</li>
+<li>上下文映射建立领域间关系</li>
+<li>划分（微）服务的逻辑和物理边界</li>
+</ul>
+</li>
+<li>战术设计<ul>
+<li>限界上下文内领域建模，指导程序设计、编码和重构</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>通用语言（Ubiquitous Language）</strong></p>
+<ul>
+<li>定义领域内相关团队的词汇表</li>
+<li>统一、简单、清晰、准确描述业务规则和业务</li>
+<li>理解不一致问题，如账户<ul>
+<li>身份和访问管理上下文，身份验证和授权的凭证</li>
+<li>客户管理上下文，人口统计和联系人属性</li>
+<li>财务会计上下文，付款和历史交易的特定信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>领域模型 (Domain Model)</strong></p>
+<ul>
+<li>以解决具体问题的方式包含一个领域的知识</li>
+<li>为每一个子域定义单独的领域模型</li>
+</ul>
+</li>
+<li><p><strong>限界上下文（Bounded Context)</strong></p>
+<ul>
+<li>领域模型的边界</li>
+<li>包括实现模型的代码集合</li>
+<li>对应微服务架构中一个或一组服务</li>
+</ul>
+</li>
+<li><p><strong>结果-优点</strong></p>
+<ul>
+<li>高内聚和松耦合</li>
+<li>子域和限界上下文与微服务边界匹配</li>
+<li>架构稳定（子域相对稳定）</li>
+<li>领域模型由团队独立开发、支持团队自治</li>
+<li>子域用于自己的领域模型，消除上帝类和优化拆分</li>
+</ul>
+</li>
+<li><p><strong>结果-问题</strong></p>
+<ul>
+<li>如何识别子域：分析业务及其组织结构并识别不同的专业领域</li>
+</ul>
+</li>
+<li><p><strong>相关模式</strong></p>
+<ul>
+<li>根据业务能力、动静态调用关系进行服务拆分</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260618191035529.png" alt="image-20260618191035529" style="zoom: 50%;">
+
+<h5><span id="根据动静态调用关系拆分">根据动静态调用关系拆分</span></h5><ul>
+<li><strong>收集单体应用动静态调用信息</strong><ul>
+<li>静态：用例分析、字节码解析、API接口</li>
+<li>动态：调用链路、数据流图、控制流图</li>
+</ul>
+</li>
+<li><strong>构建有向带权图（调用频率、变更频率等）</strong></li>
+<li><strong>基于聚类算法拆分</strong></li>
+<li><strong>结果</strong><ul>
+<li>棕地开发场景的拆分（遗留系统）</li>
+<li>自动化、效率高</li>
+<li>受限于遗留系统的分析和数据收集难度</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>根据业务能力、子域进行服务拆分</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260618191809645.png" class title="image-20260618191809645">
+
+<h4><span id="api定义-实现">API定义、实现</span></h4><ul>
+<li>服务API操作的存在原因<ul>
+<li>某些操作对应于系统操作（外部客户端&#x2F;其他服务调用）</li>
+<li>存在其他操作支持服务间协作（其他服务调用）</li>
+<li>通过事件发布支持协作</li>
+</ul>
+</li>
+<li>API定义流程<ul>
+<li>将系统操作分配给服务</li>
+<li>确定支持协作的API</li>
+</ul>
+</li>
+</ul>
+<p><strong>步骤1：将系统操作分配给服务</strong></p>
+<ul>
+<li>确定请求的初始入口服务</li>
+<li>映射不清晰的服务</li>
+<li>其他情况将分配给具有处理它所需信息的服务</li>
+</ul>
+<p><strong>步骤2：确定支持协作的API</strong></p>
+<ul>
+<li><p>某些操作可以由单个服务处理</p>
+<ul>
+<li><code>verifyConsumerDetails()</code></li>
+</ul>
+</li>
+<li><p>某些操作跨越多个服务（数据分散）</p>
+<ul>
+<li><code>createOrder()</code>调用多个服务：验证前置条件并使后置条件成立</li>
+<li><code>acceptOrder()</code>调用配送服务安排送餐员并交付订单</li>
+</ul>
+</li>
+<li><p>进程间通信技术</p>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260619141110838.png" alt="image-20260619141110838" style="zoom: 50%;">
+
+<h4><span id="重构策略">重构策略</span></h4><img src="/2026/05/21/se-architecture-2/image-20260619142154179.png" alt="image-20260619142154179" style="zoom:67%;">
+
+<img src="/2026/05/21/se-architecture-2/image-20260619142205421.png" alt="image-20260619142205421" style="zoom:67%;">
+
+<h2><span id="微服务架构通信">微服务架构通信</span></h2><img src="/2026/05/21/se-architecture-2/image-20260619142905684.png" class title="image-20260619142905684">
+
+<h3><span id="应用层服务发现模式">应用层服务发现模式</span></h3><p><strong>问题</strong>：基于 RPI 的客户端如何在网络上发现服务实例的位置？</p>
+<p><strong>自注册</strong>：服务实例调用服务注册表的注册API来注册其网络位置（服务注册表定期调用心跳API）</p>
+<p><strong>客户端发现</strong>：客户端查询服务注册表以获取服务实例的列表（缓存+负载均衡，提高性能）</p>
+<ul>
+<li><strong>结果</strong><ul>
+<li>处理多平台部署的问题<ul>
+<li>服务发现机制与具体的部署平台无关，Eureka vs. K8s</li>
+</ul>
+</li>
+<li>需要为使用的每种编程语言（可能还有框架）提供服务发现库<ul>
+<li>Spring Cloud仅支持</li>
+</ul>
+</li>
+<li>开发者负责设置和管理服务注册表，分散精力</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>前序模式：同步远程过程调用</li>
+<li>替代模式：平台层服务发现模式</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260619143338203.png" alt="image-20260619143338203" style="zoom: 50%;">
+
+<h3><span id="平台层服务发现模式">平台层服务发现模式</span></h3><p><strong>第三方注册</strong>：由第三方负责（注册服务器，通常是部署平台的一部分）处理注册，而不是服务本身向服务注册表注册自己</p>
+<p><strong>服务端发现</strong>：客户端无需查询服务注册表，而是向DNS名称发出请求，对该DNS名称的请求被解析到路由器，路由器查询服务注册表并对请求进行负载均衡</p>
+<ul>
+<li><strong>结果</strong><ul>
+<li>完全交给部署平台，服务端、客户端代码减负</li>
+<li>多语言支持度较高</li>
+<li>存在平台约束</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>前序模式：同步远程过程调用</li>
+<li>替代模式：应用层服务发现模式</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260619143747392.png" alt="image-20260619143747392" style="zoom:50%;">
+
+<h3><span id="api网关模式">API网关模式</span></h3><p><strong>问题</strong>：如何处理外部客户端与服务之间的通讯？</p>
+<ul>
+<li><strong>需求</strong>：支持多种客户端的API<ul>
+<li>细粒度API，客户端与多项服务交互请求效率低</li>
+<li>不同客户端需要不同的数据，性能要求亦有区别</li>
+<li>缺少封装，影响可修改性（服务划分方式变化）</li>
+<li>服务的实例数量与位置（地址和端口）动态变化</li>
+<li>对客户端不友好的进程间通信（防火墙内外协议不同）</li>
+</ul>
+</li>
+<li><strong>模式：API Gateway模式</strong><ul>
+<li>实现一个服务，外部API客户端进入基于微服务应用的入口点</li>
+<li>针对不同客户端提供不同的API</li>
+</ul>
+</li>
+<li><strong>结果</strong><ul>
+<li>封装应用程序内部结构，减少交互（请求往返）次数</li>
+<li>确保客户端不受服务实例位置影响</li>
+<li>API组合、协议转换和边缘功能，身份验证等</li>
+<li>问题：性能和可扩展性、局部故障等</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>替代模式：后端前置模式</li>
+<li>后续模式：断路器模式、服务发现模式</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260619143840771.png" alt="image-20260619143840771" style="zoom:50%;">
+
+<h3><span id="断路器模式">断路器模式</span></h3><p><strong>问题</strong>：同步通信中如何避免由于服务故障或网络中断所引起的故障蔓延到其他服务？</p>
+<ul>
+<li><strong>模式：断路器（Circuit Breaker）</strong><ul>
+<li>闭合状态：对程序的请求能够直接引起方法的调用</li>
+<li>断开状态：对程序的请求会立即返回错误响应</li>
+<li>半断开状态：允许对程序的一定数量的请求可以调用服务，如调用成功，可认为之前导致调用失败的错误已经修正，熔断器切换到闭合状态；如调用失败，则认为问题仍存在，熔断器切回到断开状态</li>
+</ul>
+</li>
+<li><strong>结果</strong><ul>
+<li>防止不断地尝试执行可能会失败的操作</li>
+<li>使程序能够诊断错误是否已经修正，进而再次尝试调用操作</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>前序模式：同步远程过程调用模式</li>
+</ul>
+</li>
+</ul>
+<h2><span id="微服务架构部署模式">微服务架构部署模式</span></h2><img src="/2026/05/21/se-architecture-2/image-20260619142951002.png" class title="image-20260619142951002">
+
+<h3><span id="将服务部署到容器">将服务部署到容器</span></h3><ul>
+<li><p><strong>将服务打包为 (Docker) 容器镜像并将每个服务实例部署到容器</strong></p>
+<ul>
+<li><p>容器是一种更现代、更轻量级的部署机制，操作系统级的虚拟化机制</p>
+</li>
+<li><p>容器由在隔离的沙箱中运行的一个或多个进程组成，多个容器通常在一台机器上运行，容器共享操作系统</p>
+</li>
+<li><p>从在容器中运行的进程的角度来看，它就好像在自己的机器上运行一样，有独立IP、可消除端口冲突</p>
+</li>
+</ul>
+</li>
+<li><p><strong>优点</strong></p>
+<ul>
+<li>通过更改容器实例的数量可以直接扩展和缩减服务</li>
+<li>容器封装了用于构建服务的技术细节，所有服务都以完全相同的方式启动和停止</li>
+<li>每个服务实例都是隔离的</li>
+<li>容器对服务实例消耗的 CPU 和内存施加限制</li>
+<li><strong>容器的构建和启动速度非常快</strong><ul>
+<li>将应用程序打包为 Docker 容器比将其打包为 AMI 快 100 倍</li>
+<li>Docker 容器启动速度明显快于 VM （仅启动应用程序进程而非整个操作系统）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>缺点</strong></p>
+<ul>
+<li>大量的容器镜像管理工作（操作系统补丁、基础设施）</li>
+<li>部署容器的基础设施不如部署虚拟机的基础设施丰富</li>
+</ul>
+</li>
+<li><p><strong>相关模式</strong></p>
+<ul>
+<li>替代模式：将服务部署到虚拟机</li>
+<li>泛化模式：单主机部署单个服务实例</li>
+</ul>
+</li>
+</ul>
+<h2><span id="微服务架构可观测模式">微服务架构可观测模式</span></h2><img src="/2026/05/21/se-architecture-2/image-20260619143004302.png" class title="image-20260619143004302">
+
+<h3><span id="日志聚合模式">日志聚合模式</span></h3><p>使用集中式日志记录服务聚合来自每个服务实例的日志，用户可搜索和分析日志，可配置当某些消息出现在日志中时触发的警报</p>
+<ul>
+<li><strong>缺点</strong><ul>
+<li>处理大量日志需要大量的基础设施</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>分布式追踪、异常跟踪</li>
+</ul>
+</li>
+</ul>
+<h3><span id="审计日志模式">审计日志模式</span></h3><p>向业务逻辑中添加审计日志代码，创建审核日志条目并保存在数据库中</p>
+<ul>
+<li><strong>优点</strong><ul>
+<li>提供用户操作的记录</li>
+</ul>
+</li>
+<li><strong>缺点</strong><ul>
+<li>审计代码与业务逻辑交织，使业务逻辑复杂化</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>后续模式：事件溯源（实施审计的可靠方式）</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260619150115975.png" alt="image-20260619150115975" style="zoom:50%;">
+
+<h3><span id="应用程序指标模式">应用程序指标模式</span></h3><p>检测服务以收集有关各个操作的统计信息，在集中式指标服务中聚合指标，提供报告和警报。聚合指标两种模型：</p>
+<p>1）push - 服务将指标推送到指标服务</p>
+<p>2）pull - 指标服务从服务中提取指标</p>
+<ul>
+<li><strong>优点</strong><ul>
+<li>提供对应用程序行为的深入洞察</li>
+</ul>
+</li>
+<li><strong>缺点</strong><ul>
+<li>指标代码与业务逻辑交织在一起，使其更加复杂</li>
+<li>聚合指标可能需要大量的基础设施</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>其他可观测性模式</li>
+</ul>
+</li>
+</ul>
+<h3><span id="分布式追踪模式">分布式追踪模式</span></h3><p>记录单次请求范围以内的信息，为每个外部请求分配一个唯一的外部请求ID，并在提供可视化和分析的集中式服务器中记录请求如何从一个服务流向下一个服务。</p>
+<p>在所有日志消息中包含外部请求ID，记录在集中服务中处理外部请求时执行的请求和操作的信息（例如开始时间、结束时间）</p>
+<ul>
+<li><strong>优点</strong><ul>
+<li>提供了对系统行为的有用洞察，包括延迟的来源</li>
+<li>使开发人员能够通过在聚合日志中搜索其外部请求 ID来查看单个请求是如何处理的</li>
+</ul>
+</li>
+<li><strong>缺点</strong><ul>
+<li>聚合和存储追踪数据可能需要大量的基础设施</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>日志聚合 - 外部请求 ID 包含在每个日志消息中</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260619151434959.png" alt="image-20260619151434959" style="zoom: 67%;">
+
+<h3><span id="异常跟踪模式">异常跟踪模式</span></h3><p>向集中式异常跟踪服务报告所有异常，该服务聚合和跟踪异常并通知开发人员。</p>
+<ul>
+<li><strong>优点</strong><ul>
+<li>更容易查看异常并跟踪其解决方案</li>
+</ul>
+</li>
+<li><strong>缺点</strong><ul>
+<li>异常跟踪服务是额外的基础设施</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>日志聚合 - 应记录异常并报告给跟踪服务</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/05/21/se-architecture-2/image-20260619151423351.png" alt="image-20260619151423351" style="zoom:50%;">
+
+<h3><span id="健康检查api模式">健康检查API模式</span></h3><p>使用 Spring Boot 和 Spring Cloud 作为微服务框架，提供健康检查端点，配置调用<code>/health</code>可扩展健康检查逻辑的 HTTP 端点。</p>
+<ul>
+<li><strong>优点</strong><ul>
+<li>定期测试服务实例的健康状况</li>
+</ul>
+</li>
+<li><strong>缺点</strong><ul>
+<li>不够全面</li>
+<li>服务实例可能在健康检查之间失败</li>
+</ul>
+</li>
+<li><strong>相关模式</strong><ul>
+<li>前置模式：服务注册与发现模式、部署相关模式</li>
+</ul>
+</li>
+</ul>
+<h1><span id="架构模式">架构模式</span></h1><blockquote>
+<p>说实话上面都是祖传理论就算了，这个一眼AI-generated的理论我无法绷住，<strong>老师和学生之间的双向糊弄</strong></p>
+</blockquote>
+<h2><span id="主机x2f终端">主机&#x2F;终端</span></h2><h3><span id="迁移原因">迁移原因</span></h3><p>上一代模式在新约束下的问题：</p>
+<ul>
+<li>无法支撑大量用户持续在线访问同一数据</li>
+<li>缺少统一的事务、权限与审计控制</li>
+<li>数据共享与并发访问一多，批处理思路就会失灵</li>
+</ul>
+<p>因此系统必须从执行任务转向服务一群用户</p>
+<h3><span id="架构结构">架构结构</span></h3><ul>
+<li>主机承担几乎全部事务处理、数据存储与权限控制</li>
+<li>终端主要负责输入、显示、不承载复杂业务逻辑</li>
+<li>安全、审计和一致性都被集中到中心系统</li>
+</ul>
+<p>本质通过“强中心+弱终端”换取一致性、安全性与治理能力</p>
+<h3><span id="核心思想">核心思想</span></h3><p>通过事务中心化，把“多人共享”从混乱访问变成可治理的制度化系统</p>
+<ol>
+<li>统一事务：同一份核心数据由中心系统负责一致性</li>
+<li>统一安全：权限、审计与访问路径集中控制</li>
+<li>统一资源共享：昂贵算力服务更多终端用户</li>
+<li>统一运维治理：关键系统更容易被制度化管理</li>
+</ol>
+<p>解决的是“很多人如何共享核心事务系统”；但是交互灵活性依然很弱</p>
+<h3><span id="对质量属性的影响">对质量属性的影响</span></h3><p>由于越来越多的用户要共享同一套核心事务与核心数据，因此要优先保障<font color="red">一致性、安全性、可靠性、可审计性</font>，而相对牺牲<font color="red">易用性、交互响应性和局部可修改性</font>。</p>
+<h3><span id="具体业务系统">具体业务系统</span></h3><img src="/2026/05/21/se-architecture-2/image-20260619153949478.png" class title="image-20260619153949478">
+
+<h2><span id="cx2fs">C&#x2F;S</span></h2><h3><span id="迁移原因">迁移原因</span></h3><p>PC与GUI普及，用户要求桌面交互</p>
+<p>上一代模式：</p>
+<ul>
+<li>终端太“瘦”，难以支持复杂GUI与本地交互</li>
+<li>所有变化都压到中心系统，部门级快速建设很难</li>
+<li>PC算力已可用，完全不下放逻辑变得不经济</li>
+</ul>
+<p>系统开始把交互迁移到客户端，把共享数据留在服务器</p>
+<h3><span id="架构结构">架构结构</span></h3><ul>
+<li>客户端负责UI与部分本地逻辑，提升响应性与体验</li>
+<li>服务器负责共享数据与部分公共逻辑</li>
+<li>前后端通过网络协作，形成分布式桌面计算</li>
+</ul>
+<p>本质：把“富交互”从中心系统迁移到桌面端</p>
+<h3><span id="核心思想">核心思想</span></h3><p>通过客户端做交互、服务器保数据的分工，第一次把企业软件真正贴近了桌面用户</p>
+<ol>
+<li>界面前移：GUI与本地状态处理让体验显著改善</li>
+<li>响应更快：一部分逻辑直接在本地完成</li>
+<li>建设更快：部门级系统能较快上线</li>
+<li>共享仍存在：核心数据依旧保留在服务器端统一管理</li>
+</ol>
+<p>解决的是怎样做富交互，但把部署和版本复杂度也搬到了客户端</p>
+<h3><span id="对质量属性的影响">对质量属性的影响</span></h3><p>由于用户开始要求更丰富、更即时的桌面交互，因此要优先保障<font color="red">易用性、响应性、交互体验</font>，而相对牺牲<font color="red">可部署性、可维护性、兼容性、统一治理</font>。</p>
+<h3><span id="具体业务系统">具体业务系统</span></h3><img src="/2026/05/21/se-architecture-2/image-20260619155015872.png" class title="image-20260619155015872">
+
+<h2><span id="三层x2f分层">三层&#x2F;分层</span></h2><h3><span id="迁移原因">迁移原因</span></h3><p>Web成为统一入口，要降低部署复杂度，并把系统内部职责整理清楚</p>
+<p>上一代模式：</p>
+<ul>
+<li>客户端安装、升级、兼容成本随着规模上升而爆炸</li>
+<li>客户端直接或强耦合访问数据层，不利于统一治理</li>
+<li>一个系统里混杂了太多展示、业务和数据处理</li>
+</ul>
+<p>重心从“前后分工”进一步转向“服务端内部清晰分层”</p>
+<h3><span id="架构结构">架构结构</span></h3><ul>
+<li>表示层负责接入与界面呈现，统一用户入口</li>
+<li>业务层承载业务规则、流程控制与领域逻辑</li>
+<li>数据层负责持久化与数据访问，形成清晰职责边界</li>
+</ul>
+<p>本质通过职责分层控制变化影响，而不是只做客户端瘦身</p>
+<h3><span id="核心思想">核心思想</span></h3><p>通过统一入口和职责分层，把部署问题和维护问题同时压了下来</p>
+<ol>
+<li>浏览器统一接入：客户端安装与升级成本明显下降</li>
+<li>逻辑集中到服务端：业务规则更容易统一修改与治理</li>
+<li>分层控制变化：界面变化、业务变化、数据变化尽量局部化</li>
+<li>安全更清晰：数据访问不必暴露到大量客户端</li>
+</ol>
+<p>解决的是系统内如何更清楚，但没有解决系统间如何协同</p>
+<h3><span id="对质量属性的影响">对质量属性的影响</span></h3><p>由于既要统一入口，又要降低维护成本并把系统内部职责整理清楚，因此要优先保障<font color="red">可维护性、可修改性、安全性、可部署性</font>，而相对牺牲<font color="red">极致性能、跨系统协同灵活性、快速局部自治</font>。</p>
+<h3><span id="具体业务系统">具体业务系统</span></h3><img src="/2026/05/21/se-architecture-2/image-20260619160115151.png" class title="image-20260619160115151">
+
+<h2><span id="soa">SOA</span></h2><h3><span id="迁移原因">迁移原因</span></h3><p>系统数量激增，企业需要跨系统复用业务能力，并打通端到端流程</p>
+<p>上一代模式：</p>
+<ul>
+<li>系统之间依旧割裂，集成靠大量点对点接口</li>
+<li>同一业务能力在不同系统中重复实现</li>
+<li>跨系统流程一变动，协调成本就会迅速上升</li>
+</ul>
+<p>企业需要从应用视角上升到服务能力视角</p>
+<h3><span id="架构结构">架构结构</span></h3><ul>
+<li>能力通过服务契约暴露，不再只藏在某个应用内部</li>
+<li>ESB &#x2F; 中间件负责路由、转换、编排与集成</li>
+<li>治理体系负责版本、规范、注册、权限与生命周期</li>
+</ul>
+<p>本质把系统功能提升为可复用的服务能力</p>
+<h3><span id="核心思想">核心思想</span></h3><p>它通过“契约 + 总线 + 编排 + 治理” ，把企业从孤岛系统集合拉向了能力网络</p>
+<ol>
+<li>契约标准化：能力接口与系统内部实现脱钩</li>
+<li>服务复用：各个能力不必每个系统重写</li>
+<li>流程编排：跨系统业务流程可以串起来</li>
+<li>异构整合：不同技术栈也能进入统一企业流程</li>
+</ol>
+<p>解决的是全企业协同，代价是治理体系更重、中心中间件更强</p>
+<h3><span id="对质量属性的影响">对质量属性的影响</span></h3><p>由于系统数量激增后企业需要跨系统复用能力并打通端到端流程，因此要优先保障<font color="red">互操作性、可复用性、可组合性、可治理性</font>，而相对牺牲<font color="red">简单性、响应性能、轻量部署、局部演进速度</font>。</p>
+<h3><span id="具体业务系统">具体业务系统</span></h3><p>课件没有</p>
+<h2><span id="微服务">微服务</span></h2><h3><span id="迁移原因">迁移原因</span></h3><p>交付频率大幅提升；团队要更快迭代，但 SOA 的重治理与粗粒度服务拖慢了速度</p>
+<p>上一代模式：</p>
+<ul>
+<li>服务边界偏粗，不易与快速变化的产品边界对齐</li>
+<li>中心治理与总线容易形成变更瓶颈</li>
+<li>跨团队依赖多，难以实现真正的独立发布</li>
+</ul>
+<p>因此服务必须更贴近业务能力、团队边界和发布节奏</p>
+<h3><span id="架构结构">架构结构</span></h3><ul>
+<li><p>系统围绕相对独立的业务能力拆成多个小服务</p>
+</li>
+<li><p>每个服务由相对独立的团队负责其开发、部署与运维</p>
+</li>
+<li><p>接口协作替代共享实现，数据尽量跟随服务边界自治</p>
+</li>
+</ul>
+<p>本质让系统边界、团队边界、发布边界尽量对齐</p>
+<h3><span id="核心思想">核心思想</span></h3><p>通过更小的业务边界与独立部署，把交付链条显著缩短</p>
+<ol>
+<li>边界更小：单次改动影响范围更可控</li>
+<li>团队自洽：一支团队可以端到端拥有一块能力</li>
+<li>部署更独立：不必每次都整体发布整套系统</li>
+<li>扩展更局部：热点能力可以单独扩容</li>
+</ol>
+<p>微服务不是服务更多，而是演进单位更小、交付链更短</p>
+<h3><span id="对质量属性的影响">对质量属性的影响</span></h3><p>由于产品迭代太快，团队需要围绕业务能力独立开发与发布，因此要优先保障<font color="red">可部署性、可扩展性、可修改性、演进速度</font>，而相对牺牲<font color="red">一致性、运维简单性、故障定位性、全局可理解性</font>。</p>
+<h3><span id="具体业务系统">具体业务系统</span></h3><img src="/2026/05/21/se-architecture-2/image-20260619162129443.png" class title="image-20260619162129443">
+
+<h2><span id="事件驱动x2f云原生">事件驱动&#x2F;云原生</span></h2><h3><span id="迁移原因">迁移原因</span></h3><p>系统规模与流量波动持续放大，同步链路过长、扩缩容困难、人工运维不可持续</p>
+<p>上一代模式：</p>
+<ul>
+<li>全同步调用链会放大尾延迟和级联故障</li>
+<li>服务变多后，发布、扩容、恢复、观测仍高度依赖人工</li>
+<li>运行能力如果不平台化，规模效应无法形成</li>
+</ul>
+<p>系统既要改变写作方式，也要改变运行方式</p>
+<h3><span id="架构结构">架构结构</span></h3><ul>
+<li>事件驱动：生产者发布事实，消费者按需订阅并处理</li>
+<li>消息 &#x2F; 流平台承担传递、缓冲、削峰与异步解耦</li>
+<li>云原生平台承担编排、扩缩容、恢复、配置与观测</li>
+</ul>
+<p>本质：事件驱动解决如何协作，云原生解决如何运行</p>
+<h3><span id="核心思想">核心思想</span></h3><p>通过异步事件与平台化运行能力，让分布式系统更弹性、更韧性、更自动化</p>
+<ol>
+<li>异步解耦：生产者不必强依赖消费者</li>
+<li>削峰与缓冲：流量波峰不再直接压垮下游</li>
+<li>自动化运行：扩容、恢复、调度尽量交给平台处理</li>
+<li>可观测性前置：运行状态必须被显式监控和追踪</li>
+</ol>
+<p>把系统运行能力正式拉进了架构主体，而不再只是运维附属</p>
+<h3><span id="对质量属性的影响">对质量属性的影响</span></h3><p>由于系统规模和流量波动放大，同步链路过长，人工运维不可持续，因此要优先保障<font color="red">弹性、韧性、可扩展性、可用性、自动化运维能力</font>，而相对牺牲<font color="red">可理解性、可调试性、时序可预测性、强一致性</font>。</p>
+<h3><span id="具体业务系统">具体业务系统</span></h3><img src="/2026/05/21/se-architecture-2/image-20260619163920744.png" class title="image-20260619163920744">
+
+<h2><span id="ljskill整理的核心思想速记">LJ.skill整理的核心思想速记</span></h2><p><strong>主机&#x2F;终端：</strong></p>
+<ul>
+<li>组织核心事务<ul>
+<li>事务、数据、权限集中在主机，终端主要输入与显示</li>
+</ul>
+</li>
+</ul>
+<p><strong>C&#x2F;S：</strong></p>
+<ul>
+<li>组织交互能力<ul>
+<li>客户端承担UI与部分逻辑，服务器管理共享数据</li>
+</ul>
+</li>
+</ul>
+<p><strong>三层&#x2F;分层：</strong></p>
+<ul>
+<li>组织职责边界：<ul>
+<li>表示层、业务层、数据层分离，降低系统内部解耦</li>
+</ul>
+</li>
+</ul>
+<p><strong>SOA：</strong></p>
+<ul>
+<li>组织企业服务能力<ul>
+<li>通过服务契约暴露可复用能力，支撑跨系统整合</li>
+</ul>
+</li>
+</ul>
+<p><strong>微服务：</strong></p>
+<ul>
+<li>组织独立演进单元<ul>
+<li>围绕业务能力拆服务，使团队、代码和发布边界对齐</li>
+</ul>
+</li>
+</ul>
+<p><strong>事件驱动 &#x2F; 云原生：</strong></p>
+<ul>
+<li>组织运行时协作：<ul>
+<li>事件负责异步协作，平台负责部署、扩缩容、恢复和观测。</li>
+</ul>
+</li>
+</ul>
+<h2><span id="ljskill整理的迁移原因速记">LJ.skill整理的迁移原因速记</span></h2><p><strong>主机&#x2F;终端：</strong></p>
+<ul>
+<li>交互能力弱，终端灵活性低</li>
+</ul>
+<p><strong>C&#x2F;S：</strong></p>
+<ul>
+<li>客户端安装升级重，版本与兼容难治理</li>
+</ul>
+<p><strong>三层&#x2F;分层：</strong></p>
+<ul>
+<li>单系统可维护性提升，但跨系统复用不足</li>
+</ul>
+<p><strong>SOA：</strong></p>
+<ul>
+<li>企业级整合增强，但治理与总线较重</li>
+</ul>
+<p><strong>微服务：</strong></p>
+<ul>
+<li>局部发布更快，但分布式复杂度上升</li>
+</ul>
+<p><strong>事件驱动 &#x2F; 云原生：</strong></p>
+<ul>
+<li>更适合高波动运行时，但时序与排障更难</li>
+</ul>
+<h2><span id="ljskill整理的质量属性取舍速记">LJ.skill整理的质量属性取舍速记</span></h2><table>
+<thead>
+<tr>
+<th align="left">架构</th>
+<th align="left">优先保障</th>
+<th align="left">相对牺牲 &#x2F; 新复杂性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>主机 &#x2F; 终端</strong></td>
+<td align="left">一致性、安全性、可靠性、可审计性</td>
+<td align="left">易用性、交互响应性、局部修改灵活性</td>
+</tr>
+<tr>
+<td align="left"><strong>C&#x2F;S</strong></td>
+<td align="left">易用性、响应性、桌面交互体验</td>
+<td align="left">可部署性、可维护性、版本一致性、统一治理</td>
+</tr>
+<tr>
+<td align="left"><strong>三层 &#x2F; 分层</strong></td>
+<td align="left">可维护性、可修改性、安全边界、部署治理</td>
+<td align="left">极致性能、跨系统复用、团队自治速度</td>
+</tr>
+<tr>
+<td align="left"><strong>SOA</strong></td>
+<td align="left">互操作性、可复用性、可组合性、可治理性</td>
+<td align="left">简单性、响应性能、轻量部署、局部演进速度</td>
+</tr>
+<tr>
+<td align="left"><strong>微服务</strong></td>
+<td align="left">可部署性、可扩展性、可修改性、演进速度</td>
+<td align="left">强一致性、运维简单性、故障定位、全局理解</td>
+</tr>
+<tr>
+<td align="left"><strong>事件 &#x2F; 云原生</strong></td>
+<td align="left">弹性、韧性、可扩展性、可用性、自动化运维</td>
+<td align="left">可理解性、可调试性、时序可预测性、强一致性</td>
+</tr>
+</tbody></table>
 
     </div>
     
