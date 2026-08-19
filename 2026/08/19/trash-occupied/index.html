@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Tags: games | Astera</title>
+    <title>垃圾堆 | Astera</title>
     <meta name="author" content="WatchRhine" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -42,6 +42,13 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
+
+
 
 
 
@@ -155,191 +162,76 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
+            <div class="article">
+    <div>
+        <h1>垃圾堆</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/8/19
+        </span>
         
-        
-        
-        <span>
-            <a href="/tags/study/" style="background: #ffa2c4">
+        <span class="category">
+            <a href="/categories/%E8%87%AA%E8%A8%80%E8%87%AA%E8%AF%AD/">
                 <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                study
+                自言自语
             </a>
         </span>
         
         
-        
-        <span>
-            <a href="/tags/nju/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                nju
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/nju/" style="color: #ff7d73">
+                    nju
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/my-life/" style="color: #03a9f4">
+                    my-life
+                </a>
+            </span>
+            
         </span>
-        
-        
-        
-        <span>
-            <a href="/tags/my-life/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                my-life
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/software-of-nju/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                software of nju
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/software/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                software
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/compiler/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                compiler
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/greetings/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                greetings
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/RainWorld/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                RainWorld
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/game/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                game
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/operation-system/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                operation system
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/games/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                games
-            </a>
-        </span>
-        
-        
-        
-        
-        
-        <span>
-            <a href="/tags/entertainment/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                entertainment
-            </a>
-        </span>
-        
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2024/12/25</div>
-            <a href="/2024/12/25/wargame-red-dragon/">
-                <h3>《Wargame: Red Dragon》战役剧情</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/categories/%E7%B2%BE%E7%A5%9E%E5%A8%B1%E4%B9%90%E5%89%82/">
-                        <span class="icon">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </span>
-                        精神娱乐剂
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/games/" style="color: #00a596">
-                            games
-                        </a>
-                    </span>
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/entertainment/" style="color: #00bcd4">
-                            entertainment
-                        </a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoStatus]"
+        :disabled="cryptoStatus === 'success'"
+        ref="crypto"
+        placeholder="文章被加密，请输入密码"
+        data-encrypted="U2FsdGVkX18GpQTArtFgjB2LLdTM3v725walcMfJOvnzXngoact4959YmH1dNcyz26hXGZWmRBnT8LRhzfCr0uSxrPlyVeCbMGN2bluGSqoLbKDUENwQ+4w5jyCFw83YmFMzTaFen4q16CS5LE3BRg0IH8nXDRBS8jICC1cDZntO+3WgWJkqOrSedVCR63gyVLIQsU3OiJyUzmO6WSkQwHg4UPB5Y8Z7lyz3Z2OiuSzO1O+T7JMvaqofl+8Ot2md41G/19KJTyAgS5QeqgGBnfGijYTE3zWKdAorEV5970fK20dTs9CpTsLuLdoM9G3BPmHFrdScz5fRchfdZjRKcgzFCdbFiV/cz99+1LBajtzApigZtK3sH5GjfuJ9rVZSqGYnMv4Uz3WmjSt+e3ao2w3Q0E02PLEUeDgtWioVbuUkX3hOO2MxxWIA2282j1rvG06x1OhCicC+WDlz+UmHv6Lj1nyvHrMotqkFRQ8qCikZoD8NXrQy2Rxr/XTNxsYlvVySemqVAsSP8QP3wxZWqhqaTNd4KY8LcyxjvQ3NSfY2atdGtsDeVSFNjwz0M8yE7gbYNBa/q+Ph7GhrLv/ze5eP2X1HGgA9k/7vBcs10p469azktKmR8goIvUv+mfMD6xZYVV4lOPgk8JWyl/6WXgbpEqWRkJxBIZFRK1nlcIAbQgz8aDQMaCPEMt45A0h+"
+        data-shasum="499e1762809b0672f557605398dc12115eeeaeeb33067e222b2fd658b5f18650"
+        v-model="crypto"
+    />
+    <transition name="fade">
+        <div class="content" ref="content" v-show="cryptoStatus === 'success'"></div>
+    </transition>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
     </div>
+    
+    
+    
     
 </div>
 
@@ -375,6 +267,29 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="WatchRhine/watchrhine.github.io"
+    data-repo-id="R_kgDONVkWLw"
+    data-category="General"
+    data-category-id="DIC_kwDONVkWL84Ckpml"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
     
 </body>
 </html>
