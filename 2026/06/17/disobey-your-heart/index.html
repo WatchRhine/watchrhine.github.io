@@ -44,6 +44,9 @@
 <script src="/js/lib/preview.js"></script>
 
 
+<script src="https://s4.zstatic.net/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
 
 
 
@@ -189,21 +192,21 @@
             
             <span class="tag">
                 
-                <a href="/tags/nju/" style="color: #ffa2c4">
+                <a href="/tags/nju/" style="color: #00bcd4">
                     nju
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/my-life/" style="color: #00a596">
+                <a href="/tags/my-life/" style="color: #ff7d73">
                     my-life
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/software-of-nju/" style="color: #ffa2c4">
+                <a href="/tags/software-of-nju/" style="color: #03a9f4">
                     software of nju
                 </a>
             </span>
@@ -212,27 +215,20 @@
         
     </div>
     
-    <div class="content" v-pre>
-        <p>洗澡的时候突然想到自己高中当初选择物化生是为了什么，是因为我<strong>不想背政史地那些繁杂的书</strong></p>
-<p>当初选择代码，从功利角度上是因为能拿米，实际上我也有一层心理因素，我觉得代码是很神奇的东西，就像当初小时候玩mc造大楼造地下设施，我觉得代码是现实世界中可以帮我实现自己兴趣的一种方式，我想做游戏，我想做工具，我想做对自己、对朋友、对他人有用的东西，Contribute是非常有意义的一件事。</p>
-<p>现在听起来当初自己还是有够天真，毕竟<font color="red">想凭着一腔热爱与兴趣去学习代码</font>终究不能和<font color="red">靠代码吃饭而去学习代码</font>相提并论</p>
-<p>二编：我其实一直在想，可能是我错怪了一些东西，也许很多东西根本不需要背。“背书”只是所谓“上课没听讲”这个<font color="red">因</font>带来的<font color="red">果</font>罢了，可是我转念又想，有的课上课去听讲也是和背书一样枯燥恶心自己，这几个学期来，认真听过讲的好像只有CPL，FLA和Linux系统基础。</p>
-<p>我之前和Zsir聊天的时候谈了背书这个问题，Zsir说他也知道软院的这个问题，还说：</p>
-<blockquote>
-<p>“背书是一种懒政”。</p>
-</blockquote>
-<p>老师懒，那就让同学去背书。Zsir说他已经多次在教学会议上提到了这点，很多老师也去改正了，后面他还说了一句让我特别印象深刻的话：</p>
-<blockquote>
-<p>“<strong>教书是良心活</strong>，一个老师，哪怕台下没有人听，也在认真地讲课，说明他认识到自己有教书育人的责任和义务。”</p>
-</blockquote>
-<p>但是我不知道该如何去正确的看待一个老师，因为看待本身就是一件非常主观的事情，或许可以从他的PPT，从他的教学方法中可以窥知一二。我这两周在给Zsir做PPT的时候有深刻的感觉，想去认真地担负起教学这个责任，其实是很累的。</p>
-<p>我感觉，从大一到大三，软院的课程氛围对于我而言正在越来越压抑，我不知道究竟是因为学生正在从大一活跃的状态渐渐习惯于这种保守古板，一个个正在成为我们口中的“老油条”，还是因为老师们没有去大幅度地改变这种情况。也可能是以前天真的我早已被现实的残酷蹂躏殆尽丧失之前的活力，也可能是现在的我被未来的黑暗所吞没以至于我不得不忍气吞声参与这场无尽的攀爬，又苦又累积攒了一身的怨气。我越来越不想去主动的学习某些课程的知识，反而是被迫地接受这些知识。我想一棒子把这些内容都打成无用的知识来安慰自己的无为和愤怒，可我又尝试说服自己这些内容的一部分实际上确实是有用的，在软件工程中是有实际应用的，而且还很有可能有助于实际工作的。可是明明如此，这种鱼龙混杂也让我感到深深的恶心。</p>
-<p>这几天来我有很多憋着的话，但是我总会将自己的想法反驳回去，因为我的想法未必正确，说出来说不定还要引别人的讨论来，争起来惹的双方并不舒服，<strong>倒不如保持沉默</strong>（<strong>这也是这篇文章看起来扭扭捏捏的原因</strong>）。况且既然如果最终选择了公开，必然要对自己的言论负责，只能用自嘲的方式将这些想法的目标全部指向自己，<font color="red">这样读者就能抱着看笑话的态度来看待这些无意义的话了。</font></p>
-<p>我本来还想说些什么，可是经过这两年在软院学习到了这么多有用的理论，也许是我的想法在和软件工程背道而驰，也许是我的想法在和软件学院背道而驰。</p>
-<p>以前的我太天真，用错误的眼光看待了这个世界。</p>
-<p><font color="red">现在的我只能爱着这个世界，因为恨着这个世界，浪费心情，毫无意义。</font></p>
-
-    </div>
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoStatus]"
+        :disabled="cryptoStatus === 'success'"
+        ref="crypto"
+        placeholder="文章被加密，请输入密码"
+        data-encrypted="U2FsdGVkX18/6RcqIS7fZza4fcTmhP7z1M/KFXPxx/tC+/kvoLs0OPCqEha6rar9jatb0SGRBShCixHgM4DYx8iK2RbQdf5EWJh3Y0RJ3bOS9uEHDn/5dZA+dlvSIMja/MDcjwcVOmiXGWqiZ1P/QANhjSs1KdZ1o89SJ2BCUT4C1AERbpJVqrv4aoer5UFUVxYi0kQ3n431v//1N0hNMKXAPtBG9ih3Ezmc/q21RJW9jkxWarlppwNbheum0A9OmvSUvYPxt7vDHtk+XIsURsPwXis1ayQdYITlAcHPhcwXfu4OvKCwKiG3lFNaAoVy58Ob15UZTCedH+YFOmnNHrrWnSZA6con6UbySfH0B2R11aASWEYUu6szrk30GG9/IwMmVZe6NBXVTW42uu0563SCFqnXRzJol/N+guy1uX5k9rzlWEfzCDBWpioLiJ2L1lY8SfACvowNx9i7vZIU/OZkKStPYJXaVQHVFTieCprTGu6IQZwvQqRGwPbv3L+gs38Ea94MarGsr87HxGnSNykvE4N66Vnzw+dcBT4I83WfnEKKCzIRb4zXxBy0/laAklINxAqXmmprvDC/N2p71+huvbQBxFY6eDszanRc+BmECi2K52eY8grpPkCDtagFsAgRgc3vsvSQccO2W31tfcEhWjRAqP6UuUqwkwXeXPqFdRuX5ENiyyA2LeTAH3MuZhjKqImZy+8qcxhb7K4nzZIvtIWzZf3ta3TYJap8WXURDUJUuJ8OfLuKd6qIJr1ivTUFoDNjU1rjLMMXFbtwx90+3wDgSofYedB2H+LzemHRyLI4QVYKqa3xrdCUZHlLeUKaSz67MecoHSW/bzWBqjf2GQrWknldVXPkCLVTztsWZpf0bTpmgChxf5XHdX5IYdTbxs0FPCLIwv9GEkkiXAxg3a55xZqcF107aauTh2UWDc/VuvTDOvU+EFf0mBsrc3gMDOCVcZ1M3HJkbR/9KllWrD7vzTXj8OWq8o7fiw/6UDBv4Ia3e1zWkZNawrqGcVUIRHX3w3FjbFnjxW+lXz0PybYEnvEszrIAKyCEfvVHUXkOl5dRNafrfyu9QwSvIyyERgg07bbm13xQn+lTH0zqrj01ajtK1qgl9kZU9yOQngJrIo3Ap0tg0lm9oxl0hdmM4JDrj88W9L1hbeMAzJ9QRuxPRTT021PZHZtwzZNMmxANCpPDe57tABpuddDSgkBpXFl/6V8+9s54doVhV4uyKDm8NPXf3iBubc8ujeUIhU07GKkPTQ3CO+rqGifMpKl8sd3SbaaP1KdB4LH4Ie0rzda+kVrvr+yT8svWckrWmtIKIooriS4x/7udB0dV/thBdE7sArVLcLl3WmOROoxbWonuy64NSLZFu7LhVzGnTNEOdJR2pQIhZ5yv41tRF164R4pc4c7F4rfm7HhYITqhWoOICstfRj1pk/93wlqia68fWpA/l2QE8EWIH8dGU0OjwEy3MRLi7TS2ZH/vvAIUf5E6YW+NYMw5osJfPUC068EWHSg4XDRLbjEfhCZIztVNHjqwpMz1ujPk3vGuMrjtVoWZ2r9t2PThuMNNyRZjlbnYLnIFQu3wNyM39oc0z32xyVXB9uRVIfOuw2UYash/Q70fHyQYWbRpp9NamFeBjiVQ68UHyN3qT5q6R8TgkLsqKmmWbXQsWTusJ3ZSCjbutAtJ7D3rrRoKjBvZzMx59Siu4/wy8dDGblZgeOxbtfqqZBDhX6C/S3LyvIKcCfF2FTgxeXz/ygGFWHffZsm4G5DXCJKqwHHOcoscwHMNdaTJzRfEtKXlNq7pBAhxtsYvk3Lt2w2mc/VvC9w3gJkCgcAZjTJhDxTJVAVhEDGIX6qgTZD4O6zk6WAMWlH8XZgJ3ZjcYDRaMLJ17KoA9xo2KVcncztqxCykLgklPuDBhl5YP4+nX0fFLKCd7UGuOkvjDmcdoAE3gzBWqFiCTWAhUelHzSOtPs5ZUOB2xPie/Ar7adbpuh9zU73jMjpesay8sjFfQsK4US+IwCCPpYquF4ybfFwek2yHLd48MXToJ9PPHNcb4z8P+4spA/XbGHBChCIW/5aHU8yH0E4qqLCjvGEcBg4ArFwz24ZUVKekOEV/kAsIjC+HYTpUZNnNTw9OPIa3EJSTYd7Ii7+Lk9n/V592Ufb1Lg4PXYB2alpunDTM6ITGD1z/FLpKT9E9prtTHDkX5HHX/1oiZWwo+OgR/qfKPyIJoo/HieFAqzIbBXWkX/7dnL+q2pwf8zLpPWR6O0rLRkSP0wb7E+plr0b7IKxDxL7Cw/X18+jebtdp01mWxEQigNEt4xVfWyJOZFTJEpt1I2pPOu5VbDZ8+3OLyMtoVnraXNguKUl305cAwSTdzPsnp+fH4UbjamRzHEas7mYF1rXrKqfjvBy1Opi58j/jg6hhB6FKG2B5brZN92TSFrbZ+vcwvxFCLQk3jxGdCffP+/DOhsjVr10bWZL1w20UjPvPqqauTY8sSWlfukOlrw7+hLnxPldb9aHVu6n6pMEe1sAQp1Lm6Oe7Gqw52J45uRBFjoIlVZfYshtNC0M4r0Z3GmFSvkPVmA4Z5Ni+llVz4N6X8HtYjqp8ee1B6OD7GTDPPomNRVfSMk1y/D9X5nW4seNQSq61shf3zi64gEwrzuBuUEsjJwpeWYqtVrTETRsfpi+KRDPBX/zG48ptEJEhMZan74+TH5huh4CbHaRHbSa+ffbDjtjoNaeJJzVqhIj835Y98zyM9JPQa5FVfOnadNjqZYszPLhFbhvDIV3qbmS4PuSbpffyJOOg3Gf+fds2uLHp946wKCQDo4V0b6ETmcJBU6eesnJRchv4XK3TwA6McSIuhKU8fcRgDecl0UHHDrkY0CrA4wcXQvZiVhB6am7u/znHb7Xna2htWpsrw6FbcZSJ3Sg/LXlljS+f8SY5EIOfhE6Bq2G24dY9+3wga6+y/AUWlacOiq3ID/fzVSJl0L7+FCJRxanFAUYNslV4SyMlLPEeDYRjYabDTCDmn4Fq4NGG21vGQNkJ6toOvGiNF5zscJ0WNnoJJK8W8pNQDAuRhf6tjZVL+pdDW63U+J0vztj7RYuiWEpNghL6CeUYZ+Q1NaVjjAdQLDhByQ3ac8Y27LxhJQtab1m7qqmP1jB2xNEs4hlvTGr2MDkTCCVh6VJY7NPfyuemy8IWbIrwb6AnsUmVAB98o770QrPfld4p1XNEd1nChcSBuDayjk7d0WnIGEFWA9JztBjqaSNlc/ykN5VDnXS8e0QLw4SW+687QmVlsHlRBWAk3E/zKGKoL9laTDpYYAIrSaNPpXj/t8aWcsoR0rDRxlNG/vyMlWv2RkhJcT+TE4MpjIDasuR7LCrWYzeDA1KIm5DMbA1eNHu3+vvg0MB3YuacBqr5GMgXQvXk6Og4gqOPqQuuaGfmuJGoE9z90M069eWJ0ifhT2RWxBj7HLLQOwJtZC7Mm6NjLHecbE9e60stYQJupN1GtlXPK73TPVyWX+zgQ85F8zwXvtAs0S/tIVtfe93WWKMOZM+zvhlP1M9HbvI+dkuZ8MBGEMw+pNwc0UdelcnQF7rMWO5ADb/f49KAMKl/R0M8M+dc2eOxBBFnzTH5zjLBzLZp0WpUbCSTD0DgYga36mMh2o/fmAryoDCE4pK/PkyZ+xNxUYiFUKf5Mqj38R15tcttGuVLg23nf/fXgx3I58nRNwTPgudTd8GKSU6Fz/c70FJ7nYEqVgdIX8URyTKqk5mhfMPCdiO9a21ut8tMovcRSpVtl5a5c9JaQcVV8LqYufmfmDHKloCAbsDMCp9XcfbOSDTyv45BcoVBeqsATy8dVzKCy4OFMbnNGnhVI2F7KQp8PsKWBIzAHvAWhdaPQBdElnOeB6lL2I4aEWntaSFlrx05BxWBw8gn4/ALFf7da42goDvXpqZon9OOfZ3f37qXf6p6IVwDh5XlFuYqJgtUJ1kztxh1Eadp/tmWNII+OxjE3O4G4N6HCTAyH94Q3gYIULRw0lTSNdJaGtAl6zqKag5eclHCQjiBIUZ/CGsYdraEAq4//r1jB3qEd3VT4yZnVWpGHXw2JjF4ZQ5kwkTfVpk/zKfStz4x4gEgSNxMg769y3FoPIWRc6pSjNStnMYwLeudKy+XmsZ55DB2gsN0b62y6/LzuDJyKkw/S2EG6EjQTiEyPJ4OAthkPVSCC/AagsZHotIksH9jMon0PelXElW320iWqW7Mhl6b5UO2NSwg4YgtOMyBh16shsKMn9if0ikV3I2z575tLJQGikL+eEm0CoV6F4cT7qQTvqtj4/Ks9AzqblWrB6qDYs3Vd/A36VYi+9iCYLk5+MyU1HiEPj/e6y4/gFVNH6yeHUUG7iLoaTgZip1acjYA6VD8qj/Z7OSbdC38haWHIpu/DrM3m3HuZXJ6G1ojxCAbGjpjb8Pd6A/9yEF1Zmj5tpZeawd1jQ0nqlHjCddZUA7nnODbEAdDazXicd3FrxJ4JUMv3rMbx2Krz1TJL/cUTQtg+xxe+iPoVSLYvCWI0X58MPnIUhZeq16wvTO1O4dV1HCYOzLX1JMdjoJWQkxSF8Y+yPVSda7wY07O8sIQHLxGXUekaGZOW80F/0srhwrFQu3F7MIuYUEps4KpF+MjYUjwmTPaY4c1RR7AiaKIQmr6Z8n/6RG5SZV9iZyx5U5U7NlwfNbwviCIaKrN9pqbJ531IBoX2ehFS6+zeTcQti2hK7j5Q65bvaGApmajI+ofJxyjX1WLA5lKnjognIZUhqtGEgdxReegD/abqzJF3CotNd9pjK7GQc+esNz/mmxRfs+c26CeHYKqHgYeNxDaMOewDJniWlwqnYoxvaJovuQeOC7jEjoOMNi1Hilb6heraMxVJz+XmFB1f7z4wNKs9o+PqjEW5r7Uza8mPV2jzt/sAI1a/sF00j857GDxc2dFbDxY4mCVPWOgd71AS4mOiySk9tLtlS9rwPuWOx5Lzh+rOew+xGTN3lyXGrefxrm0U/WQBrNCCj+ybFtRk2xC04fK70B1J2pupv/j1/EnR7yzm6SvaiifeU1SsXSloXQtljvhKQ8JG8adWA3103CcVUootUxkeY4Qn4vPqowEuxfeoh/lDKXF4jtV9LV63e1C65yS7voZRoSiYUnc/9SxbYg6Vtnn6RsaPNfkmb4hzPHlcutadrl/WUmROhEBUsVCX3125A0EKiJXQEPCKHxLOpSxP5vDrg/0p57Y3jjfIA13MP2yEbWITRHLkCYGU0cWFmiDBoxv18SS2mzwVUS06Uku/cKF4CyoUnRw7Ggmg6DSm0i2PM1UdaVDFgEcAa/xNP0BY0WemZf8YzYeSExq3nJG5okmeE2VpggnuineO4aZeYzl+LzEfRnbVvacDN7Rq40GzaH3xMaH5oZi4FGPPBMIdBCu2QFRzo6ka0AYviwoOri5r6vqHGgmCTVs1cRH+/s79KLFzxpI31YWFIlJ7lQ4bG/1eW8/ocY="
+        data-shasum="25a65a340da2d3e9506bd59a537bbad71a092796ac09b59691a0be32ef093be5"
+        v-model="crypto"
+    />
+    <transition name="fade">
+        <div class="content" ref="content" v-show="cryptoStatus === 'success'"></div>
+    </transition>
     
     
     
